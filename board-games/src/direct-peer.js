@@ -4,6 +4,16 @@ const MAX_BYTES = 65536;
 const encoder = new TextEncoder();
 let library;
 
+// State names and candidate counts only: never expose addresses or invitation data.
+export function connectionDiagnostics(rtc) {
+  if (!rtc) return 'WebRTC connection not created';
+  const candidates = description => {
+    const sdp = description?.sdp || '';
+    return ['host', 'srflx', 'relay'].map(type => `${type}:${(sdp.match(new RegExp(` typ ${type}(?: |\\r|\\n|$)`, 'g')) || []).length}`).join(',');
+  };
+  return `ICE=${rtc.iceConnectionState || 'unknown'}; gathering=${rtc.iceGatheringState || 'unknown'}; signaling=${rtc.signalingState || 'unknown'}; local[${candidates(rtc.localDescription)}]; remote[${candidates(rtc.remoteDescription)}]`;
+}
+
 export function directPeerOptions() {
   return {
     host: '0.peerjs.com', port: 443, path: '/', secure: true, debug: 0,
@@ -36,8 +46,9 @@ export async function createDirectPeer({ id, PeerConstructor, timeoutMs = 15000,
     ready.catch(() => {});
     const timer = setTimeout(() => {
       const rtc=connection.peerConnection;
-      if(rtc)console.warn(`Direct P2P timeout: ICE=${rtc.iceConnectionState}; connection=${rtc.connectionState}; signaling=${rtc.signalingState}`);
-      end(new Error('Direct connection failed. Relay fallback is disabled.'));
+      const details=connectionDiagnostics(rtc);
+      console.warn(`Direct P2P timeout: ${details}`);
+      end(new Error(`Direct connection failed. Relay fallback is disabled. Connection details: ${details}`));
     }, timeoutMs);
     function end(error = new Error('Peer connection closed.')) {
       if (ended) return;
