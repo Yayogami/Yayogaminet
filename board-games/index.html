@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meadow · Board games</title>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="importmap">{"imports":{"three":"./public/vendor/three/build/three.module.js","three/addons/":"./public/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <main class="menu" aria-labelledby="menu-title">
+    <header class="title-sign art-surface" data-art="heading">
+      <p class="eyebrow">A place at the table</p>
+      <h1 id="menu-title">Choose a Game</h1>
+    </header>
+    <section class="game-list" aria-label="Choose your game" id="game-list"></section>
+    <p id="selection" class="selection" role="status">Choose a game to begin</p>
+    <button class="art-button board-preview-button" data-art="button" id="preview-board" disabled>View Board</button>
+    <button class="art-button board-preview-button" data-art="button" id="resume-room" hidden>Resume Room</button>
+    <p id="room-session-status" role="status"></p>
+    <nav class="actions" aria-label="Rooms">
+      <button class="art-button" data-art="button" data-action="create" disabled>Create Room</button>
+      <button class="art-button" data-art="button" data-action="private" disabled>Join Private Room</button>
+    </nav>
+    <footer><span>Direct P2P · Two players</span><span>Invitation-only</span></footer>
+  </main>
+  <section id="board-screen" class="board-screen" hidden aria-labelledby="board-title">
+    <header class="board-toolbar art-surface" data-art="heading">
+      <div><h1 id="board-title">Board preview</h1><p id="board-status" role="status"></p></div>
+      <button class="art-button" data-art="button" id="back-from-board">Back to games</button>
+    </header>
+    <div id="board-canvas"></div>
+    <p class="board-help">Drag to rotate · Scroll to zoom · Board preview — matches are still being built</p>
+  </section>
+  <section id="live-room" class="board-screen" hidden aria-labelledby="live-title">
+    <header class="board-toolbar art-surface" data-art="heading">
+      <div><h1 id="live-title">Room</h1><p id="seat-status"></p><p id="live-state" role="status"></p><p id="live-clocks"></p></div>
+      <button class="art-button" data-art="button" id="leave-room">Disconnect to menu</button>
+    </header>
+    <div class="room-controls">
+      <label>Invitation code<input id="invitation-code" readonly aria-label="Invitation code"></label>
+      <button class="art-button" data-art="button" id="copy-invitation">Copy Invitation</button>
+      <button class="art-button" data-art="button" id="room-ready">Ready</button>
+      <button class="art-button" data-art="button" id="extend-reconnect" hidden>Extend by 5 minutes</button>
+      <button class="art-button" data-art="button" id="resign-match" hidden>Resign</button>
+    </div>
+    <div id="live-canvas"></div>
+    <details class="room-rules-summary art-surface" data-art="panel"><summary>Room rules</summary><p id="live-rules"></p></details>
+    <div class="move-controls art-surface" data-art="panel">
+      <label>Select piece by square<select id="piece-picker" aria-label="Select piece by square" disabled></select></label>
+      <p id="move-instruction" role="status"></p><div id="move-routes"></div>
+      <button class="art-button" data-art="button" id="confirm-move" disabled>Confirm Move</button>
+      <button class="art-button" data-art="button" id="clear-move" disabled>Clear Selection</button>
+      <button class="art-button" data-art="button" id="draw-with-move" hidden>Offer draw with this move</button>
+    </div>
+    <div class="match-actions art-surface" data-art="panel">
+      <p id="draw-eligibility" role="status"></p>
+      <button class="art-button" data-art="button" id="claim-draw" disabled>Claim Draw</button>
+      <button class="art-button" data-art="button" id="offer-draw">Offer Draw</button>
+      <button class="art-button" data-art="button" id="request-takeback" hidden>Request Takeback</button>
+      <button class="art-button" data-art="button" id="request-rematch" hidden>Request Rematch</button>
+      <div id="pending-request" hidden>
+        <p id="pending-request-text" role="status"></p>
+        <button class="art-button" data-art="button" id="accept-request">Accept</button>
+        <button class="art-button" data-art="button" id="decline-request">Decline</button>
+      </div>
+    </div>
+    <p id="live-message" class="board-help" role="status"></p>
+  </section>
+  <dialog id="room-dialog" class="room-dialog art-surface" data-art="panel" aria-labelledby="dialog-title">
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-copy"></p>
+    <div id="room-content"></div>
+    <p id="room-progress" role="status"></p>
+    <p id="room-error" role="alert" hidden></p>
+    <button class="art-button" data-art="button" id="close-dialog">Back to games</button>
+  </dialog>
+  <div id="error" role="alert" hidden></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

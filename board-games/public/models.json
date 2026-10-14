@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "surface": { "width": 0.4, "depth": 0.4, "height": 0.02, "boardWidth": 0.45, "boardDepth": 0.45 },
+  "pieces": {
+    "blue": "./models/blue-checker.glb",
+    "white": "./models/white-checker.glb",
+    "diameter": 0.04,
+    "height": 0.005,
+    "squareCoverage": 0.8
+  },
+  "games": {
+    "american-checkers": { "board": "./models/checkers-board.glb", "texture": "./art/checkers-ground.png", "vegetation": true },
+    "international-draughts": { "board": "./models/draughts-board.glb", "texture": "./art/draughts-ground.png", "vegetation": false }
+  },
+  "groundMaterial": "Original artwork • derived grass-only ground"
+}

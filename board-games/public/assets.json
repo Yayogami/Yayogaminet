@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "assets": {
+    "background": { "src": "./art/meadow-background.png", "fit": "cover", "position": "center" },
+    "button": { "src": "./art/wood-panel.png", "slice": [185, 170, 185, 170], "borderWidth": [17, 17, 17, 17] },
+    "heading": { "src": "./art/wood-panel.png", "slice": [185, 170, 185, 170], "borderWidth": [20, 22, 20, 22] },
+    "panel": { "src": "./art/wood-panel.png", "slice": [185, 170, 185, 170], "borderWidth": [25, 25, 25, 25] },
+    "checkersIllustration": { "src": "./art/checker-emblem.png", "fit": "contain", "position": "center" },
+    "draughtsIllustration": { "src": "./art/checker-emblem.png", "fit": "contain", "position": "center" }
+  }
+}
