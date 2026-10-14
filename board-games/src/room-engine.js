@@ -40,6 +40,7 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
       for (const p of room.players) { p.connected = false; p.ready = false; }
       if (['playing','paused'].includes(room.phase)) { room.phase = 'paused'; room.recovering = true; }
       room.lastClockAt = null; room.deadline = null; room.revision++;
+      room.startAt = null;
       rooms.set(room.id, room);
     }
   }
@@ -69,6 +70,10 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
   function tickRoom(room, time) {
     // Stop the clock at the first missed heartbeat deadline, not at the next poll.
     const firstExpired = Math.min(...room.players.filter(p => p.connected).map(p => p.lastSeen + disconnectAfterMs));
+    if (room.phase === 'waiting' && room.startAt != null) {
+      if (firstExpired <= Math.min(time,room.startAt) || !room.players.every(p => p.ready && p.connected)) { room.startAt = null; room.revision++; }
+      else if (time >= room.startAt) { room.phase = 'playing'; room.lastClockAt = room.startAt; room.startAt = null; room.revision++; }
+    }
     clockStep(room, Math.min(time, firstExpired));
     for (const p of room.players) {
       if (p.connected && time >= p.lastSeen + disconnectAfterMs) {
@@ -101,7 +106,7 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
     return { id: room.id, gameId: room.gameId, rules: room.rules, phase: room.phase,
       revision: room.revision, you: seat.side, creator: seat === room.players[0],
       players: room.players.map(p => ({ side: p.side, ready: p.ready, connected: p.connected })),
-      position: room.position, clocks: room.clocks, serverTime: now(), reconnectDeadline: room.deadline, recovering: !!room.recovering,
+      position: room.position, clocks: room.clocks, serverTime: now(), startAt: room.startAt ?? null, reconnectDeadline: room.deadline, recovering: !!room.recovering,
       result: room.result, selectedPiece: room.selectedPiece, draws: room.draws, pending: room.pending, matchNumber: room.matchNumber, positionVersion: room.positionVersion };
   }
   return {
@@ -157,7 +162,8 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
         requireValue(room.phase === 'waiting', 'The match has already started.', 409);
         requireValue(typeof action.ready === 'boolean', 'Invalid ready state.');
         seat.ready = action.ready; room.revision++;
-        if (room.players.length === 2 && room.players.every(p => p.ready && p.connected)) { room.phase = 'playing'; room.lastClockAt = now(); }
+        if (room.players.length === 2 && room.players.every(p => p.ready && p.connected)) { room.startAt ??= now() + 3000; }
+        else room.startAt = null;
       } else if (action.type === 'extend') {
         requireValue(room.phase === 'paused' && !room.recovering && room.players.some(p => !p.connected), 'There is no reconnect deadline to extend.', 409);
         room.deadline += room.rules.disconnect.extensionSeconds * 1000; room.revision++;

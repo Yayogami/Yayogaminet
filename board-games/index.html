@@ -41,9 +41,12 @@
       <label>Invitation code<input id="invitation-code" readonly aria-label="Invitation code"></label>
       <button class="art-button" data-art="button" id="copy-invitation">Copy Invitation</button>
       <button class="art-button" data-art="button" id="room-ready">Ready</button>
+      <button class="art-button" data-art="button" id="board-lock" aria-pressed="true">Unlock Board</button>
       <button class="art-button" data-art="button" id="extend-reconnect" hidden>Extend by 5 minutes</button>
       <button class="art-button" data-art="button" id="resign-match" hidden>Resign</button>
     </div>
+    <div id="join-feedback" class="join-feedback art-surface" data-art="heading" role="status" hidden>Both players joined</div>
+    <div id="start-countdown" class="start-countdown art-surface" data-art="heading" role="status" hidden></div>
     <div id="live-canvas"></div>
     <details class="room-rules-summary art-surface" data-art="panel"><summary>Room rules</summary><p id="live-rules"></p></details>
     <div class="move-controls art-surface" data-art="panel">

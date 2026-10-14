@@ -37,7 +37,9 @@ export async function createBoardView(container, game, options = {}) {
   const piecesGroup = new THREE.Group();
   scene.add(piecesGroup);
   const templates = { blue: blue.scene, white: white.scene };
+  let pieceStates = [];
   function setPieces(pieces) {
+    pieceStates = pieces;
     piecesGroup.clear();
     for (const piece of pieces) {
       for (let level = 0; level < (piece.king ? 2 : 1); level++) {
@@ -46,6 +48,7 @@ export async function createBoardView(container, game, options = {}) {
         const position = layout.center(piece.row, piece.column, level);
         model.position.set(position.x, position.y, position.z);
         model.userData.pieceId = piece.id;
+        model.traverse(child => { child.userData.pieceId = piece.id; });
         piecesGroup.add(model);
       }
     }
@@ -70,21 +73,46 @@ export async function createBoardView(container, game, options = {}) {
   controls.maxDistance = 2;
   controls.maxPolarAngle = Math.PI * 0.46;
   controls.update();
+  let locked = !!options.onSquare;
+  function setLocked(value) { locked = value; controls.enabled = !value; options.onLockChange?.(value); }
+  setLocked(locked);
   const raycaster = new THREE.Raycaster();
   const boardPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -config.surface.height);
   let down = null;
-  const pointerDown = event => { down = { x: event.clientX, y: event.clientY }; };
-  const pointerUp = event => {
-    if (!down || Math.hypot(event.clientX - down.x, event.clientY - down.y) > 5) return;
-    down = null;
+  function hit(event) {
     const rect = renderer.domElement.getBoundingClientRect();
     raycaster.setFromCamera(new THREE.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, 1 - (event.clientY - rect.top) / rect.height * 2), camera);
+    const object = raycaster.intersectObjects(piecesGroup.children, true)[0]?.object;
+    const piece = pieceStates.find(p => p.id === object?.userData.pieceId);
     const point = raycaster.ray.intersectPlane(boardPlane, new THREE.Vector3());
-    const square = point && layout.squareAt(point.x, point.z);
+    return { piece, square: piece || (point && layout.squareAt(point.x, point.z)) };
+  }
+  const hover = document.createElement('span');
+  hover.className = 'square-hint art-surface piece-highlight'; hover.hidden = true;
+  options.artwork?.apply(hover, 'button');
+  if (options.artwork) hover.style.borderImageSlice = options.artwork.get('button').slice.join(' ');
+  hover.style.borderImageWidth = '5px'; container.append(hover);
+  let hovered = null, selectedId = null;
+  const pointerMove = event => { hovered = hit(event).piece || null; renderer.domElement.style.cursor = hovered ? 'pointer' : locked ? 'default' : 'grab'; };
+  const pointerLeave = () => { hovered = null; };
+  const pointerDown = event => {
+    if (event.button !== 0) return;
+    down = { x: event.clientX, y: event.clientY };
+    if (options.onSquare && hit(event).piece) setLocked(true);
+  };
+  const pointerUp = event => {
+    const start = down;
+    down = null;
+    if (!start || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 5) return;
+    const { square } = hit(event);
     if (square) options.onSquare?.(square);
   };
-  renderer.domElement.addEventListener('pointerdown', pointerDown);
+  renderer.domElement.addEventListener('pointerdown', pointerDown, true);
   renderer.domElement.addEventListener('pointerup', pointerUp);
+  renderer.domElement.addEventListener('pointermove', pointerMove);
+  renderer.domElement.addEventListener('pointerleave', pointerLeave);
+  const cancelPointer = () => { down = null; };
+  renderer.domElement.addEventListener('pointercancel', cancelPointer);
   const markers = [];
   function showHints(squares = []) {
     for (const marker of markers) marker.element.remove();
@@ -119,20 +147,30 @@ export async function createBoardView(container, game, options = {}) {
     mixer.update(Math.min((time - lastTime) / 1000, 0.1));
     lastTime = time;
     renderer.render(scene, camera);
+    const highlighted = hovered || pieceStates.find(p => p.id === selectedId);
+    hover.hidden = !highlighted;
+    if (highlighted) {
+      const center = layout.center(highlighted.row, highlighted.column, highlighted.king ? 2 : 1);
+      const projected = new THREE.Vector3(center.x, center.y + 0.004, center.z).project(camera);
+      hover.style.left = `${(projected.x + 1) / 2 * container.clientWidth}px`;
+      hover.style.top = `${(1 - projected.y) / 2 * container.clientHeight}px`;
+    }
     for (const marker of markers) {
       const projected = marker.point.clone().project(camera);
       marker.element.style.left = `${(projected.x + 1) / 2 * container.clientWidth}px`;
       marker.element.style.top = `${(1 - projected.y) / 2 * container.clientHeight}px`;
     }
   });
-  return { layout, setPieces, showHints,
+  return { layout, setPieces, showHints, setLocked, isLocked: () => locked,
+    setSelected(id) { selectedId = id; if (id) setLocked(true); },
     setSide(side) {
       camera.position.set(0, 0.63, side === bottomSide ? 0.44 : -0.44);
       controls.target.set(0, 0.01, 0); resize();
     },
     dispose() {
       renderer.setAnimationLoop(null); observer.disconnect(); controls.dispose(); mixer.stopAllAction();
-      showHints(); renderer.domElement.removeEventListener('pointerdown', pointerDown); renderer.domElement.removeEventListener('pointerup', pointerUp);
+      showHints(); hover.remove(); renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
+      renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerleave', pointerLeave); renderer.domElement.removeEventListener('pointercancel', cancelPointer);
       const geometries = new Set(), materials = new Set(), textures = new Set([ground]);
       for (const root of [board.scene, blue.scene, white.scene]) root.traverse(obj => {
         if (obj.geometry) geometries.add(obj.geometry);

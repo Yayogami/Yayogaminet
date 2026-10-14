@@ -20,6 +20,25 @@ export function setupRooms(artwork, getGame) {
   const menu = document.querySelector('.menu');
   let connection = null, current = null, view = null, generation = 0, selected = null, draft = null, lastPly = -1, busy = false, connectionError = false;
   let drawWithMove = false, lastPositionVersion = -1;
+  let audio = null, joinedRoom = null, feedbackTimer = null;
+  function unlockAudio() {
+    try { audio ??= new (window.AudioContext || window.webkitAudioContext)(); audio.resume().catch(()=>{}); } catch {}
+  }
+  document.addEventListener('pointerdown', unlockAudio, {once:true});
+  document.addEventListener('keydown', unlockAudio, {once:true});
+  function joinFeedback() {
+    const banner = document.querySelector('#join-feedback'); banner.hidden = false;
+    clearTimeout(feedbackTimer); feedbackTimer = setTimeout(()=>{banner.hidden=true;},2500);
+    if (!audio || audio.state !== 'running') return;
+    for (const [offset, frequency] of [[0,523.25],[0.16,659.25]]) {
+      const oscillator=audio.createOscillator(), gain=audio.createGain(), at=audio.currentTime+offset;
+      oscillator.frequency.value=frequency; gain.gain.setValueAtTime(0,at); gain.gain.linearRampToValueAtTime(0.07,at+0.02); gain.gain.exponentialRampToValueAtTime(0.001,at+0.3);
+      oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(at);oscillator.stop(at+0.32);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};
+    }
+  }
+  function lockChanged(locked) {
+    const control=document.querySelector('#board-lock'); control.textContent=locked?'Unlock Board':'Lock Board'; control.setAttribute('aria-pressed',String(locked));
+  }
   const paint = root => root.querySelectorAll('[data-art]').forEach(node => artwork.apply(node, node.dataset.art));
   const button = (label, handler) => {
     const node = document.createElement('button'); node.type = 'button'; node.className = 'art-button';
@@ -62,6 +81,7 @@ export function setupRooms(artwork, getGame) {
     }
   }
   function renderChoices(candidates = null) {
+    view?.setSelected(selected);
     const tray = document.querySelector('#move-routes'); tray.replaceChildren();
     const canMove = current?.phase === 'playing' && current.position.turn === current.you;
     const picker = document.querySelector('#piece-picker');
@@ -105,6 +125,10 @@ export function setupRooms(artwork, getGame) {
     const previousPhase = current?.phase;
     const previousMatch = current?.matchNumber, previousSide = current?.you;
     current = room;
+    if (room.players.length === 2 && room.players.every(p=>p.connected) && joinedRoom !== room.id) { joinedRoom=room.id; joinFeedback(); }
+    const countdown=document.querySelector('#start-countdown');
+    countdown.hidden=room.phase!=='waiting' || room.startAt==null;
+    if (!countdown.hidden) countdown.textContent=`Starting in ${Math.max(1,Math.ceil((room.startAt-room.serverTime)/1000))}`;
     if (connectionError) { connectionError = false; document.querySelector('#live-message').textContent = developmentNote; }
     const game = games.find(g=>g.id===room.gameId);
     document.querySelector('#live-title').textContent = `${game.name} · You are ${room.you === 'blue' ? 'Blue' : 'White'}`;
@@ -123,7 +147,7 @@ export function setupRooms(artwork, getGame) {
     document.querySelector('#extend-reconnect').hidden = room.phase !== 'paused' || room.recovering;
     document.querySelector('#resign-match').hidden = !room.rules.resignation || !['playing','paused'].includes(room.phase);
     document.querySelector('#live-clocks').textContent = room.rules.clock.enabled ? `Blue ${clockText(room.clocks.blue)} · White ${clockText(room.clocks.white)}` : 'No clock';
-    document.querySelector('#live-state').textContent = room.phase === 'waiting' ? 'Both players must click Ready.'
+    document.querySelector('#live-state').textContent = room.phase === 'waiting' ? room.startAt!=null ? 'Get ready — clocks start after the countdown.' : 'Both players must click Ready.'
       : room.phase === 'playing' ? `${room.position.turn === 'blue' ? 'Blue' : 'White'} to move`
       : room.phase === 'paused' ? room.recovering ? 'Room restored · clocks paused until both players return.' : `Connection lost · clocks paused · ${clockText(room.reconnectDeadline - room.serverTime)} to reconnect`
       : room.result?.draw ? `Draw · ${room.result.reason==='agreed-draw'?'agreed by both players':'valid rule claim'}`
@@ -153,7 +177,7 @@ export function setupRooms(artwork, getGame) {
     receive(first);
     connection=connectRoom(session,receive,e=> { connectionError = true; document.querySelector('#live-message').textContent=`Connection interrupted: ${e.message}. Retrying…`; },first);
     const { createBoardView }=await import('./board-view.js');
-    const loaded=await createBoardView(document.querySelector('#live-canvas'),games.find(g=>g.id===first.gameId),{side:first.you,onSquare:squareClicked,artwork});
+    const loaded=await createBoardView(document.querySelector('#live-canvas'),games.find(g=>g.id===first.gameId),{side:first.you,onSquare:squareClicked,onLockChange:lockChanged,artwork});
     if (ownGeneration!==generation) { loaded.dispose(); return; }
     view=loaded; view.setPieces(current.position.pieces); view.setSide(current.you); renderChoices();
     document.querySelector('#live-message').textContent=developmentNote;
@@ -197,6 +221,7 @@ export function setupRooms(artwork, getGame) {
   }
   document.querySelectorAll('[data-action]').forEach(node=>node.addEventListener('click',()=>open(node.dataset.action)));
   document.querySelector('#room-ready').addEventListener('click',()=>run(()=>connection.action({type:'ready',ready:!current.players.find(p=>p.side===current.you).ready})));
+  document.querySelector('#board-lock').addEventListener('click',()=>{if(view)view.setLocked(!view.isLocked());});
   document.querySelector('#copy-invitation').addEventListener('click',()=>run(async()=>{
     await navigator.clipboard.writeText(roomInvitation(savedRoom()));
     document.querySelector('#live-message').textContent='Invitation copied. Share it with your opponent.';

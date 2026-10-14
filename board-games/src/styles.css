@@ -74,4 +74,8 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   .actions .art-button { width: min(350px, 100%); max-width: none; min-height: 63px; font-size: 20px; }
   footer { margin-top: 0; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.piece-highlight { width: 40px; height: 40px; pointer-events: none; }
+.join-feedback, .start-countdown { margin: 12px auto; padding: 24px; width: fit-content; text-align: center; font-size: 26px; }
+.join-feedback:not([hidden]) { animation: join-arrival 500ms ease-out; }
+@keyframes join-arrival { from { opacity: 0; transform: translateY(12px) scale(.9); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
