@@ -223,8 +223,11 @@ export function setupRooms(artwork, getGame) {
   document.querySelector('#room-ready').addEventListener('click',()=>run(()=>connection.action({type:'ready',ready:!current.players.find(p=>p.side===current.you).ready})));
   document.querySelector('#board-lock').addEventListener('click',()=>{if(view)view.setLocked(!view.isLocked());});
   document.querySelector('#copy-invitation').addEventListener('click',()=>run(async()=>{
-    await navigator.clipboard.writeText(roomInvitation(savedRoom()));
-    document.querySelector('#live-message').textContent='Invitation copied. Share it with your opponent.';
+    let url=new URL(window.location.href);
+    try { if(window.parent!==window)url=new URL(window.parent.location.href); } catch {}
+    url.hash=new URLSearchParams({join:roomInvitation(savedRoom())}).toString();
+    await navigator.clipboard.writeText(url.href);
+    document.querySelector('#live-message').textContent='Invitation link copied. Opening it joins this room automatically.';
   }));
   document.querySelector('#extend-reconnect').addEventListener('click',()=>run(()=>connection.action({type:'extend'})));
   document.querySelector('#resign-match').addEventListener('click',()=>run(()=>connection.action({type:'resign'})));
@@ -247,4 +250,11 @@ export function setupRooms(artwork, getGame) {
   const resume=document.querySelector('#resume-room');resume.hidden=!savedRoom();
   resume.addEventListener('click',()=>run(()=>enter(savedRoom())));
   paint(screen);
+  const invitationFromLink=new URLSearchParams(window.location.hash.slice(1)).get('join');
+  if(invitationFromLink)run(async()=>{
+    document.querySelector('#room-session-status').textContent='Joining your invitation…';
+    const result=await joinRoom(invitationFromLink);
+    await enter(result.session,result.room);
+    history.replaceState(null,'',window.location.pathname+window.location.search);
+  });
 }

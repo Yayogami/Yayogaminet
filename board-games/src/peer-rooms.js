@@ -7,10 +7,22 @@ import { verifyPeerRoom } from './peer-verifier.js';
 
 const SESSION='meadow-p2p-session-v1';
 const recordKey=session=>`meadow-p2p-room-v1:${session.id}:${session.role}`;
-export function parseInvitation(code) {
+export async function parseInvitation(code) {
+  code=String(code).trim();
+  if (/^https?:\/\//i.test(code)) code=new URLSearchParams(new URL(code).hash.slice(1)).get('join') || '';
+  if (/^\d{10}$/.test(code)) {
+    const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(`meadow-invite-v2:${code}`));
+    const secret=Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
+    return {id:secret.slice(0,18),secret,inviteCode:code};
+  }
   const match=String(code).trim().toLowerCase().match(/^([a-f0-9]{18})\.([a-f0-9]{64})$/);
-  if(!match)throw new Error('Paste the complete invitation code.');
+  if(!match)throw new Error('Enter the 10-digit invitation code or paste the invitation link.');
   return {id:match[1],secret:match[2]};
+}
+export function newInvitationCode() {
+  let value;
+  do { value=BigInt(`0x${browserSecurity.randomHex(5)}`); } while(value>=1090000000000n);
+  return String(value%10000000000n).padStart(10,'0');
 }
 export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThis.localStorage, tabStorage=globalThis.sessionStorage, now=Date.now}={}) {
   let active=null;
@@ -135,13 +147,19 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
     async create(data) {
       stop();
       if(data.rules.visibility!=='private')throw new Error('This P2P release supports invitation-only rooms.');
-      const core=createRoomService({now,maxRooms:1});const result=core.create(data);
-      const session={id:result.room.id,token:result.token,role:'host',secret:browserSecurity.randomHex(32)};
-      const a=await startHost(session);a.core=core;a.last=result.room;a.lastAt=now();persist(a);saveSession(session);
-      return {...result,session};
+      for(let attempt=0;attempt<3;attempt++) {
+        const invitation=await parseInvitation(newInvitationCode());
+        const security={...browserSecurity,randomHex:bytes=>bytes===9?invitation.id:browserSecurity.randomHex(bytes)};
+        const core=createRoomService({now,maxRooms:1,security});const result=core.create(data);
+        const session={...invitation,token:result.token,role:'host'};
+        let a;
+        try {a=await startHost(session);} catch(error) {if(error.type==='unavailable-id'&&attempt<2)continue;throw error;}
+        a.core=core;a.last=result.room;a.lastAt=now();persist(a);saveSession(session);
+        return {...result,session};
+      }
     },
     async join(code) {
-      stop();const invitation=parseInvitation(code);
+      stop();const invitation=await parseInvitation(code);
       const session={...invitation,role:'guest',guestKey:browserSecurity.randomHex(32)};
       const a=active={session,closed:false};
       persist(a);saveSession(session);
@@ -168,6 +186,6 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
       const rpc=await ensureGuest(a);const response=await rpc.request('action',{token:session.token,action});
       const room=verifyPeerRoom(response,session.id);a.last=room;a.lastAt=now();persist(a);return room;
     },
-    invitation:session=>`${session.id}.${session.secret}`,
+    invitation:session=>session.inviteCode || `${session.id}.${session.secret}`,
   };
 }

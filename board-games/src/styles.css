@@ -79,3 +79,45 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
 .join-feedback:not([hidden]) { animation: join-arrival 500ms ease-out; }
 @keyframes join-arrival { from { opacity: 0; transform: translateY(12px) scale(.9); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Desktop play keeps the board and all primary actions in the same viewport. */
+@media (min-width: 1000px) {
+  .menu { height: 100svh; min-height: 0; padding: 18px 0; gap: 10px; justify-content: center; }
+  .title-sign { padding: 6px 36px; }
+  .game-list { margin-top: 6px; gap: 28px; }
+  .game-card { padding: 10px 16px 18px; }
+  .game-illustration { height: min(21vh,210px); margin: 6px auto; }
+  .selection { margin: 12px 0 0; }
+  .board-preview-button { margin: 0; }
+  #room-session-status:empty { display: none; }
+  .menu footer { margin: 0; padding-top: 4px; }
+  .menu .art-button { min-height: 56px; padding: 0 18px; font-size: 20px; }
+  #live-room { height: 100svh; min-height: 0; padding: 12px; display: grid; grid-template-columns: minmax(0,1fr) 390px; grid-template-rows: auto minmax(0,1fr) auto; gap: 10px; position: relative; }
+  #live-room .board-toolbar { grid-column: 1 / -1; width: 100%; max-width: none; padding: 2px 14px; }
+  #live-room .board-toolbar h1 { font-size: 26px; }
+  #live-room .board-toolbar p { display: inline-block; margin: 4px 16px 2px 0; }
+  #live-canvas { grid-column: 1; grid-row: 2; height: 100%; min-height: 0; }
+  .room-side-panel { grid-column: 2; grid-row: 2; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
+  .room-side-panel .room-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 0; }
+  .room-controls label { grid-column: 1 / -1; }
+  .room-side-panel .art-button { min-height: 44px; border-width: 14px; padding: 1px 6px; font-size: 14px; white-space: normal; }
+  .room-side-panel .move-controls, .room-side-panel .match-actions { width: 100%; padding: 5px; margin: 0; border-width: 16px; }
+  .room-side-panel .move-controls { order: -1; }
+  .room-side-panel p { font: 14px/1.4 system-ui,sans-serif; margin: 7px 0; }
+  .room-side-panel select, .room-side-panel input { padding: 7px; }
+  #confirm-move { width: 100%; font-size: 19px; min-height: 54px; }
+  #move-routes { gap: 4px; margin: 6px 0; max-height: 125px; overflow: auto; }
+  .room-rules-summary { width: 100%; margin: 0; padding: 3px 8px; border-width: 14px; }
+  #live-message { grid-column: 1 / -1; margin: 0; }
+  #join-feedback, #start-countdown { position: absolute; z-index: 3; top: 140px; left: calc((100% - 390px) / 2); transform: translateX(-50%); pointer-events: none; }
+  #start-countdown { top: 225px; }
+  #board-screen { height: 100svh; min-height: 0; display: grid; grid-template-rows: auto minmax(0,1fr) auto; gap: 8px; }
+  #board-canvas { height: 100%; min-height: 0; position: relative; }
+  .room-dialog { width: 960px; max-width: 94vw; max-height: 96svh; padding: 18px; }
+  .room-dialog h2 { margin: 4px 0; }
+  .room-dialog p { margin: 6px 0; }
+  .room-form { grid-template-columns: 1fr 1fr; gap: 10px 18px; margin: 12px 0; }
+  .room-form > p, .room-form > .rule-toggles, .room-form > button[type='submit'] { grid-column: 1 / -1; }
+  .rule-toggles { grid-template-columns: 1fr 1fr 1fr; }
+  .room-dialog .art-button { min-height: 48px; padding: 0 10px; font-size: 16px; border-width: 14px; }
+}
