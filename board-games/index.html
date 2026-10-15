@@ -48,6 +48,10 @@
       <button class="art-button" data-art="button" id="copy-invitation">Copy Invite Link</button>
       <button class="art-button" data-art="button" id="room-ready">Ready</button>
       <button class="art-button" data-art="button" id="board-lock" aria-pressed="true">Unlock Board</button>
+      <div class="reaction-control">
+        <button class="art-button" data-art="button" id="reactions-toggle" aria-expanded="false" aria-controls="reaction-picker">Reactions</button>
+        <div id="reaction-picker" class="reaction-picker art-surface" data-art="panel" hidden aria-label="Choose a reaction"></div>
+      </div>
       <button class="art-button" data-art="button" id="extend-reconnect" hidden>Extend by 5 minutes</button>
     </div>
     <div class="move-controls art-surface" data-art="panel">
@@ -72,8 +76,6 @@
     <details class="room-rules-summary art-surface" data-art="panel"><summary>Room rules</summary><p id="live-rules"></p></details>
     <div class="reaction-actions">
       <button class="art-button" data-art="button" id="resign-match" hidden>Resign</button>
-      <button class="art-button" data-art="button" id="reactions-toggle" aria-expanded="false" aria-controls="reaction-picker">Reactions</button>
-      <div id="reaction-picker" class="reaction-picker art-surface" data-art="panel" hidden aria-label="Choose a reaction"></div>
     </div>
     </aside>
     <p id="live-message" class="board-help" role="status"></p>

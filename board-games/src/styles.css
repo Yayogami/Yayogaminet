@@ -93,6 +93,8 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
 #reaction-stage { position: absolute; right: 20px; top: 35%; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 12px; max-height: 60%; overflow: hidden; pointer-events: none; }
 .posted-reaction { width: 130px; height: 150px; object-fit: contain; filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white) drop-shadow(0 0 5px #fff9); }
 .reaction-actions { position: relative; display: flex; justify-content: flex-end; gap: 8px; }
+.reaction-control { position: relative; min-width: 0; }
+.reaction-control > button { width: 100%; height: 100%; }
 .reaction-picker { position: absolute; right: 0; bottom: calc(100% + 10px); z-index: 10; display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 370px; padding: 8px; }
 .reaction-picker .art-button { display: flex; flex-direction: column; align-items: center; }
 .reaction-picker img { width: 70px; height: 80px; object-fit: contain; }
