@@ -81,6 +81,21 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 /* Desktop play keeps the board and all primary actions in the same viewport. */
+.turn-alert { position: relative; overflow: hidden; text-align: center; padding: 4px 12px; }
+.turn-alert p { font-size: 21px; font-weight: bold; }
+.turn-alert.turn-active::after { content: ''; position: absolute; top: 0; bottom: 0; left: -10%; width: 2px; background: white; box-shadow: 0 0 10px 3px #fff9; animation: turn-sweep 2.4s linear infinite; pointer-events: none; }
+@keyframes turn-sweep { to { left: 110%; } }
+#confirm-move.your-turn-glow { box-shadow: 0 0 13px 3px #ffe04b, inset 0 0 8px #ffe04b66; }
+#confirm-move.your-turn-glow:disabled { filter: none; }
+.match-clock { width: fit-content; min-width: 220px; padding: 2px 12px; text-align: center; margin: 8px 0; }
+.match-clock span { font: 12px system-ui,sans-serif; color: #e5ce9e; }
+.match-clock p { margin: 4px 0; font: bold 18px system-ui,sans-serif; }
+#reaction-stage { position: absolute; right: 20px; top: 35%; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 12px; max-height: 60%; overflow: hidden; pointer-events: none; }
+.posted-reaction { width: 130px; height: 150px; object-fit: contain; filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white) drop-shadow(0 0 5px #fff9); }
+.reaction-actions { position: relative; display: flex; justify-content: flex-end; gap: 8px; }
+.reaction-picker { position: absolute; right: 0; bottom: calc(100% + 10px); z-index: 10; display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 370px; padding: 8px; }
+.reaction-picker .art-button { display: flex; flex-direction: column; align-items: center; }
+.reaction-picker img { width: 70px; height: 80px; object-fit: contain; }
 @media (min-width: 1000px) {
   .menu { height: 100svh; min-height: 0; padding: 18px 0; gap: 10px; justify-content: center; }
   .title-sign { padding: 6px 36px; }
@@ -92,12 +107,16 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   #room-session-status:empty { display: none; }
   .menu footer { margin: 0; padding-top: 4px; }
   .menu .art-button { min-height: 56px; padding: 0 18px; font-size: 20px; }
-  #live-room { height: 100svh; min-height: 0; padding: 12px; display: grid; grid-template-columns: minmax(0,1fr) 390px; grid-template-rows: auto minmax(0,1fr) auto; gap: 10px; position: relative; }
+  #live-room { height: 100svh; min-height: 0; padding: 12px; display: grid; grid-template-columns: minmax(0,1fr) 390px; grid-template-rows: auto auto minmax(0,1fr) auto; gap: 10px; position: relative; }
   #live-room .board-toolbar { grid-column: 1 / -1; width: 100%; max-width: none; padding: 2px 14px; }
   #live-room .board-toolbar h1 { font-size: 26px; }
   #live-room .board-toolbar p { display: inline-block; margin: 4px 16px 2px 0; }
-  #live-canvas { grid-column: 1; grid-row: 2; height: 100%; min-height: 0; }
-  .room-side-panel { grid-column: 2; grid-row: 2; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
+  .match-clock { grid-column: 1; grid-row: 2; margin: 0; }
+  #live-canvas { grid-column: 1; grid-row: 3; height: 100%; min-height: 0; }
+  .room-side-panel { grid-column: 2; grid-row: 2 / 4; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
+  .turn-alert { order: -2; }
+  .room-side-panel .turn-alert p { font: bold 20px/1.4 Georgia,serif; }
+  .reaction-actions { margin-top: auto; }
   .room-side-panel .room-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 0; }
   .room-controls label { grid-column: 1 / -1; }
   .room-side-panel .art-button { min-height: 44px; border-width: 14px; padding: 1px 6px; font-size: 14px; white-space: normal; }
@@ -121,3 +140,4 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   .rule-toggles { grid-template-columns: 1fr 1fr 1fr; }
   .room-dialog .art-button { min-height: 48px; padding: 0 10px; font-size: 16px; border-width: 14px; }
 }
+@media (prefers-reduced-motion: reduce) { .turn-alert.turn-active::after { animation: none; left: 0; } }

@@ -2,6 +2,7 @@ import { browserSecurity } from './room-security.js';
 import { createDefaultRoomRules } from './room-rules.js';
 import { createPosition, applyMove, immobilityResult, legalMoves } from './move-rules.js';
 import { drawEligibility, isEligibleClaim } from './draw-rules.js';
+import { REACTIONS, REACTION_DURATION_MS } from './reactions.js';
 
 const other = side => side === 'blue' ? 'white' : 'blue';
 export class RoomError extends Error {
@@ -107,6 +108,7 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
       revision: room.revision, you: seat.side, creator: seat === room.players[0],
       players: room.players.map(p => ({ side: p.side, ready: p.ready, connected: p.connected })),
       position: room.position, clocks: room.clocks, serverTime: now(), startAt: room.startAt ?? null, reconnectDeadline: room.deadline, recovering: !!room.recovering,
+      reactions: (room.reactions || []).filter(event=>now()-event.at<REACTION_DURATION_MS),
       result: room.result, selectedPiece: room.selectedPiece, draws: room.draws, pending: room.pending, matchNumber: room.matchNumber, positionVersion: room.positionVersion };
   }
   return {
@@ -158,7 +160,14 @@ export function createRoomService({ now = Date.now, disconnectAfterMs = 15000, m
       requireValue(action && typeof action === 'object', 'Invalid room action.');
       requireValue(action.matchNumber === room.matchNumber, 'That action belongs to an earlier match. Refresh the room.', 409);
       if (['move','select','claim-draw','request-takeback'].includes(action.type)) requireValue(action.positionVersion === room.positionVersion, 'The board has changed. Review it before acting.', 409);
-      if (action.type === 'ready') {
+      if (action.type === 'leave') {
+        seat.lastSeen=now()-disconnectAfterMs;
+        tickRoom(room,now());
+      } else if (action.type === 'reaction') {
+        requireValue(REACTIONS.some(reaction=>reaction.id===action.reactionId), 'Unknown reaction.');
+        room.reactions=[...(room.reactions || []).filter(event=>now()-event.at<REACTION_DURATION_MS),{id:security.randomHex(12),reactionId:action.reactionId,by:seat.side,at:now()}].slice(-12);
+        room.revision++;
+      } else if (action.type === 'ready') {
         requireValue(room.phase === 'waiting', 'The match has already started.', 409);
         requireValue(typeof action.ready === 'boolean', 'Invalid ready state.');
         seat.ready = action.ready; room.revision++;

@@ -6,6 +6,12 @@
     "heading": { "src": "./art/wood-panel.png", "slice": [185, 170, 185, 170], "borderWidth": [20, 22, 20, 22] },
     "panel": { "src": "./art/wood-panel.png", "slice": [185, 170, 185, 170], "borderWidth": [25, 25, 25, 25] },
     "checkersIllustration": { "src": "./art/checker-emblem.png", "fit": "contain", "position": "center" },
-    "draughtsIllustration": { "src": "./art/checker-emblem.png", "fit": "contain", "position": "center" }
+    "draughtsIllustration": { "src": "./art/checker-emblem.png", "fit": "contain", "position": "center" },
+    "reactionFace": { "src": "./reactions/face2.png" },
+    "reactionPeek": { "src": "./reactions/peek.gif" },
+    "reactionBuilding": { "src": "./reactions/building.gif" },
+    "reactionUhoh": { "src": "./reactions/uhoh.gif" },
+    "reactionWoah": { "src": "./reactions/woah.gif" },
+    "reactionStare": { "src": "./reactions/stare.gif" }
   }
 }

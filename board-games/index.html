@@ -34,20 +34,21 @@
   </section>
   <section id="live-room" class="board-screen" hidden aria-labelledby="live-title">
     <header class="board-toolbar art-surface" data-art="heading">
-      <div><h1 id="live-title">Room</h1><p id="seat-status"></p><p id="live-state" role="status"></p><p id="live-clocks"></p></div>
+      <div><h1 id="live-title">Room</h1><p id="seat-status"></p></div>
       <button class="art-button" data-art="button" id="leave-room">Disconnect to menu</button>
     </header>
     <div id="join-feedback" class="join-feedback art-surface" data-art="heading" role="status" hidden>Both players joined</div>
     <div id="start-countdown" class="start-countdown art-surface" data-art="heading" role="status" hidden></div>
-    <div id="live-canvas"></div>
+    <div class="match-clock art-surface" data-art="panel"><span>Match clock</span><p id="live-clocks"></p></div>
+    <div id="live-canvas"><div id="reaction-stage" aria-live="polite"></div></div>
     <aside class="room-side-panel" aria-label="Game controls">
+    <div class="turn-alert art-surface" data-art="heading"><p id="live-state" role="status"></p></div>
     <div class="room-controls">
       <label>Invitation code<input id="invitation-code" readonly aria-label="Invitation code"></label>
       <button class="art-button" data-art="button" id="copy-invitation">Copy Invite Link</button>
       <button class="art-button" data-art="button" id="room-ready">Ready</button>
       <button class="art-button" data-art="button" id="board-lock" aria-pressed="true">Unlock Board</button>
       <button class="art-button" data-art="button" id="extend-reconnect" hidden>Extend by 5 minutes</button>
-      <button class="art-button" data-art="button" id="resign-match" hidden>Resign</button>
     </div>
     <div class="move-controls art-surface" data-art="panel">
       <label>Select piece by square<select id="piece-picker" aria-label="Select piece by square" disabled></select></label>
@@ -69,6 +70,11 @@
       </div>
     </div>
     <details class="room-rules-summary art-surface" data-art="panel"><summary>Room rules</summary><p id="live-rules"></p></details>
+    <div class="reaction-actions">
+      <button class="art-button" data-art="button" id="resign-match" hidden>Resign</button>
+      <button class="art-button" data-art="button" id="reactions-toggle" aria-expanded="false" aria-controls="reaction-picker">Reactions</button>
+      <div id="reaction-picker" class="reaction-picker art-surface" data-art="panel" hidden aria-label="Choose a reaction"></div>
+    </div>
     </aside>
     <p id="live-message" class="board-help" role="status"></p>
   </section>

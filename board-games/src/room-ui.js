@@ -3,6 +3,8 @@ import { createRoom, joinRoom, readRoom, roomInvitation, connectRoom, rememberRo
 import { legalMoves } from './move-rules.js';
 import { isEligibleClaim } from './draw-rules.js';
 import { games } from './games.js';
+import { REACTIONS, REACTION_DURATION_MS } from './reactions.js';
+import { createGameAudio } from './game-audio.js';
 
 const toggles = { touchMove: 'Touch-move', legalMoveHints: 'Legal-move highlights', resignation: 'Resignation', drawOffers: 'Draw offers', mutuallyAgreedTakebacks: 'Agreed takebacks', rematches: 'Rematches' };
 const developmentNote = 'Direct peer-to-peer match · Keep your game tab open. Relay fallback is disabled.';
@@ -20,21 +22,43 @@ export function setupRooms(artwork, getGame) {
   const menu = document.querySelector('.menu');
   let connection = null, current = null, view = null, generation = 0, selected = null, draft = null, lastPly = -1, busy = false, connectionError = false;
   let drawWithMove = false, lastPositionVersion = -1;
-  let audio = null, joinedRoom = null, feedbackTimer = null;
-  function unlockAudio() {
-    try { audio ??= new (window.AudioContext || window.webkitAudioContext)(); audio.resume().catch(()=>{}); } catch {}
+  const seenReactions=new Set(), reactionTimers=new Set();
+  const sounds=createGameAudio();
+  let countdownSound=null, countdownTimer=null;
+  function animateCountdown(room) {
+    clearTimeout(countdownTimer);
+    const countdown=document.querySelector('#start-countdown');
+    countdown.hidden=room.phase!=='waiting' || room.startAt==null;
+    if(countdown.hidden){countdownSound=null;return;}
+    const receivedAt=performance.now();
+    function step() {
+      const remaining=room.startAt-room.serverTime-(performance.now()-receivedAt);
+      const seconds=Math.max(0,Math.ceil(remaining/1000));
+      countdown.textContent=seconds?`Starting in ${seconds}`:'Go!';
+      const key=`${room.matchNumber}:${room.startAt}:${seconds}`;
+      if(seconds && countdownSound!==key){countdownSound=key;sounds.play('countdown');}
+      if(seconds)countdownTimer=setTimeout(step,Math.max(20,remaining-(seconds-1)*1000+5));
+    }
+    step();
   }
-  document.addEventListener('pointerdown', unlockAudio, {once:true});
-  document.addEventListener('keydown', unlockAudio, {once:true});
+  function showReactions(room) {
+    for(const event of room.reactions || []) {
+      if(seenReactions.has(event.id))continue;
+      seenReactions.add(event.id);
+      const reaction=REACTIONS.find(item=>item.id===event.reactionId);
+      const remaining=REACTION_DURATION_MS-Math.max(0,room.serverTime-event.at);
+      if(!reaction || !Number.isFinite(remaining) || remaining<=0)continue;
+      const image=document.createElement('img');image.className='posted-reaction';image.alt=`${event.by==='blue'?'Blue':'White'}: ${reaction.label}`;
+      artwork.apply(image,reaction.asset);document.querySelector('#reaction-stage').append(image);
+      sounds.play('reaction');
+      const timer=setTimeout(()=>{image.remove();reactionTimers.delete(timer);},remaining);reactionTimers.add(timer);
+    }
+    if(seenReactions.size>100) {const keep=[...seenReactions].slice(-30);seenReactions.clear();keep.forEach(id=>seenReactions.add(id));}
+  }
+  let joinedRoom = null, feedbackTimer = null;
   function joinFeedback() {
     const banner = document.querySelector('#join-feedback'); banner.hidden = false;
     clearTimeout(feedbackTimer); feedbackTimer = setTimeout(()=>{banner.hidden=true;},2500);
-    if (!audio || audio.state !== 'running') return;
-    for (const [offset, frequency] of [[0,523.25],[0.16,659.25]]) {
-      const oscillator=audio.createOscillator(), gain=audio.createGain(), at=audio.currentTime+offset;
-      oscillator.frequency.value=frequency; gain.gain.setValueAtTime(0,at); gain.gain.linearRampToValueAtTime(0.07,at+0.02); gain.gain.exponentialRampToValueAtTime(0.001,at+0.3);
-      oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(at);oscillator.stop(at+0.32);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};
-    }
   }
   function lockChanged(locked) {
     const control=document.querySelector('#board-lock'); control.textContent=locked?'Unlock Board':'Lock Board'; control.setAttribute('aria-pressed',String(locked));
@@ -56,6 +80,8 @@ export function setupRooms(artwork, getGame) {
   function updateActions() {
     if (!current) return;
     const playing = current.phase === 'playing', ownTurn = current.position.turn === current.you;
+    document.querySelector('#confirm-move').classList.toggle('your-turn-glow',playing&&ownTurn);
+    document.querySelector('.turn-alert').classList.toggle('turn-active',playing);
     const claim = document.querySelector('#claim-draw');
     const claimable = current.draws && (current.draws.reasons.length || (ownTurn && draft && isEligibleClaim(current.draws,draft)));
     claim.disabled = !playing || !claimable;
@@ -124,11 +150,20 @@ export function setupRooms(artwork, getGame) {
     if (current && !current.networkIssue && !room.networkIssue && (room.revision < current.revision || (room.revision === current.revision && room.serverTime < current.serverTime))) return;
     const previousPhase = current?.phase;
     const previousMatch = current?.matchNumber, previousSide = current?.you;
+    if(current) {
+      for(const player of room.players) {
+        if(player.side===room.you)continue;
+        const old=current.players.find(p=>p.side===player.side);
+        if(player.connected && (!old || !old.connected))sounds.play('join');
+        else if(!player.connected && old?.connected)sounds.play('leave');
+      }
+      if(room.matchNumber===current.matchNumber && room.position.ply>current.position.ply)sounds.play('turn');
+      if(room.startAt!=null && room.startAt!==current.startAt)sounds.play('ready');
+    } else sounds.play('join');
     current = room;
+    showReactions(room);
     if (room.players.length === 2 && room.players.every(p=>p.connected) && joinedRoom !== room.id) { joinedRoom=room.id; joinFeedback(); }
-    const countdown=document.querySelector('#start-countdown');
-    countdown.hidden=room.phase!=='waiting' || room.startAt==null;
-    if (!countdown.hidden) countdown.textContent=`Starting in ${Math.max(1,Math.ceil((room.startAt-room.serverTime)/1000))}`;
+    animateCountdown(room);
     if (connectionError) { connectionError = false; document.querySelector('#live-message').textContent = developmentNote; }
     const game = games.find(g=>g.id===room.gameId);
     document.querySelector('#live-title').textContent = `${game.name} · You are ${room.you === 'blue' ? 'Blue' : 'White'}`;
@@ -221,6 +256,15 @@ export function setupRooms(artwork, getGame) {
   }
   document.querySelectorAll('[data-action]').forEach(node=>node.addEventListener('click',()=>open(node.dataset.action)));
   document.querySelector('#room-ready').addEventListener('click',()=>run(()=>connection.action({type:'ready',ready:!current.players.find(p=>p.side===current.you).ready})));
+  const reactionPicker=document.querySelector('#reaction-picker'), reactionToggle=document.querySelector('#reactions-toggle');
+  function closeReactions(){reactionPicker.hidden=true;reactionToggle.setAttribute('aria-expanded','false');}
+  reactionToggle.addEventListener('click',()=>{reactionPicker.hidden=!reactionPicker.hidden;reactionToggle.setAttribute('aria-expanded',String(!reactionPicker.hidden));});
+  for(const reaction of REACTIONS) {
+    const control=button(reaction.label,()=>run(async()=>{await connection.action({type:'reaction',reactionId:reaction.id});closeReactions();}));
+    control.setAttribute('aria-label',reaction.label);
+    const image=document.createElement('img');image.alt='';artwork.apply(image,reaction.asset);control.prepend(image);reactionPicker.append(control);
+  }
+  reactionPicker.addEventListener('keydown',event=>{if(event.key==='Escape'){closeReactions();reactionToggle.focus();}});
   document.querySelector('#board-lock').addEventListener('click',()=>{if(view)view.setLocked(!view.isLocked());});
   document.querySelector('#copy-invitation').addEventListener('click',()=>run(async()=>{
     let url=new URL(window.location.href);
@@ -243,7 +287,11 @@ export function setupRooms(artwork, getGame) {
     if(piece)squareClicked(piece);
   });
   document.querySelector('#clear-move').addEventListener('click',()=>{draft=null;if(!current?.rules.touchMove)selected=null;renderChoices();});
-  document.querySelector('#leave-room').addEventListener('click',()=>{
+  document.querySelector('#leave-room').addEventListener('click',async()=>{
+    sounds.play('leave');
+    try {if(connection && !current?.networkIssue)await connection.action({type:'leave'});} catch {}
+    clearTimeout(countdownTimer);
+    closeReactions();for(const timer of reactionTimers)clearTimeout(timer);reactionTimers.clear();seenReactions.clear();document.querySelector('#reaction-stage').replaceChildren();
     generation++;connection?.stop();connection=null;view?.dispose();view=null;screen.hidden=true;menu.hidden=false;
     document.querySelector('#resume-room').hidden=false;window.scrollTo(0,0);
   });
