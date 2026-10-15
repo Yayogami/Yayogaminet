@@ -33,7 +33,23 @@ async function loadPeer() {
   return library;
 }
 
-export async function createDirectPeer({ id, PeerConstructor, timeoutMs = 15000, onConnection = () => {}, onError = () => {} } = {}) {
+export async function createDirectPeer(options = {}) {
+  const { attempts = 3, retryDelayMs = 1000 } = options;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try { return await openDirectPeer(options); }
+    catch (error) {
+      if (!['network', 'socket-error', 'socket-closed', 'server-error', 'signaling-timeout'].includes(error.type)) throw error;
+      if (attempt === attempts) {
+        const failure = new Error(`Could not connect to the PeerJS room-signaling service after ${attempts} attempts (${error.type}). Please try again shortly. If it persists, check whether your browser or network blocks 0.peerjs.com. No game room was opened.`);
+        failure.type = error.type;
+        throw failure;
+      }
+      await new Promise(resolve => setTimeout(resolve, retryDelayMs * attempt));
+    }
+  }
+}
+
+async function openDirectPeer({ id, PeerConstructor, timeoutMs = 15000, onConnection = () => {}, onError = () => {} } = {}) {
   const Constructor = PeerConstructor || await loadPeer();
   const peer = new Constructor(id, directPeerOptions());
   const channels = new Set();
@@ -102,7 +118,10 @@ export async function createDirectPeer({ id, PeerConstructor, timeoutMs = 15000,
     onError(error);
   });
   const peerId = await new Promise((resolve,reject) => {
-    const timer = setTimeout(() => { close(); reject(new Error('Could not reach the PeerJS signaling service.')); }, timeoutMs);
+    const timer = setTimeout(() => {
+      const error = new Error('Could not reach the PeerJS signaling service.');
+      error.type = 'signaling-timeout'; close(); reject(error);
+    }, timeoutMs);
     peer.on('open', value => { clearTimeout(timer); resolve(value); });
     peer.on('error', error => { clearTimeout(timer); reject(error); });
   }).catch(error => { close(); throw error; });
