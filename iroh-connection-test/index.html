@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; worker-src 'self' blob:; connect-src 'self' https://use1-1.relay.n0.iroh.link https://use1-1.relay.n0.iroh.link. wss://use1-1.relay.n0.iroh.link wss://use1-1.relay.n0.iroh.link.; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Iroh connection proof</title><link rel="stylesheet" href="style.css">
+</head>
+<body><main>
+  <header><span class="eyebrow">CONNECTION LAB / 01</span><h1>Two browsers.<br>One private conversation.</h1>
+  <p class="intro">An isolated Iroh experiment. Messages travel through a hosted relay with end-to-end encryption.</p></header>
+  <aside><strong>Experimental, not an anonymity guarantee.</strong> The relay sees connection IPs and traffic metadata. Opponent metadata privacy and Firefox / Waterfox compatibility still need validation. Public relays are for development and testing.</aside>
+  <section><div class="section-title"><h2>1. Start a session</h2><span id="state" role="status">Idle</span></div>
+    <label class="consent"><input type="checkbox" id="consent"> Allow this session to connect to Iroh’s public US East relay. Keep session credentials in memory.</label>
+    <div class="buttons"><button id="create">Create invitation</button><button id="stop" class="secondary" disabled>End session</button></div>
+    <label for="invite">Invitation — share privately with one person</label>
+    <textarea id="invite" rows="4" spellcheck="false" placeholder="Create an invitation, or paste one from the other browser."></textarea>
+    <div class="buttons"><button id="join" class="secondary">Join invitation</button><button id="copy" class="secondary">Copy invitation</button></div>
+    <p class="hint">Use a fresh invitation after either participant ends or reloads. Anyone with it can join first.</p>
+  </section>
+  <section><h2>2. Exchange messages</h2><ol id="messages" aria-live="polite"><li class="empty">Messages stay in this tab.</li></ol>
+    <form id="send-form"><label for="message">Message</label><div class="compose"><input id="message" maxlength="4096" autocomplete="off" placeholder="Say something…" disabled><button id="send" disabled>Send</button></div></form>
+    <p class="hint">“Acknowledged” means the other endpoint processed the message; it does not mean a person read it.</p>
+  </section>
+  <details><summary>Connection diagnostics</summary><p>Browser WASM only · fixed relay allowlist · no public discovery · no direct fallback · no local storage</p><pre id="diagnostics" aria-live="polite"></pre></details>
+  <p id="error" role="alert"></p>
+  <p class="hint"><a href="NOTICE.txt">Third-party notices and test-build limits</a></p>
+</main><script type="module" src="app.js"></script></body></html>

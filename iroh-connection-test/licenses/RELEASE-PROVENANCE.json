@@ -1,0 +1,107 @@
+{
+  "rust": {
+    "version": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-pc-windows-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1",
+    "scope": "Installed toolchain standard-library notice plus all bundled license texts; conservative superset, not a wasm linkage inventory",
+    "files": [
+      {
+        "path": "rust/COPYRIGHT-library.html",
+        "sha256": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/COPYRIGHT-library.html"
+      },
+      {
+        "path": "rust/licenses/Apache-2.0.txt",
+        "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/Apache-2.0.txt"
+      },
+      {
+        "path": "rust/licenses/BSD-2-Clause.txt",
+        "sha256": "f32fb3b417a194167cfad068223fc975ba96c5960513a10f66a3c28720aec1df",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/BSD-2-Clause.txt"
+      },
+      {
+        "path": "rust/licenses/CC-BY-SA-4.0.txt",
+        "sha256": "23ee78c8bae49cf08ea2f0c84945c66b987ebe4520881fb51b3dad4fb43d07c2",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/CC-BY-SA-4.0.txt"
+      },
+      {
+        "path": "rust/licenses/GCC-exception-3.1.txt",
+        "sha256": "a3966c9410ef94a1efbfa9ec04e9c1994026a70623fbf0885ce36737bfba3b54",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/GCC-exception-3.1.txt"
+      },
+      {
+        "path": "rust/licenses/GPL-2.0-only.txt",
+        "sha256": "54b212ba1f97f6948fa5486239ab505dd820b02e50cbfd296b4062c8609a70af",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/GPL-2.0-only.txt"
+      },
+      {
+        "path": "rust/licenses/GPL-3.0-or-later.txt",
+        "sha256": "05315fce6c35f79b8a35454828995fa26336f235895ac64557abc028f4ffcea2",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/GPL-3.0-or-later.txt"
+      },
+      {
+        "path": "rust/licenses/ISC.txt",
+        "sha256": "0ff61769b238634e042ab759dddfd104a8e69d091e3600ae3410e401a6164381",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/ISC.txt"
+      },
+      {
+        "path": "rust/licenses/LLVM-exception.txt",
+        "sha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/LLVM-exception.txt"
+      },
+      {
+        "path": "rust/licenses/MIT.txt",
+        "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/MIT.txt"
+      },
+      {
+        "path": "rust/licenses/NCSA.txt",
+        "sha256": "39cb0234065c92b9e6cee3830cbb52b1aa289aa8fe9ba2e66730fec5cf05c630",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/NCSA.txt"
+      },
+      {
+        "path": "rust/licenses/OFL-1.1.txt",
+        "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/OFL-1.1.txt"
+      },
+      {
+        "path": "rust/licenses/Unicode-3.0.txt",
+        "sha256": "f5062c9a188d81dfe66b56db4182dcf9e4b17c0d9b0d311a8e20b3a1b075c443",
+        "source": "tools/rustup/toolchains/stable-x86_64-pc-windows-gnu/share/doc/rust/licenses/Unicode-3.0.txt"
+      }
+    ]
+  },
+  "packages": [
+    {
+      "name": "enum-assoc",
+      "version": "1.4.1",
+      "declaredLicense": "MIT OR Apache-2.0",
+      "textLicense": "Apache-2.0",
+      "crateCommit": "351b306939b150601451df752a183b077b0de85a",
+      "manifestSha256": "a35b747a99e08ce7bb239c2e0843bec0c828ceb61092217c628dcb32ec9dc442",
+      "sourceKind": "standard license text, not upstream crate notice",
+      "url": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Apache-2.0.txt",
+      "spdxCommit": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "file": {
+        "path": "standard/Apache-2.0.txt",
+        "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+      },
+      "review": "Upstream notice gap remains recorded; applicability and additional notices require review."
+    },
+    {
+      "name": "pharos",
+      "version": "0.5.3",
+      "declaredLicense": "Unlicense",
+      "textLicense": "Unlicense",
+      "crateCommit": "f5b985a59cfeced5ae66325d477b6c982c9408bf",
+      "manifestSha256": "5de74bc5d76a44dcd24c808037065465c6157292d71abda1e955fb7a31362135",
+      "sourceKind": "standard license text, not upstream crate notice",
+      "url": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Unlicense.txt",
+      "spdxCommit": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "file": {
+        "path": "standard/Unlicense.txt",
+        "sha256": "0bdebfeda07d45dada625ae1317c6f833186e798b171d0db640bcf32e92a8240"
+      },
+      "review": "Upstream notice gap remains recorded; applicability and additional notices require review."
+    }
+  ]
+}
