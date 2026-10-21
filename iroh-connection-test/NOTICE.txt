@@ -1,0 +1,20 @@
+Iroh browser connection experiment
+
+This is an experimental test build, not an anonymity-certified release.
+Use disposable test messages. The public relay and website operator can observe
+connection metadata; this is not Tor-like anonymity.
+
+Third-party software retains its own licenses and attribution. The hosting
+repository's first-party license does not relicense third-party dependencies.
+See THIRD-PARTY.json and licenses/ for dependency declarations, license texts,
+copyright/author notices, source provenance, and Rust library notices.
+
+For enum-assoc 1.4.1 this distribution supplies the standard Apache-2.0 text
+under its declared MIT OR Apache-2.0 choice. For pharos 0.5.3 it supplies the
+standard Unlicense text matching the crate declaration and upstream README.
+These are identified as standard texts, not recovered upstream notice files.
+Rust toolchain notices are a conservative superset, not a claim that every
+component mentioned there is linked into this WebAssembly artifact.
+
+No transport dependency source patches are used in this production build.
+Instrumented audit builds and their source modifications are not distributed.
