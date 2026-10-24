@@ -25,7 +25,9 @@ export async function createIrohFrame({onEvent=()=>{},signal}={}){
   if(data.event){onEvent(data.event);return;}
   const task=calls.get(data.id);if(task){calls.delete(data.id);clearTimeout(task.timer);data.error?task.reject(Error(data.error)):task.resolve(data.value);}
  };
- port.start();frame.addEventListener('load',()=>frame.contentWindow.postMessage({type:'meadow-iroh-port'},location.origin,[port2]),{once:true});
+ // WebKit can attribute a message sent during an iframe load callback to the
+ // loaded child. Send from a parent task so the child's strict sender check holds.
+ port.start();frame.addEventListener('load',()=>setTimeout(()=>{if(!closed)frame.contentWindow.postMessage({type:'meadow-iroh-port'},location.origin,[port2]);},0),{once:true});
  document.body.append(frame);
  watchdog=setInterval(()=>{if(Date.now()-lastBeat>30000){onEvent({type:'error',value:'Connection worker stopped responding.'});dispose();onEvent({type:'state',value:'closed'});}},5000);
  try{await ready;if(signal?.aborted)throw Error('Connection cancelled.');return {call,close};}catch(error){dispose(error);throw error;}
