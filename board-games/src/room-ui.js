@@ -84,7 +84,6 @@ export function setupRooms(artwork, getGame) {
     if (!current) return;
     const playing = current.phase === 'playing', ownTurn = current.position.turn === current.you;
     document.querySelector('#confirm-move').classList.toggle('your-turn-glow',playing&&ownTurn);
-    document.querySelector('.turn-alert').classList.toggle('turn-active',playing);
     const claim = document.querySelector('#claim-draw');
     const claimable = current.draws && (current.draws.reasons.length || (ownTurn && draft && isEligibleClaim(current.draws,draft)));
     claim.disabled = !playing || !claimable;
@@ -182,6 +181,7 @@ export function setupRooms(artwork, getGame) {
     }).join(' · ');
     const ready = document.querySelector('#room-ready');
     ready.hidden = room.phase !== 'waiting'; ready.textContent = room.players.find(p=>p.side===room.you)?.ready ? 'Not Ready' : 'Ready';
+    ready.classList.toggle('ready-sweep',room.phase==='waiting'&&room.players.length===2&&room.players.every(p=>p.connected));
     document.querySelector('#extend-reconnect').hidden = room.phase !== 'paused' || room.recovering;
     document.querySelector('#resign-match').hidden = !room.rules.resignation || !['playing','paused'].includes(room.phase);
     document.querySelector('#live-clocks').textContent = room.rules.clock.enabled ? `Blue ${clockText(room.clocks.blue)} · White ${clockText(room.clocks.white)}` : 'No clock';
@@ -260,8 +260,19 @@ export function setupRooms(artwork, getGame) {
   document.querySelectorAll('[data-action]').forEach(node=>node.addEventListener('click',()=>open(node.dataset.action)));
   document.querySelector('#room-ready').addEventListener('click',()=>run(()=>connection.action({type:'ready',ready:!current.players.find(p=>p.side===current.you).ready})));
   const reactionPicker=document.querySelector('#reaction-picker'), reactionToggle=document.querySelector('#reactions-toggle');
-  function closeReactions(){reactionPicker.hidden=true;reactionToggle.setAttribute('aria-expanded','false');}
-  reactionToggle.addEventListener('click',()=>{reactionPicker.hidden=!reactionPicker.hidden;reactionToggle.setAttribute('aria-expanded',String(!reactionPicker.hidden));});
+  function positionReactions(){
+    if(!reactionPicker.open)return;
+    const anchor=reactionToggle.getBoundingClientRect(),box=reactionPicker.getBoundingClientRect();
+    const left=Math.max(10,Math.min(anchor.right-box.width,innerWidth-box.width-10));
+    const top=Math.max(10,Math.min(anchor.top-box.height-10,innerHeight-box.height-10));
+    reactionPicker.style.left=`${left}px`;reactionPicker.style.top=`${top}px`;
+  }
+  function closeReactions(){if(reactionPicker.open)reactionPicker.close();reactionToggle.setAttribute('aria-expanded','false');}
+  reactionPicker.addEventListener('close',()=>reactionToggle.setAttribute('aria-expanded','false'));
+  reactionPicker.addEventListener('click',event=>{const r=reactionPicker.getBoundingClientRect();if(event.target===reactionPicker&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))closeReactions();});
+  reactionToggle.addEventListener('click',()=>{if(reactionPicker.open)closeReactions();else{reactionPicker.showModal();positionReactions();reactionToggle.setAttribute('aria-expanded','true');}});
+  window.addEventListener('resize',positionReactions);
+  document.addEventListener('scroll',positionReactions,true);
   for(const reaction of REACTIONS) {
     const control=button(reaction.label,()=>run(async()=>{await connection.action({type:'reaction',reactionId:reaction.id});closeReactions();}));
     control.setAttribute('aria-label',reaction.label);

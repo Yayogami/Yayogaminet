@@ -87,11 +87,14 @@ export async function createBoardView(container, game, options = {}) {
     const point = raycaster.ray.intersectPlane(boardPlane, new THREE.Vector3());
     return { piece, square: piece || (point && layout.squareAt(point.x, point.z)) };
   }
-  const hover = document.createElement('span');
-  hover.className = 'square-hint art-surface piece-highlight'; hover.hidden = true;
-  options.artwork?.apply(hover, 'button');
-  if (options.artwork) hover.style.borderImageSlice = options.artwork.get('button').slice.join(' ');
-  hover.style.borderImageWidth = '5px'; container.append(hover);
+  // A soft halo in board space follows the piece's diameter and camera angle.
+  const glowGeometry=new THREE.PlaneGeometry(config.pieces.diameter*layout.pieceScale*1.45,config.pieces.diameter*layout.pieceScale*1.45);
+  const glowMaterial=new THREE.ShaderMaterial({transparent:true,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending,
+    vertexShader:'varying vec2 glowUv; void main(){glowUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+    fragmentShader:'varying vec2 glowUv; void main(){float r=length(glowUv-0.5)*2.0;float a=smoothstep(0.58,0.72,r)*(1.0-smoothstep(0.72,1.0,r));gl_FragColor=vec4(1.0,0.82,0.3,a*0.9);}'
+  });
+  const pieceGlow=new THREE.Mesh(glowGeometry,glowMaterial);
+  pieceGlow.rotation.x=-Math.PI/2;pieceGlow.visible=false;scene.add(pieceGlow);
   let hovered = null, selectedId = null;
   const pointerMove = event => { hovered = hit(event).piece || null; renderer.domElement.style.cursor = hovered ? 'pointer' : locked ? 'default' : 'grab'; };
   const pointerLeave = () => { hovered = null; };
@@ -146,15 +149,13 @@ export async function createBoardView(container, game, options = {}) {
   renderer.setAnimationLoop(time => {
     mixer.update(Math.min((time - lastTime) / 1000, 0.1));
     lastTime = time;
-    renderer.render(scene, camera);
     const highlighted = hovered || pieceStates.find(p => p.id === selectedId);
-    hover.hidden = !highlighted;
+    pieceGlow.visible=!!highlighted;
     if (highlighted) {
-      const center = layout.center(highlighted.row, highlighted.column, highlighted.king ? 2 : 1);
-      const projected = new THREE.Vector3(center.x, center.y + 0.004, center.z).project(camera);
-      hover.style.left = `${(projected.x + 1) / 2 * container.clientWidth}px`;
-      hover.style.top = `${(1 - projected.y) / 2 * container.clientHeight}px`;
+      const center=layout.center(highlighted.row,highlighted.column);
+      pieceGlow.position.set(center.x,center.y+0.0005,center.z);
     }
+    renderer.render(scene, camera);
     for (const marker of markers) {
       const projected = marker.point.clone().project(camera);
       marker.element.style.left = `${(projected.x + 1) / 2 * container.clientWidth}px`;
@@ -169,7 +170,7 @@ export async function createBoardView(container, game, options = {}) {
     },
     dispose() {
       renderer.setAnimationLoop(null); observer.disconnect(); controls.dispose(); mixer.stopAllAction();
-      showHints(); hover.remove(); renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
+      showHints(); glowGeometry.dispose();glowMaterial.dispose();renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
       renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerleave', pointerLeave); renderer.domElement.removeEventListener('pointercancel', cancelPointer);
       const geometries = new Set(), materials = new Set(), textures = new Set([ground]);
       for (const root of [board.scene, blue.scene, white.scene]) root.traverse(obj => {

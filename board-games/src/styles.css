@@ -74,16 +74,14 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   .actions .art-button { width: min(350px, 100%); max-width: none; min-height: 63px; font-size: 20px; }
   footer { margin-top: 0; }
 }
-.square-hint.art-surface.piece-highlight { width: 40px; height: 40px; pointer-events: none; background: transparent; }
 .join-feedback, .start-countdown { margin: 12px auto; padding: 24px; width: fit-content; text-align: center; font-size: 26px; }
 .join-feedback:not([hidden]) { animation: join-arrival 500ms ease-out; }
 @keyframes join-arrival { from { opacity: 0; transform: translateY(12px) scale(.9); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 /* Desktop play keeps the board and all primary actions in the same viewport. */
-.turn-alert { position: relative; overflow: hidden; text-align: center; padding: 4px 12px; }
-.turn-alert p { font-size: 21px; font-weight: bold; }
-.turn-alert.turn-active::after { content: ''; position: absolute; top: 0; bottom: 0; left: -10%; width: 2px; background: white; box-shadow: 0 0 10px 3px #fff9; animation: turn-sweep 2.4s linear infinite; pointer-events: none; }
+#room-ready { position: relative; overflow: hidden; }
+#room-ready.ready-sweep::after { content: ''; position: absolute; top: 0; bottom: 0; left: -10%; width: 2px; background: white; box-shadow: 0 0 10px 3px #fff9; animation: turn-sweep 2.4s linear infinite; pointer-events: none; }
 @keyframes turn-sweep { to { left: 110%; } }
 #confirm-move.your-turn-glow { box-shadow: 0 0 13px 3px #ffe04b, inset 0 0 8px #ffe04b66; }
 #confirm-move.your-turn-glow:disabled { filter: none; }
@@ -95,9 +93,13 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
 .reaction-actions { position: relative; display: flex; justify-content: flex-end; gap: 8px; }
 .reaction-control { position: relative; min-width: 0; }
 .reaction-control > button { width: 100%; height: 100%; }
-.reaction-picker { position: absolute; right: 0; bottom: calc(100% + 10px); z-index: 10; display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 370px; padding: 8px; }
-.reaction-picker .art-button { display: flex; flex-direction: column; align-items: center; }
-.reaction-picker img { width: 70px; height: 80px; object-fit: contain; }
+.reaction-picker { position: fixed; inset: auto; margin: 0; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; width: min(370px,calc(100vw - 20px)); max-width: calc(100vw - 20px); max-height: calc(100svh - 20px); padding: 8px; overflow: auto; color: inherit; }
+.reaction-picker[open] { display: grid; }
+.reaction-picker::backdrop { background: transparent; }
+.reaction-picker .art-button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px; border-width: 14px; min-height: 110px; font-size: 16px; white-space: normal; }
+.reaction-picker img { width: min(70px,100%); height: 80px; object-fit: contain; }
+.approval-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+.room-dialog.peer-approval-dialog { width: min(540px,94vw); }
 @media (min-width: 1000px) {
   .menu { height: 100svh; min-height: 0; padding: 18px 0; gap: 10px; justify-content: center; }
   .title-sign { padding: 6px 36px; }
@@ -116,8 +118,6 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   .match-clock { grid-column: 1; grid-row: 2; margin: 0; }
   #live-canvas { grid-column: 1; grid-row: 3; height: 100%; min-height: 0; }
   .room-side-panel { grid-column: 2; grid-row: 2 / 4; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
-  .turn-alert { order: -2; }
-  .room-side-panel .turn-alert p { font: bold 20px/1.4 Georgia,serif; }
   .reaction-actions { margin-top: auto; }
   .room-side-panel .room-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 0; }
   .room-controls label { grid-column: 1 / -1; }
@@ -142,4 +142,4 @@ footer { display: flex; gap: 25px; margin-top: auto; padding-top: 23px; color: #
   .rule-toggles { grid-template-columns: 1fr 1fr 1fr; }
   .room-dialog .art-button { min-height: 48px; padding: 0 10px; font-size: 16px; border-width: 14px; }
 }
-@media (prefers-reduced-motion: reduce) { .turn-alert.turn-active::after { animation: none; left: 0; } }
+@media (prefers-reduced-motion: reduce) { #room-ready.ready-sweep::after { display: none; } }
