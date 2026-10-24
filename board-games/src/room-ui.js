@@ -1,5 +1,5 @@
 import { createDefaultRoomRules } from './room-rules.js';
-import { createRoom, joinRoom, readRoom, roomInvitation, connectRoom, rememberRoom, savedRoom, forgetRoom } from './room-client.js';
+import { createRoom, joinRoom, readRoom, roomInvitation, connectRoom, rememberRoom, savedRoom, forgetRoom, cancelRoomConnection } from './room-client.js';
 import { legalMoves } from './move-rules.js';
 import { isEligibleClaim } from './draw-rules.js';
 import { games } from './games.js';
@@ -7,7 +7,7 @@ import { REACTIONS, REACTION_DURATION_MS } from './reactions.js';
 import { createGameAudio } from './game-audio.js';
 
 const toggles = { touchMove: 'Touch-move', legalMoveHints: 'Legal-move highlights', resignation: 'Resignation', drawOffers: 'Draw offers', mutuallyAgreedTakebacks: 'Agreed takebacks', rematches: 'Rematches' };
-const developmentNote = 'Direct peer-to-peer match · Keep your game tab open. Relay fallback is disabled.';
+const developmentNote = 'Encrypted relay connection · Keep both game tabs open. After a full disconnect, share a fresh invitation to resume.';
 const number = (square, size) => square.row * size / 2 + Math.floor(square.column / 2) + 1;
 const clockText = milliseconds => {
   const seconds = Math.max(0, Math.ceil(milliseconds / 1000));
@@ -16,6 +16,9 @@ const clockText = milliseconds => {
 
 export function setupRooms(artwork, getGame) {
   const dialog = document.querySelector('#room-dialog');
+  // Cancel network startup through the existing Back/Escape controls.
+  document.querySelector('#close-dialog').addEventListener('click',()=>{if(busy&&menu.hidden===false)cancelRoomConnection();});
+  dialog.addEventListener('cancel',()=>{if(busy&&menu.hidden===false)cancelRoomConnection();});
   const content = document.querySelector('#room-content');
   const error = document.querySelector('#room-error');
   const screen = document.querySelector('#live-room');
@@ -269,9 +272,10 @@ export function setupRooms(artwork, getGame) {
   document.querySelector('#copy-invitation').addEventListener('click',()=>run(async()=>{
     let url=new URL(window.location.href);
     try { if(window.parent!==window)url=new URL(window.parent.location.href); } catch {}
-    url.hash=new URLSearchParams({join:roomInvitation(savedRoom())}).toString();
+    const invitation=roomInvitation(savedRoom());if(!invitation)throw new Error('This invitation is already in use. A fresh code appears after disconnecting.');
+    url.hash=new URLSearchParams({join:invitation}).toString();
     await navigator.clipboard.writeText(url.href);
-    document.querySelector('#live-message').textContent='Invitation link copied. Opening it joins this room automatically.';
+    document.querySelector('#live-message').textContent='Invitation link copied. You will approve the joining player.';
   }));
   document.querySelector('#extend-reconnect').addEventListener('click',()=>run(()=>connection.action({type:'extend'})));
   document.querySelector('#resign-match').addEventListener('click',()=>run(()=>connection.action({type:'resign'})));

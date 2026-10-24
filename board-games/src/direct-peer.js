@@ -1,139 +1,80 @@
-// Connection transport only. Room authority, identity and consent belong above it.
-const LABEL = 'meadow-room-v1';
-const MAX_BYTES = 65536;
-const encoder = new TextEncoder();
-let library;
-
-// State names and candidate counts only: never expose addresses or invitation data.
-export function connectionDiagnostics(rtc) {
-  if (!rtc) return 'WebRTC connection not created';
-  const candidates = description => {
-    const sdp = description?.sdp || '';
-    return ['host', 'srflx', 'relay'].map(type => `${type}:${(sdp.match(new RegExp(` typ ${type}(?: |\\r|\\n|$)`, 'g')) || []).length}`).join(',');
-  };
-  return `ICE=${rtc.iceConnectionState || 'unknown'}; gathering=${rtc.iceGatheringState || 'unknown'}; signaling=${rtc.signalingState || 'unknown'}; local[${candidates(rtc.localDescription)}]; remote[${candidates(rtc.remoteDescription)}]`;
+// Compatibility boundary for the existing room/RPC engine. No PeerJS or WebRTC.
+import {createIrohChannel} from './iroh-channel.js';
+import {createIrohFrame} from './iroh-frame-client.js';
+import {normalizeCompactCode} from '../public/vendor/iroh-pairing/runtime/168215132a335a2525532eea/prototype/compact-code.mjs';
+export function normalizeInvitation(input){
+ let value=String(input).trim();
+ if(/^https?:\/\//i.test(value))value=new URLSearchParams(new URL(value).hash.slice(1)).get('join')||'';
+ try{return normalizeCompactCode(value);}catch{throw Error('Enter the 10-character invitation code or paste its link.');}
 }
-
-export function directPeerOptions() {
-  return {
-    host: '0.peerjs.com', port: 443, path: '/', secure: true, debug: 0,
-    // Override PeerJS defaults explicitly: no TURN credentials or relay servers.
-    config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }], iceTransportPolicy: 'all' },
-  };
-}
-
-async function loadPeer() {
-  if (!library) library = new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = new URL('../public/vendor/peerjs/dist/peerjs.min.js', import.meta.url).href;
-    script.onload = () => typeof globalThis.Peer === 'function' ? resolve(globalThis.Peer) : reject(new Error('PeerJS failed to load.'));
-    script.onerror = () => { library = null; script.remove(); reject(new Error('Could not load the peer connection library.')); };
-    document.head.append(script);
-  });
-  return library;
-}
-
-export async function createDirectPeer(options = {}) {
-  const { attempts = 3, retryDelayMs = 1000 } = options;
-  for (let attempt = 1; attempt <= attempts; attempt++) {
-    try { return await openDirectPeer(options); }
-    catch (error) {
-      if (!['network', 'socket-error', 'socket-closed', 'server-error', 'signaling-timeout'].includes(error.type)) throw error;
-      if (attempt === attempts) {
-        const failure = new Error(`Could not connect to the PeerJS room-signaling service after ${attempts} attempts (${error.type}). Please try again shortly. If it persists, check whether your browser or network blocks 0.peerjs.com. No game room was opened.`);
-        failure.type = error.type;
-        throw failure;
-      }
-      await new Promise(resolve => setTimeout(resolve, retryDelayMs * attempt));
-    }
+const validWelcome=value=>value&&Object.keys(value).sort().join(',')==='id,secret,type'&&value.type==='meadow-welcome-v1'&&/^[a-f0-9]{18}$/.test(value.id)&&/^[a-f0-9]{64}$/.test(value.secret);
+const notify=message=>{for(const id of ['room-progress','live-message']){const element=globalThis.document?.getElementById(id);if(element)element.textContent=message;}};
+const consent=()=>globalThis.confirm('Connect through the Iroh relay and Wormhole pairing service? Messages are encrypted. These services can see your IP address; the other player connects through the relay.');
+const approve=()=>globalThis.confirm('A player with your invitation is waiting. Accept this player into your room?');
+export async function createDirectPeer({id,invitation,onConnection=()=>{},onInvitation=()=>{},onError=()=>{},frameFactory=createIrohFrame,requestConsent=consent,approvePeer=approve,status=notify,signal}={}){
+ if(signal?.aborted)throw Error('Connection cancelled.');
+ if(!await requestConsent())throw Error('Connection cancelled.');
+ let bridge,channel,destroyed=false,creating=false,renew=false,spent=false,code='',attempt=0;
+ let readyResolve,readyReject,readyTimer;
+ const host=!!id;
+ function clearReady(){clearTimeout(readyTimer);readyResolve=readyReject=undefined;}
+ function failure(error){if(!destroyed){onError(error);status(error.message);}}
+ function ended(){
+  const error=Error('Connection ended. Ask the host for a fresh invitation to resume.');
+  readyReject?.(error);clearReady();channel?.close(error);channel=undefined;
+  if(host&&!destroyed){renew=true;code='';onInvitation('');status('Connection ended. A fresh invitation will appear for reconnecting.');}
+ }
+ function makeChannel(){
+  const owner=bridge;
+  const c=createIrohChannel({sendText:text=>owner.call('send',text),closeTransport:()=>{owner.close();}});
+  c.onClose(error=>{if(c===channel){readyReject?.(error);clearReady();}});
+  channel=c;return c;
+ }
+ async function approvedHost(current){
+  if(destroyed||current!==attempt)return;
+  const c=makeChannel();onConnection(c);
+  await c.send({type:'meadow-welcome-v1',id:invitation.id,secret:invitation.secret});
+ }
+ async function event(detail,current){
+  if(destroyed||current!==attempt)return;
+  if(detail.type==='code'){code=detail.value;onInvitation(code);}
+  if(detail.type==='message'){channel?.receive(detail.value);return;}
+  if(detail.type==='error')failure(Error(detail.value));
+  if(detail.type!=='state')return;
+  if(detail.value==='pending'&&host){
+   try{const accept=await approvePeer();if(destroyed||current!==attempt)return;await bridge.call('decide',!!accept);if(accept)await approvedHost(current);}
+   catch(error){failure(error);bridge?.close();}return;
   }
-}
-
-async function openDirectPeer({ id, PeerConstructor, timeoutMs = 15000, onConnection = () => {}, onError = () => {} } = {}) {
-  const Constructor = PeerConstructor || await loadPeer();
-  const peer = new Constructor(id, directPeerOptions());
-  const channels = new Set();
-  let destroyed = false;
-  function wrap(connection) {
-    let ended = false, opened = false, settleReady, rejectReady;
-    const messages = new Set(), closures = new Set();
-    const ready = new Promise((resolve,reject) => { settleReady = resolve; rejectReady = reject; });
-    // Incoming channels can fail before the application awaits readiness.
-    ready.catch(() => {});
-    const timer = setTimeout(() => {
-      const rtc=connection.peerConnection;
-      const details=connectionDiagnostics(rtc);
-      console.warn(`Direct P2P timeout: ${details}`);
-      end(new Error(`Direct connection failed. Relay fallback is disabled. Connection details: ${details}`));
-    }, timeoutMs);
-    function end(error = new Error('Peer connection closed.')) {
-      if (ended) return;
-      ended = true; clearTimeout(timer); channels.delete(channel);
-      if (!opened) rejectReady(error);
-      connection.close();
-      for (const listener of closures) listener(error);
-      messages.clear(); closures.clear();
-    }
-    const channel = {
-      peerId: connection.peer, ready,
-      send(value) {
-        if (ended || !opened) throw new Error('The peer connection is not open.');
-        const encoded = JSON.stringify({ protocol: LABEL, payload: value });
-        if (encoder.encode(encoded).byteLength > MAX_BYTES) throw new Error('Peer message is too large.');
-        connection.send(encoded);
-      },
-      onMessage(listener) { messages.add(listener); return () => messages.delete(listener); },
-      onClose(listener) { closures.add(listener); return () => closures.delete(listener); },
-      close: end,
-    };
-    channels.add(channel);
-    connection.on('open', () => { if (!ended) { opened = true; clearTimeout(timer); settleReady(channel); } });
-    connection.on('close', () => end());
-    connection.on('error', error => end(error));
-    connection.on('data', raw => {
-      if (ended || !opened) return;
-      let message;
-      try {
-        if (typeof raw !== 'string' || encoder.encode(raw).byteLength > MAX_BYTES) throw new Error();
-        message = JSON.parse(raw);
-        if (!message || message.protocol !== LABEL || !Object.hasOwn(message,'payload')) throw new Error();
-      } catch { end(new Error('Invalid peer message.')); return; }
-      for (const listener of messages) listener(message.payload);
-    });
-    return channel;
+  if(detail.value==='awaiting-approval')status('Waiting for the host to accept your connection…');
+  if(detail.value==='approved'&&!host){
+   if(!channel){const c=makeChannel();const off=c.onMessage(value=>{
+    if(!validWelcome(value)){c.close(Error('Invalid room connection metadata.'));return;}
+    off();c.invitation={id:value.id,secret:value.secret};readyResolve?.(c);clearReady();
+   });}
   }
-  peer.on('connection', connection => {
-    if (destroyed || connection.label !== LABEL || connection.serialization !== 'raw' || channels.size >= 8) { console.warn('Rejected incompatible peer channel');connection.close(); return; }
-    onConnection(wrap(connection));
-  });
-  const close = () => {
-    if (destroyed) return;
-    destroyed = true;
-    for (const channel of [...channels]) channel.close();
-    peer.destroy();
-  };
-  peer.on('error', error => {
-    // PeerJS reports unavailable peers on the Peer object, not just the channel.
-    if (error.type === 'peer-unavailable') for (const channel of [...channels]) channel.close(error);
-    onError(error);
-  });
-  const peerId = await new Promise((resolve,reject) => {
-    const timer = setTimeout(() => {
-      const error = new Error('Could not reach the PeerJS signaling service.');
-      error.type = 'signaling-timeout'; close(); reject(error);
-    }, timeoutMs);
-    peer.on('open', value => { clearTimeout(timer); resolve(value); });
-    peer.on('error', error => { clearTimeout(timer); reject(error); });
-  }).catch(error => { close(); throw error; });
-  return {
-    id: peerId,
-    connect(remoteId) {
-      if (destroyed) throw new Error('Peer transport is closed.');
-      if (typeof remoteId !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,126}[A-Za-z0-9]$/.test(remoteId)) throw new Error('Invalid peer connection ID.');
-      if (channels.size >= 8) throw new Error('Too many peer connections.');
-      return wrap(peer.connect(remoteId, { label: LABEL, serialization: 'raw', reliable: true }));
-    },
-    reconnectSignaling() { if (!destroyed && peer.disconnected) peer.reconnect(); },
-    close,
-  };
+  if(detail.value==='closing'||detail.value==='closed')ended();
+ }
+ async function start(){
+  if(creating||destroyed)return;creating=true;renew=false;const current=++attempt;
+  try{
+   const old=bridge;bridge=undefined;await old?.close();
+   if(destroyed)throw Error('Connection cancelled.');
+   bridge=await frameFactory({signal,onEvent:detail=>{event(detail,current).catch(failure);}});
+   if(destroyed){await bridge.close();throw Error('Connection cancelled.');}
+   if(host){const created=await bridge.call('create');if(destroyed||current!==attempt){await bridge.close();throw Error('Connection cancelled.');}code=normalizeInvitation(created);onInvitation(code);status('Share this invitation privately. You will approve the joining player.');}
+  }finally{creating=false;}
+ }
+ function close(){if(destroyed)return;destroyed=true;renew=false;readyReject?.(Error('Connection cancelled.'));clearReady();channel?.close();channel=undefined;signal?.removeEventListener('abort',close);return bridge?.close();}
+ signal?.addEventListener('abort',close,{once:true});
+ try{await start();}catch(error){close();throw error;}
+ return {id,get invitationCode(){return code;},
+  connect(input){
+   if(host||destroyed||spent)throw Error('Use a fresh invitation to reconnect.');
+   const value=normalizeInvitation(input);spent=true;
+   const ready=new Promise((resolve,reject)=>{readyResolve=resolve;readyReject=reject;readyTimer=setTimeout(()=>{reject(Error('Host approval timed out. Ask for a fresh invitation.'));close();},150000);});ready.catch(()=>{});
+   bridge.call('join',value).catch(error=>{readyReject?.(error);close();});
+   return {ready,get invitation(){return channel?.invitation;},send:value=>channel.send(value),onMessage:listener=>channel.onMessage(listener),onClose:listener=>channel.onClose(listener),close:()=>channel?.close()};
+  },
+  reconnectSignaling(){if(host&&renew&&!creating&&!destroyed)start().catch(failure);},close,
+ };
 }

@@ -7,6 +7,7 @@ export const roomInvitation=session=>rooms.invitation(session);
 export const savedRoom=()=>rooms.savedSession();
 export const rememberRoom=session=>rooms.saveSession(session);
 export const forgetRoom=()=>rooms.forgetSession();
+export const cancelRoomConnection=()=>rooms.stop();
 export function connectRoom(session,onRoom,onError,initialRoom=null) {
   let stopped=false,timer=null,latest=initialRoom;
   function receive(room) {

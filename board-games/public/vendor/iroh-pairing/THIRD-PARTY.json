@@ -1,0 +1,5759 @@
+{
+  "scope": "Reachable wasm-target graph including build dependencies; declarations and notice inventory, not legal clearance",
+  "packages": [
+    {
+      "name": "aead",
+      "version": "0.5.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "getrandom",
+        "rand_core"
+      ],
+      "notices": [
+        "licenses/aead-0.5.2/LICENSE-APACHE",
+        "licenses/aead-0.5.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "aes-gcm",
+      "version": "0.10.3",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/AEADs",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "aes"
+      ],
+      "notices": [
+        "licenses/aes-gcm-0.10.3/LICENSE-APACHE",
+        "licenses/aes-gcm-0.10.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "aes",
+      "version": "0.8.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/block-ciphers",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/aes-0.8.4/LICENSE-APACHE",
+        "licenses/aes-0.8.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "aho-corasick",
+      "version": "1.1.5",
+      "license": "Unlicense OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/BurntSushi/aho-corasick",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "perf-literal",
+        "std"
+      ],
+      "notices": [
+        "licenses/aho-corasick-1.1.5/COPYING",
+        "licenses/aho-corasick-1.1.5/LICENSE-MIT",
+        "licenses/aho-corasick-1.1.5/UNLICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "anyhow",
+      "version": "1.0.104",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/anyhow",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/anyhow-1.0.104/LICENSE-APACHE",
+        "licenses/anyhow-1.0.104/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "arc-swap",
+      "version": "1.9.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/vorner/arc-swap",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/arc-swap-1.9.2/LICENSE-APACHE",
+        "licenses/arc-swap-1.9.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/bluss/arrayvec",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/arrayvec-0.7.8/LICENSE-APACHE",
+        "licenses/arrayvec-0.7.8/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "async_io_stream",
+      "version": "0.3.3",
+      "license": "Unlicense",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/najamelan/async_io_stream",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "map_pharos",
+        "pharos"
+      ],
+      "notices": [
+        "licenses/async_io_stream-0.3.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "async-task",
+      "version": "4.7.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/smol-rs/async-task",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/async-task-4.7.1/LICENSE-APACHE",
+        "licenses/async-task-4.7.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "atomic-waker",
+      "version": "1.1.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/smol-rs/atomic-waker",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/atomic-waker-1.1.2/LICENSE-APACHE",
+        "licenses/atomic-waker-1.1.2/LICENSE-MIT",
+        "licenses/atomic-waker-1.1.2/LICENSE-THIRD-PARTY"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "autocfg",
+      "version": "1.5.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/cuviper/autocfg",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/autocfg-1.5.1/LICENSE-APACHE",
+        "licenses/autocfg-1.5.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "backon",
+      "version": "1.6.0",
+      "license": "Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Xuanwo/backon",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "gloo-timers",
+        "gloo-timers-sleep",
+        "std",
+        "std-blocking-sleep",
+        "tokio",
+        "tokio-sleep"
+      ],
+      "notices": [
+        "licenses/backon-1.6.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "base16ct",
+      "version": "1.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/base16ct-1.0.0/LICENSE-APACHE",
+        "licenses/base16ct-1.0.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "base64",
+      "version": "0.22.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/marshallpierce/rust-base64",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/base64-0.22.1/LICENSE-APACHE",
+        "licenses/base64-0.22.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "base64",
+      "version": "0.23.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/marshallpierce/rust-base64",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "simd-unsafe",
+        "std"
+      ],
+      "notices": [
+        "licenses/base64-0.23.1/LICENSE-APACHE",
+        "licenses/base64-0.23.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "base64ct",
+      "version": "1.8.3",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc"
+      ],
+      "notices": [
+        "licenses/base64ct-1.8.3/LICENSE-APACHE",
+        "licenses/base64ct-1.8.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "bit-set",
+      "version": "0.8.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/contain-rs/bit-set",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/bit-set-0.8.0/LICENSE-APACHE",
+        "licenses/bit-set-0.8.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "bit-vec",
+      "version": "0.8.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/contain-rs/bit-vec",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/bit-vec-0.8.0/LICENSE-APACHE",
+        "licenses/bit-vec-0.8.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/bitflags/bitflags",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/bitflags-2.13.2/LICENSE-APACHE",
+        "licenses/bitflags-2.13.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "blake3",
+      "version": "1.8.7",
+      "license": "CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/BLAKE3-team/BLAKE3",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/blake3-1.8.7/LICENSE_A2",
+        "licenses/blake3-1.8.7/LICENSE_A2LLVM",
+        "licenses/blake3-1.8.7/LICENSE_CC0"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.10.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/block-buffer-0.10.4/LICENSE-APACHE",
+        "licenses/block-buffer-0.10.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.12.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/block-buffer-0.12.1/LICENSE-APACHE",
+        "licenses/block-buffer-0.12.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "bumpalo",
+      "version": "3.20.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/fitzgen/bumpalo",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/bumpalo-3.20.3/LICENSE-APACHE",
+        "licenses/bumpalo-3.20.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "bytes",
+      "version": "1.12.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/bytes",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/bytes-1.12.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cc",
+      "version": "1.8.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/cc-rs",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/cc-1.8.0/LICENSE-APACHE",
+        "licenses/cc-1.8.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cfg_aliases",
+      "version": "0.2.2",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/katharostech/cfg_aliases",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/cfg_aliases-0.2.2/LICENSE",
+        "licenses/cfg_aliases-0.2.2/NOTICES.md"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/cfg-if",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/cfg-if-1.0.5/LICENSE-APACHE",
+        "licenses/cfg-if-1.0.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "chacha20",
+      "version": "0.10.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/stream-ciphers",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "rng"
+      ],
+      "notices": [
+        "licenses/chacha20-0.10.2/LICENSE-APACHE",
+        "licenses/chacha20-0.10.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "chrono",
+      "version": "0.4.45",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/chronotope/chrono",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "clock",
+        "default",
+        "iana-time-zone",
+        "js-sys",
+        "now",
+        "oldtime",
+        "std",
+        "wasm-bindgen",
+        "wasmbind",
+        "winapi",
+        "windows-link"
+      ],
+      "notices": [
+        "licenses/chrono-0.4.45/LICENSE.txt"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cipher",
+      "version": "0.4.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/cipher-0.4.4/LICENSE-APACHE",
+        "licenses/cipher-0.4.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cmov",
+      "version": "0.5.4",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/cmov-0.5.4/LICENSE-APACHE",
+        "licenses/cmov-0.5.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cobs",
+      "version": "0.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jamesmunns/cobs.rs",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/cobs-0.3.0/LICENSE-APACHE",
+        "licenses/cobs-0.3.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "console_error_panic_hook",
+      "version": "0.1.7",
+      "license": "Apache-2.0/MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustwasm/console_error_panic_hook",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/console_error_panic_hook-0.1.7/LICENSE-APACHE",
+        "licenses/console_error_panic_hook-0.1.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "const-oid",
+      "version": "0.10.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/const-oid-0.10.2/LICENSE-APACHE",
+        "licenses/const-oid-0.10.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "constant_time_eq",
+      "version": "0.4.2",
+      "license": "CC0-1.0 OR MIT-0 OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/cesarb/constant_time_eq",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/constant_time_eq-0.4.2/LICENSE-APACHE",
+        "licenses/constant_time_eq-0.4.2/LICENSE-CC0",
+        "licenses/constant_time_eq-0.4.2/LICENSE-MIT0"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "convert_case",
+      "version": "0.10.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rutrum/convert-case",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/convert_case-0.10.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "cordyceps",
+      "version": "0.3.5",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hawkw/mycelium",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/cordyceps-0.3.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "crypto_secretbox",
+      "version": "0.1.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/nacl-compat/tree/master/crypto_secretbox",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "getrandom",
+        "rand_core",
+        "salsa20"
+      ],
+      "notices": [
+        "licenses/crypto_secretbox-0.1.1/LICENSE-APACHE",
+        "licenses/crypto_secretbox-0.1.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.1.7",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "getrandom",
+        "rand_core",
+        "std"
+      ],
+      "notices": [
+        "licenses/crypto-common-0.1.7/LICENSE-APACHE",
+        "licenses/crypto-common-0.1.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.2.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "rand_core"
+      ],
+      "notices": [
+        "licenses/crypto-common-0.2.2/LICENSE-APACHE",
+        "licenses/crypto-common-0.2.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ctr",
+      "version": "0.9.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/block-modes",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/ctr-0.9.2/LICENSE-APACHE",
+        "licenses/ctr-0.9.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ctutils",
+      "version": "0.4.4",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/ctutils-0.4.4/LICENSE-APACHE",
+        "licenses/ctutils-0.4.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "curve25519-dalek",
+      "version": "4.1.3",
+      "license": "BSD-3-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/curve25519-dalek",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "rand_core"
+      ],
+      "notices": [
+        "licenses/curve25519-dalek-4.1.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "curve25519-dalek",
+      "version": "5.0.0",
+      "license": "BSD-3-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/curve25519-dalek",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "digest",
+        "precomputed-tables",
+        "rand_core",
+        "serde",
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/curve25519-dalek-5.0.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "darling_core",
+      "version": "0.20.11",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/TedDriggs/darling",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "strsim",
+        "suggestions"
+      ],
+      "notices": [
+        "licenses/darling_core-0.20.11/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "darling_macro",
+      "version": "0.20.11",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/TedDriggs/darling",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/darling_macro-0.20.11/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "darling",
+      "version": "0.20.11",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/TedDriggs/darling",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "suggestions"
+      ],
+      "notices": [
+        "licenses/darling-0.20.11/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "data-encoding-macro-internal",
+      "version": "0.1.19",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/ia0/data-encoding",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/data-encoding-macro-internal-0.1.19/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "data-encoding-macro",
+      "version": "0.1.21",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/ia0/data-encoding",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/data-encoding-macro-0.1.21/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "data-encoding",
+      "version": "2.11.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/ia0/data-encoding",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/data-encoding-2.11.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "der",
+      "version": "0.8.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "oid",
+        "pem",
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/der-0.8.2/LICENSE-APACHE",
+        "licenses/der-0.8.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "deranged",
+      "version": "0.5.9",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jhpratt/deranged",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/deranged-0.5.9/LICENSE-Apache",
+        "licenses/deranged-0.5.9/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "derive_builder_core",
+      "version": "0.20.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/colin-kiegel/rust-derive-builder",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "lib_has_std"
+      ],
+      "notices": [
+        "licenses/derive_builder_core-0.20.2/LICENSE-APACHE",
+        "licenses/derive_builder_core-0.20.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "derive_builder_macro",
+      "version": "0.20.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/colin-kiegel/rust-derive-builder",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "lib_has_std"
+      ],
+      "notices": [
+        "licenses/derive_builder_macro-0.20.2/LICENSE-APACHE",
+        "licenses/derive_builder_macro-0.20.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "derive_builder",
+      "version": "0.20.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/colin-kiegel/rust-derive-builder",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/derive_builder-0.20.2/LICENSE-APACHE",
+        "licenses/derive_builder-0.20.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "derive_more-impl",
+      "version": "2.1.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/JelteF/derive_more",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "add",
+        "add_assign",
+        "debug",
+        "default",
+        "deref",
+        "deref_mut",
+        "display",
+        "from",
+        "from_str",
+        "into_iterator",
+        "try_into"
+      ],
+      "notices": [
+        "licenses/derive_more-impl-2.1.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "derive_more",
+      "version": "2.1.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/JelteF/derive_more",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "add",
+        "add_assign",
+        "debug",
+        "default",
+        "deref",
+        "deref_mut",
+        "display",
+        "from",
+        "from_str",
+        "into_iterator",
+        "std",
+        "try_into"
+      ],
+      "notices": [
+        "licenses/derive_more-2.1.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "diatomic-waker",
+      "version": "0.2.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/asynchronics/diatomic-waker",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default"
+      ],
+      "notices": [
+        "licenses/diatomic-waker-0.2.3/LICENSE-APACHE",
+        "licenses/diatomic-waker-0.2.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "digest",
+      "version": "0.10.7",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "block-buffer",
+        "core-api",
+        "default",
+        "mac",
+        "std",
+        "subtle"
+      ],
+      "notices": [
+        "licenses/digest-0.10.7/LICENSE-APACHE",
+        "licenses/digest-0.10.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "digest",
+      "version": "0.11.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "block-api",
+        "default",
+        "mac",
+        "oid",
+        "rand_core"
+      ],
+      "notices": [
+        "licenses/digest-0.11.3/LICENSE-APACHE",
+        "licenses/digest-0.11.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/yaahc/displaydoc",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/displaydoc-0.2.7/LICENSE-APACHE",
+        "licenses/displaydoc-0.2.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ed25519-dalek",
+      "version": "3.0.0",
+      "license": "BSD-3-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/ed25519-dalek",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "fast",
+        "pem",
+        "pkcs8",
+        "rand_core",
+        "serde",
+        "signature",
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/ed25519-dalek-3.0.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ed25519",
+      "version": "3.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/signatures",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "pem",
+        "pkcs8",
+        "serde"
+      ],
+      "notices": [
+        "licenses/ed25519-3.0.0/LICENSE-APACHE",
+        "licenses/ed25519-3.0.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "either",
+      "version": "1.19.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rayon-rs/either",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "std",
+        "use_std"
+      ],
+      "notices": [
+        "licenses/either-1.19.0/LICENSE-APACHE",
+        "licenses/either-1.19.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "embedded-io",
+      "version": "0.4.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/embassy-rs/embedded-io",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc"
+      ],
+      "notices": [
+        "licenses/embedded-io-0.4.0/LICENSE-APACHE",
+        "licenses/embedded-io-0.4.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "embedded-io",
+      "version": "0.6.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-embedded/embedded-hal",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc"
+      ],
+      "notices": [
+        "licenses/embedded-io-0.6.1/LICENSE-APACHE",
+        "licenses/embedded-io-0.6.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "enum-assoc",
+      "version": "1.4.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Eolu/enum-assoc",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/enum-assoc-1.4.1/supplement-0-Apache-2.0.txt"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/release/standard/Apache-2.0.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+          "bytes": 10280,
+          "basis": "previously reviewed standard text; not an upstream notice",
+          "license": "Apache-2.0"
+        }
+      ]
+    },
+    {
+      "name": "equivalent",
+      "version": "1.0.3",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/indexmap-rs/equivalent",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/equivalent-1.0.3/LICENSE-APACHE",
+        "licenses/equivalent-1.0.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "fancy-regex",
+      "version": "0.18.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/fancy-regex/fancy-regex",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "perf",
+        "std",
+        "unicode",
+        "variable-lookbehinds"
+      ],
+      "notices": [
+        "licenses/fancy-regex-0.18.0/AUTHORS",
+        "licenses/fancy-regex-0.18.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "fastrand",
+      "version": "2.5.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/smol-rs/fastrand",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/fastrand-2.5.0/LICENSE-APACHE",
+        "licenses/fastrand-2.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "find-msvc-tools",
+      "version": "0.1.14",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/cc-rs",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/find-msvc-tools-0.1.14/LICENSE-APACHE",
+        "licenses/find-msvc-tools-0.1.14/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "fixedbitset",
+      "version": "0.5.7",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/petgraph/fixedbitset",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/fixedbitset-0.5.7/LICENSE-APACHE",
+        "licenses/fixedbitset-0.5.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "fnv",
+      "version": "1.0.7",
+      "license": "Apache-2.0 / MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-fnv",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/fnv-1.0.7/LICENSE-APACHE",
+        "licenses/fnv-1.0.7/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "foldhash",
+      "version": "0.2.0",
+      "license": "Zlib",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/orlp/foldhash",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/foldhash-0.2.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "form_urlencoded",
+      "version": "1.2.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-url",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "std"
+      ],
+      "notices": [
+        "licenses/form_urlencoded-1.2.2/LICENSE-APACHE",
+        "licenses/form_urlencoded-1.2.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-buffered",
+      "version": "0.2.13",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/conradludgate/futures-buffered",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/futures-buffered-0.2.13/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-channel",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "futures-sink",
+        "sink",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-channel-0.3.34/LICENSE-APACHE",
+        "licenses/futures-channel-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-concurrency",
+      "version": "7.7.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/yoshuawuyts/futures-concurrency",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-concurrency-7.7.1/LICENSE-APACHE",
+        "licenses/futures-concurrency-7.7.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-core",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-core-0.3.34/LICENSE-APACHE",
+        "licenses/futures-core-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-executor",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-executor-0.3.34/LICENSE-APACHE",
+        "licenses/futures-executor-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-io",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-io-0.3.34/LICENSE-APACHE",
+        "licenses/futures-io-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-lite",
+      "version": "2.6.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/smol-rs/futures-lite",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "fastrand",
+        "futures-io",
+        "parking",
+        "race",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-lite-2.6.1/LICENSE-APACHE",
+        "licenses/futures-lite-2.6.1/LICENSE-MIT",
+        "licenses/futures-lite-2.6.1/LICENSE-THIRD-PARTY"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-macro",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/futures-macro-0.3.34/LICENSE-APACHE",
+        "licenses/futures-macro-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-sink",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-sink-0.3.34/LICENSE-APACHE",
+        "licenses/futures-sink-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-task",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-task-0.3.34/LICENSE-APACHE",
+        "licenses/futures-task-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures-util",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "async-await",
+        "async-await-macro",
+        "channel",
+        "default",
+        "futures-channel",
+        "futures-io",
+        "futures-macro",
+        "futures-sink",
+        "io",
+        "memchr",
+        "sink",
+        "slab",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-util-0.3.34/LICENSE-APACHE",
+        "licenses/futures-util-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "futures",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "async-await",
+        "default",
+        "executor",
+        "futures-executor",
+        "std"
+      ],
+      "notices": [
+        "licenses/futures-0.3.34/LICENSE-APACHE",
+        "licenses/futures-0.3.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "generic-array",
+      "version": "0.14.7",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/fizyk20/generic-array.git",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "more_lengths",
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/generic-array-0.14.7/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "getrandom",
+      "version": "0.2.17",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/getrandom",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "js",
+        "js-sys",
+        "std",
+        "wasm-bindgen"
+      ],
+      "notices": [
+        "licenses/getrandom-0.2.17/LICENSE-APACHE",
+        "licenses/getrandom-0.2.17/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/getrandom",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "wasm_js"
+      ],
+      "notices": [
+        "licenses/getrandom-0.3.4/LICENSE-APACHE",
+        "licenses/getrandom-0.3.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "getrandom",
+      "version": "0.4.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/getrandom",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "std",
+        "sys_rng",
+        "wasm_js"
+      ],
+      "notices": [
+        "licenses/getrandom-0.4.3/LICENSE-APACHE",
+        "licenses/getrandom-0.4.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ghash",
+      "version": "0.5.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/universal-hashes",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/ghash-0.5.1/LICENSE-APACHE",
+        "licenses/ghash-0.5.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "gloo-timers",
+      "version": "0.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustwasm/gloo/tree/master/crates/timers",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "futures",
+        "futures-channel",
+        "futures-core"
+      ],
+      "notices": [
+        "licenses/gloo-timers-0.3.0/supplement-0-LICENSE-APACHE",
+        "licenses/gloo-timers-0.3.0/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/gloo-timers-0.3.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "bytes": 10847,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/rustwasm/gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/gloo-timers-0.3.0/LICENSE-MIT",
+          "sha256": "5a6f5443ea473f130adbdcf84254761d1292bc79759b5253915d4b5e7afbef66",
+          "bytes": 1078,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/rustwasm/gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.17.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/hashbrown",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default-hasher",
+        "inline-more"
+      ],
+      "notices": [
+        "licenses/hashbrown-0.17.1/LICENSE-APACHE",
+        "licenses/hashbrown-0.17.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "heck",
+      "version": "0.5.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/withoutboats/heck",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/heck-0.5.0/LICENSE-APACHE",
+        "licenses/heck-0.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hex",
+      "version": "0.4.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/KokaKiwi/rust-hex",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "serde",
+        "std"
+      ],
+      "notices": [
+        "licenses/hex-0.4.3/LICENSE-APACHE",
+        "licenses/hex-0.4.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hkdf",
+      "version": "0.12.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/KDFs/",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/hkdf-0.12.4/LICENSE-APACHE",
+        "licenses/hkdf-0.12.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hkdf",
+      "version": "0.13.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/KDFs/",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/hkdf-0.13.0/LICENSE-APACHE",
+        "licenses/hkdf-0.13.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hmac",
+      "version": "0.12.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/MACs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/hmac-0.12.1/LICENSE-APACHE",
+        "licenses/hmac-0.12.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hmac",
+      "version": "0.13.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/MACs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/hmac-0.13.0/LICENSE-APACHE",
+        "licenses/hmac-0.13.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "http-body-util",
+      "version": "0.1.5",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hyperium/http-body",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/http-body-util-0.1.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "http-body",
+      "version": "1.1.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hyperium/http-body",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/http-body-1.1.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "http",
+      "version": "1.5.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hyperium/http",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/http-1.5.0/LICENSE-APACHE",
+        "licenses/http-1.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "httparse",
+      "version": "1.10.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/seanmonstar/httparse",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/httparse-1.10.1/LICENSE-APACHE",
+        "licenses/httparse-1.10.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "httpdate",
+      "version": "1.0.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/pyfisch/httpdate",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/httpdate-1.0.3/LICENSE-APACHE",
+        "licenses/httpdate-1.0.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hybrid-array",
+      "version": "0.4.15",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/hybrid-array",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/hybrid-array-0.4.15/LICENSE-APACHE",
+        "licenses/hybrid-array-0.4.15/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hyper-util",
+      "version": "0.1.21",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hyperium/hyper-util",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "client",
+        "client-legacy",
+        "client-proxy",
+        "default",
+        "http1",
+        "tokio"
+      ],
+      "notices": [
+        "licenses/hyper-util-0.1.21/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "hyper",
+      "version": "1.12.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hyperium/hyper",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "client",
+        "default",
+        "http1",
+        "server"
+      ],
+      "notices": [
+        "licenses/hyper-1.12.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_collections",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_collections-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_collections",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_collections-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_locale_core",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "zerovec"
+      ],
+      "notices": [
+        "licenses/icu_locale_core-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_locale_core",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "zerovec"
+      ],
+      "notices": [
+        "licenses/icu_locale_core-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_normalizer_data",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_normalizer_data-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_normalizer_data",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_normalizer_data-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_normalizer",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "compiled_data"
+      ],
+      "notices": [
+        "licenses/icu_normalizer-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_normalizer",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "compiled_data"
+      ],
+      "notices": [
+        "licenses/icu_normalizer-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_properties_data",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_properties_data-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_properties_data",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/icu_properties_data-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_properties",
+      "version": "2.3.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "compiled_data"
+      ],
+      "notices": [
+        "licenses/icu_properties-2.3.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_properties",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "compiled_data"
+      ],
+      "notices": [
+        "licenses/icu_properties-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_provider",
+      "version": "2.3.1",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "baked"
+      ],
+      "notices": [
+        "licenses/icu_provider-2.3.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "icu_provider",
+      "version": "2.4.0",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "baked"
+      ],
+      "notices": [
+        "licenses/icu_provider-2.4.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ident_case",
+      "version": "1.0.1",
+      "license": "MIT/Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/TedDriggs/ident_case",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/ident_case-1.0.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "identity-hash",
+      "version": "0.1.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/offsetting/identity-hash",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/identity-hash-0.1.0/LICENSE-APACHE",
+        "licenses/identity-hash-0.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "idna_adapter",
+      "version": "1.2.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hsivonen/idna_adapter",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "compiled_data"
+      ],
+      "notices": [
+        "licenses/idna_adapter-1.2.2/LICENSE-APACHE",
+        "licenses/idna_adapter-1.2.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "idna",
+      "version": "1.1.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-url/",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "compiled_data",
+        "std"
+      ],
+      "notices": [
+        "licenses/idna-1.1.0/LICENSE-APACHE",
+        "licenses/idna-1.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "indexmap",
+      "version": "2.14.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/indexmap-rs/indexmap",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/indexmap-2.14.2/LICENSE-APACHE",
+        "licenses/indexmap-2.14.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "inout",
+      "version": "0.1.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/inout-0.1.4/LICENSE-APACHE",
+        "licenses/inout-0.1.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ipnet",
+      "version": "2.12.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/krisprice/ipnet",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/ipnet-2.12.2/LICENSE-APACHE",
+        "licenses/ipnet-2.12.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "iroh-base",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "key",
+        "relay"
+      ],
+      "notices": [
+        "licenses/iroh-base-1.3.0/supplement-0-LICENSE-APACHE",
+        "licenses/iroh-base-1.3.0/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/iroh-base-1.3.0/LICENSE-APACHE",
+          "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+          "bytes": 10831,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/iroh-base-1.3.0/LICENSE-MIT",
+          "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+          "bytes": 1048,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "iroh-dns",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "tls-ring"
+      ],
+      "notices": [
+        "licenses/iroh-dns-1.3.0/supplement-0-LICENSE-APACHE",
+        "licenses/iroh-dns-1.3.0/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/iroh-dns-1.3.0/LICENSE-APACHE",
+          "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+          "bytes": 10831,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/iroh-dns-1.3.0/LICENSE-MIT",
+          "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+          "bytes": 1048,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "iroh-metrics-derive",
+      "version": "1.0.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh-metrics",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/iroh-metrics-derive-1.0.1/supplement-0-LICENSE-APACHE",
+        "licenses/iroh-metrics-derive-1.0.1/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/iroh-metrics-derive-1.0.1/LICENSE-APACHE",
+          "sha256": "7953ad8cebf4e01199521a5faa221ef59bec5cee0a9856b179590613a8560cbc",
+          "bytes": 10831,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/iroh-metrics-derive-1.0.1/LICENSE-MIT",
+          "sha256": "339060c99d5c80c2742cae417f765980afe6b0149a78f959bbf2a79f19ab3af5",
+          "bytes": 1048,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "iroh-metrics",
+      "version": "1.0.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh-metrics",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/iroh-metrics-1.0.2/LICENSE-APACHE",
+        "licenses/iroh-metrics-1.0.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "iroh-relay",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "tls-ring"
+      ],
+      "notices": [
+        "licenses/iroh-relay-1.3.0/LICENSE-BSD3"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "iroh",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "tls-ring"
+      ],
+      "notices": [
+        "licenses/iroh-1.3.0/LICENSE-BSD3"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "itertools",
+      "version": "0.14.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-itertools/itertools",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "use_alloc",
+        "use_std"
+      ],
+      "notices": [
+        "licenses/itertools-0.14.0/LICENSE-APACHE",
+        "licenses/itertools-0.14.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "itoa",
+      "version": "1.0.18",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/itoa",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/itoa-1.0.18/LICENSE-APACHE",
+        "licenses/itoa-1.0.18/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "js-sys",
+      "version": "0.3.99",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std",
+        "unsafe-eval"
+      ],
+      "notices": [
+        "licenses/js-sys-0.3.99/LICENSE-APACHE",
+        "licenses/js-sys-0.3.99/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "lazy_static",
+      "version": "1.5.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/lazy_static-1.5.1/LICENSE-APACHE",
+        "licenses/lazy_static-1.5.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "libc",
+      "version": "0.2.191",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/libc",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/libc-0.2.191/LICENSE-APACHE",
+        "licenses/libc-0.2.191/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "litemap",
+      "version": "0.8.3",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/litemap-0.8.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "lock_api",
+      "version": "0.4.14",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Amanieu/parking_lot",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "atomic_usize",
+        "default"
+      ],
+      "notices": [
+        "licenses/lock_api-0.4.14/LICENSE-APACHE",
+        "licenses/lock_api-0.4.14/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/log",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "std"
+      ],
+      "notices": [
+        "licenses/log-0.4.34/LICENSE-APACHE",
+        "licenses/log-0.4.34/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "lru-slab",
+      "version": "0.1.3",
+      "license": "MIT OR Apache-2.0 OR Zlib",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Ralith/lru-slab",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/lru-slab-0.1.3/LICENSE-APACHE",
+        "licenses/lru-slab-0.1.3/LICENSE-MIT",
+        "licenses/lru-slab-0.1.3/LICENSE-ZLIB"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "lru",
+      "version": "0.18.5",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jeromefroe/lru-rs.git",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "hashbrown"
+      ],
+      "notices": [
+        "licenses/lru-0.18.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "magic-wormhole",
+      "version": "0.8.1",
+      "license": "EUPL-1.2",
+      "source": "local fork",
+      "repository": "https://github.com/magic-wormhole/magic-wormhole.rs/tree/main/cli",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/magic-wormhole-0.8.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "license": "Unlicense OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/BurntSushi/memchr",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/memchr-2.8.3/COPYING",
+        "licenses/memchr-2.8.3/LICENSE-MIT",
+        "licenses/memchr-2.8.3/UNLICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "mio",
+      "version": "1.2.4",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/mio",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "net",
+        "os-ext",
+        "os-poll"
+      ],
+      "notices": [
+        "licenses/mio-1.2.4/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "n0-error-macros",
+      "version": "1.0.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/n0-error",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/n0-error-macros-1.0.1/supplement-0-LICENSE-APACHE",
+        "licenses/n0-error-macros-1.0.1/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/n0-error-macros-1.0.1/LICENSE-APACHE",
+          "sha256": "7953ad8cebf4e01199521a5faa221ef59bec5cee0a9856b179590613a8560cbc",
+          "bytes": 10831,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/n0-error-macros-1.0.1/LICENSE-MIT",
+          "sha256": "339060c99d5c80c2742cae417f765980afe6b0149a78f959bbf2a79f19ab3af5",
+          "bytes": 1048,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "n0-error",
+      "version": "1.0.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/n0-error",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/n0-error-1.0.1/LICENSE-APACHE",
+        "licenses/n0-error-1.0.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "n0-future",
+      "version": "0.3.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/n0-future",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/n0-future-0.3.2/LICENSE-APACHE",
+        "licenses/n0-future-0.3.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "n0-watcher",
+      "version": "1.0.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/n0-watcher",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/n0-watcher-1.0.0/LICENSE-APACHE",
+        "licenses/n0-watcher-1.0.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "netwatch",
+      "version": "0.19.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/net-tools",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/netwatch-0.19.3/supplement-0-LICENSE-APACHE",
+        "licenses/netwatch-0.19.3/supplement-1-LICENSE-MIT"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/upstream/netwatch-0.19.3/LICENSE-APACHE",
+          "sha256": "7986218ec4ea89de3511a843ae27fea2584a525036c220ff7b26589179f07888",
+          "bytes": 10831,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-APACHE"
+        },
+        {
+          "path": "licenses/upstream/netwatch-0.19.3/LICENSE-MIT",
+          "sha256": "33616ec4c88b6e00de66e6c06f1a55d80bb32a9d7939f3aa83d28e673a1adcae",
+          "bytes": 1048,
+          "basis": "pinned upstream source",
+          "url": "https://raw.githubusercontent.com/n0-computer/net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-MIT"
+        }
+      ]
+    },
+    {
+      "name": "noq-proto",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/noq",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "ring",
+        "rustls"
+      ],
+      "notices": [
+        "licenses/noq-proto-1.3.0/LICENSE-APACHE",
+        "licenses/noq-proto-1.3.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "noq-udp",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/noq",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "tracing",
+        "tracing-log"
+      ],
+      "notices": [
+        "licenses/noq-udp-1.3.0/LICENSE-APACHE",
+        "licenses/noq-udp-1.3.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "noq",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/noq",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "ring",
+        "runtime-tokio",
+        "rustls"
+      ],
+      "notices": [
+        "licenses/noq-1.3.0/LICENSE-APACHE",
+        "licenses/noq-1.3.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "num_enum_derive",
+      "version": "0.7.6",
+      "license": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/illicitonion/num_enum",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "proc-macro-crate",
+        "std"
+      ],
+      "notices": [
+        "licenses/num_enum_derive-0.7.6/LICENSE-APACHE",
+        "licenses/num_enum_derive-0.7.6/LICENSE-BSD",
+        "licenses/num_enum_derive-0.7.6/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "num_enum",
+      "version": "0.7.6",
+      "license": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/illicitonion/num_enum",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/num_enum-0.7.6/LICENSE-APACHE",
+        "licenses/num_enum-0.7.6/LICENSE-BSD",
+        "licenses/num_enum-0.7.6/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "num-conv",
+      "version": "0.2.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jhpratt/num-conv",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/num-conv-0.2.2/LICENSE-Apache",
+        "licenses/num-conv-0.2.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-num/num-traits",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/num-traits-0.2.19/LICENSE-APACHE",
+        "licenses/num-traits-0.2.19/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/matklad/once_cell",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "race",
+        "std"
+      ],
+      "notices": [
+        "licenses/once_cell-1.21.4/LICENSE-APACHE",
+        "licenses/once_cell-1.21.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "opaque-debug",
+      "version": "0.3.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/opaque-debug-0.3.1/LICENSE-APACHE",
+        "licenses/opaque-debug-0.3.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "papaya",
+      "version": "0.2.5",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/ibraheemdev/papaya",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/papaya-0.2.5/LICENSE.md"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "parking_lot_core",
+      "version": "0.9.12",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Amanieu/parking_lot",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/parking_lot_core-0.9.12/LICENSE-APACHE",
+        "licenses/parking_lot_core-0.9.12/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "parking_lot",
+      "version": "0.12.5",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Amanieu/parking_lot",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/parking_lot-0.12.5/LICENSE-APACHE",
+        "licenses/parking_lot-0.12.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "parking",
+      "version": "2.2.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/smol-rs/parking",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/parking-2.2.1/LICENSE-APACHE",
+        "licenses/parking-2.2.1/LICENSE-MIT",
+        "licenses/parking-2.2.1/LICENSE-THIRD-PARTY"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pem-rfc7468",
+      "version": "1.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc"
+      ],
+      "notices": [
+        "licenses/pem-rfc7468-1.0.0/LICENSE-APACHE",
+        "licenses/pem-rfc7468-1.0.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-url/",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/percent-encoding-2.3.2/LICENSE-APACHE",
+        "licenses/percent-encoding-2.3.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pharos",
+      "version": "0.5.3",
+      "license": "Unlicense",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/najamelan/pharos",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/pharos-0.5.3/supplement-0-Unlicense.txt"
+      ],
+      "supplementProvenance": [
+        {
+          "path": "licenses/release/standard/Unlicense.txt",
+          "sha256": "0bdebfeda07d45dada625ae1317c6f833186e798b171d0db640bcf32e92a8240",
+          "bytes": 1211,
+          "basis": "previously reviewed standard text; not an upstream notice",
+          "license": "Unlicense"
+        }
+      ]
+    },
+    {
+      "name": "pin-project-internal",
+      "version": "1.1.13",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/taiki-e/pin-project",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/pin-project-internal-1.1.13/LICENSE-APACHE",
+        "licenses/pin-project-internal-1.1.13/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/taiki-e/pin-project-lite",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/pin-project-lite-0.2.17/LICENSE-APACHE",
+        "licenses/pin-project-lite-0.2.17/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pin-project",
+      "version": "1.1.13",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/taiki-e/pin-project",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/pin-project-1.1.13/LICENSE-APACHE",
+        "licenses/pin-project-1.1.13/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pin-utils",
+      "version": "0.1.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/pin-utils",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/pin-utils-0.1.1/LICENSE-APACHE",
+        "licenses/pin-utils-0.1.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "pkcs8",
+      "version": "0.11.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "pem"
+      ],
+      "notices": [
+        "licenses/pkcs8-0.11.0/LICENSE-APACHE",
+        "licenses/pkcs8-0.11.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "poly1305",
+      "version": "0.8.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/universal-hashes",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/poly1305-0.8.0/LICENSE-APACHE",
+        "licenses/poly1305-0.8.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "polyval",
+      "version": "0.6.2",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/universal-hashes",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/polyval-0.6.2/LICENSE-APACHE",
+        "licenses/polyval-0.6.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "portable-atomic",
+      "version": "1.15.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/taiki-e/portable-atomic",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "fallback",
+        "serde"
+      ],
+      "notices": [
+        "licenses/portable-atomic-1.15.0/LICENSE-APACHE",
+        "licenses/portable-atomic-1.15.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "postcard-derive",
+      "version": "0.2.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jamesmunns/postcard",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/postcard-derive-0.2.2/LICENSE-APACHE",
+        "licenses/postcard-derive-0.2.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "postcard",
+      "version": "1.1.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jamesmunns/postcard",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "experimental-derive",
+        "postcard-derive",
+        "use-std"
+      ],
+      "notices": [
+        "licenses/postcard-1.1.3/LICENSE-APACHE",
+        "licenses/postcard-1.1.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "potential_utf",
+      "version": "0.1.6",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "zerovec"
+      ],
+      "notices": [
+        "licenses/potential_utf-0.1.6/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "powerfmt",
+      "version": "0.2.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/jhpratt/powerfmt",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/powerfmt-0.2.1/LICENSE-Apache",
+        "licenses/powerfmt-0.2.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ppv-lite86",
+      "version": "0.2.21",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/cryptocorrosion/cryptocorrosion",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "simd",
+        "std"
+      ],
+      "notices": [
+        "licenses/ppv-lite86-0.2.21/LICENSE-APACHE",
+        "licenses/ppv-lite86-0.2.21/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "proc-macro-crate",
+      "version": "3.5.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/bkchr/proc-macro-crate",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/proc-macro-crate-3.5.0/LICENSE-APACHE",
+        "licenses/proc-macro-crate-3.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/proc-macro2",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "proc-macro"
+      ],
+      "notices": [
+        "licenses/proc-macro2-1.0.107/LICENSE-APACHE",
+        "licenses/proc-macro2-1.0.107/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/quote",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "proc-macro"
+      ],
+      "notices": [
+        "licenses/quote-1.0.47/LICENSE-APACHE",
+        "licenses/quote-1.0.47/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand_chacha",
+      "version": "0.3.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rand",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "std"
+      ],
+      "notices": [
+        "licenses/rand_chacha-0.3.1/COPYRIGHT",
+        "licenses/rand_chacha-0.3.1/LICENSE-APACHE",
+        "licenses/rand_chacha-0.3.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand_core",
+      "version": "0.10.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rand_core",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/rand_core-0.10.1/COPYRIGHT",
+        "licenses/rand_core-0.10.1/LICENSE-APACHE",
+        "licenses/rand_core-0.10.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand_core",
+      "version": "0.6.4",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rand",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "getrandom",
+        "std"
+      ],
+      "notices": [
+        "licenses/rand_core-0.6.4/COPYRIGHT",
+        "licenses/rand_core-0.6.4/LICENSE-APACHE",
+        "licenses/rand_core-0.6.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand_pcg",
+      "version": "0.10.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rngs",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/rand_pcg-0.10.2/COPYRIGHT",
+        "licenses/rand_pcg-0.10.2/LICENSE-APACHE",
+        "licenses/rand_pcg-0.10.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand",
+      "version": "0.10.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rand",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std",
+        "std_rng",
+        "sys_rng",
+        "thread_rng"
+      ],
+      "notices": [
+        "licenses/rand-0.10.3/COPYRIGHT",
+        "licenses/rand-0.10.3/LICENSE-APACHE",
+        "licenses/rand-0.10.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rand",
+      "version": "0.8.8",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-random/rand",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "getrandom",
+        "libc",
+        "rand_chacha",
+        "std",
+        "std_rng"
+      ],
+      "notices": [
+        "licenses/rand-0.8.8/COPYRIGHT",
+        "licenses/rand-0.8.8/LICENSE-APACHE",
+        "licenses/rand-0.8.8/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "regex-automata",
+      "version": "0.4.18",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/regex",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "dfa",
+        "dfa-build",
+        "dfa-onepass",
+        "dfa-search",
+        "hybrid",
+        "meta",
+        "nfa",
+        "nfa-backtrack",
+        "nfa-pikevm",
+        "nfa-thompson",
+        "perf",
+        "perf-inline",
+        "perf-literal",
+        "perf-literal-multisubstring",
+        "perf-literal-substring",
+        "std",
+        "syntax",
+        "unicode",
+        "unicode-age",
+        "unicode-bool",
+        "unicode-case",
+        "unicode-gencat",
+        "unicode-perl",
+        "unicode-script",
+        "unicode-segment",
+        "unicode-word-boundary"
+      ],
+      "notices": [
+        "licenses/regex-automata-0.4.18/LICENSE-APACHE",
+        "licenses/regex-automata-0.4.18/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "regex-syntax",
+      "version": "0.8.11",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/regex",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std",
+        "unicode",
+        "unicode-age",
+        "unicode-bool",
+        "unicode-case",
+        "unicode-gencat",
+        "unicode-perl",
+        "unicode-script",
+        "unicode-segment"
+      ],
+      "notices": [
+        "licenses/regex-syntax-0.8.11/LICENSE-APACHE",
+        "licenses/regex-syntax-0.8.11/LICENSE-MIT",
+        "licenses/regex-syntax-0.8.11/src/unicode_tables/LICENSE-UNICODE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "regex",
+      "version": "1.13.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/regex",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "perf",
+        "perf-backtrack",
+        "perf-cache",
+        "perf-dfa",
+        "perf-inline",
+        "perf-literal",
+        "perf-onepass",
+        "std",
+        "unicode",
+        "unicode-age",
+        "unicode-bool",
+        "unicode-case",
+        "unicode-gencat",
+        "unicode-perl",
+        "unicode-script",
+        "unicode-segment"
+      ],
+      "notices": [
+        "licenses/regex-1.13.1/LICENSE-APACHE",
+        "licenses/regex-1.13.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "reqwest",
+      "version": "0.13.5",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/seanmonstar/reqwest",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "__rustls",
+        "__tls",
+        "rustls-no-provider",
+        "stream"
+      ],
+      "notices": [
+        "licenses/reqwest-0.13.5/LICENSE-APACHE",
+        "licenses/reqwest-0.13.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ring",
+      "version": "0.17.14",
+      "license": "Apache-2.0 AND ISC",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/briansmith/ring",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "dev_urandom_fallback",
+        "wasm32_unknown_unknown_js"
+      ],
+      "notices": [
+        "licenses/ring-0.17.14/LICENSE",
+        "licenses/ring-0.17.14/LICENSE-BoringSSL",
+        "licenses/ring-0.17.14/LICENSE-other-bits",
+        "licenses/ring-0.17.14/src/polyfill/once_cell/LICENSE-APACHE",
+        "licenses/ring-0.17.14/src/polyfill/once_cell/LICENSE-MIT",
+        "licenses/ring-0.17.14/third_party/fiat/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/djc/rustc-version-rs",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/rustc_version-0.4.1/LICENSE-APACHE",
+        "licenses/rustc_version-0.4.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustc-hash",
+      "version": "2.1.3",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/rustc-hash",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/rustc-hash-2.1.3/LICENSE-APACHE",
+        "licenses/rustc-hash-2.1.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustls-pki-types",
+      "version": "1.15.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustls/pki-types",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std",
+        "web",
+        "web-time"
+      ],
+      "notices": [
+        "licenses/rustls-pki-types-1.15.1/LICENSE-APACHE",
+        "licenses/rustls-pki-types-1.15.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustls-webpki",
+      "version": "0.103.16",
+      "license": "ISC",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustls/webpki",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "ring",
+        "std"
+      ],
+      "notices": [
+        "licenses/rustls-webpki-0.103.16/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustls",
+      "version": "0.23.46",
+      "license": "Apache-2.0 OR ISC OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustls/rustls",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "log",
+        "logging",
+        "ring",
+        "std",
+        "tls12"
+      ],
+      "notices": [
+        "licenses/rustls-0.23.46/LICENSE-APACHE",
+        "licenses/rustls-0.23.46/LICENSE-ISC",
+        "licenses/rustls-0.23.46/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "rustversion",
+      "version": "1.0.23",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/rustversion",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/rustversion-1.0.23/LICENSE-APACHE",
+        "licenses/rustversion-1.0.23/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ryu",
+      "version": "1.0.23",
+      "license": "Apache-2.0 OR BSL-1.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/ryu",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/ryu-1.0.23/LICENSE-APACHE",
+        "licenses/ryu-1.0.23/LICENSE-BOOST"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "salsa20",
+      "version": "0.10.2",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/stream-ciphers",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "zeroize"
+      ],
+      "notices": [
+        "licenses/salsa20-0.10.2/LICENSE-APACHE",
+        "licenses/salsa20-0.10.2/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "scopeguard",
+      "version": "1.2.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/bluss/scopeguard",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/scopeguard-1.2.0/LICENSE-APACHE",
+        "licenses/scopeguard-1.2.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "seize",
+      "version": "0.5.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/ibraheemdev/seize",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/seize-0.5.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "semver",
+      "version": "1.0.28",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/semver",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/semver-1.0.28/LICENSE-APACHE",
+        "licenses/semver-1.0.28/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "send_wrapper",
+      "version": "0.6.0",
+      "license": "MIT/Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/thk1/send_wrapper",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/send_wrapper-0.6.0/LICENSE-APACHE.txt",
+        "licenses/send_wrapper-0.6.0/LICENSE-MIT.txt"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serde_bytes",
+      "version": "0.11.19",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/serde-rs/bytes",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/serde_bytes-0.11.19/LICENSE-APACHE",
+        "licenses/serde_bytes-0.11.19/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/serde-rs/serde",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "rc",
+        "result",
+        "std"
+      ],
+      "notices": [
+        "licenses/serde_core-1.0.229/LICENSE-APACHE",
+        "licenses/serde_core-1.0.229/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serde_derive",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/serde-rs/serde",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/serde_derive-1.0.229/LICENSE-APACHE",
+        "licenses/serde_derive-1.0.229/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serde_json",
+      "version": "1.0.154",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/serde-rs/json",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/serde_json-1.0.154/LICENSE-APACHE",
+        "licenses/serde_json-1.0.154/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/serde-rs/serde",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "derive",
+        "rc",
+        "serde_derive",
+        "std"
+      ],
+      "notices": [
+        "licenses/serde-1.0.229/LICENSE-APACHE",
+        "licenses/serde-1.0.229/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "serdect",
+      "version": "0.4.3",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/serdect-0.4.3/LICENSE-APACHE",
+        "licenses/serdect-0.4.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sha-1",
+      "version": "0.10.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/sha-1-0.10.1/LICENSE-APACHE",
+        "licenses/sha-1-0.10.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sha1_smol",
+      "version": "1.0.1",
+      "license": "BSD-3-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/mitsuhiko/sha1-smol",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/sha1_smol-1.0.1/AUTHORS",
+        "licenses/sha1_smol-1.0.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sha2",
+      "version": "0.10.9",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/sha2-0.10.9/LICENSE-APACHE",
+        "licenses/sha2-0.10.9/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sha2",
+      "version": "0.11.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "oid"
+      ],
+      "notices": [
+        "licenses/sha2-0.11.1/LICENSE-APACHE",
+        "licenses/sha2-0.11.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "shlex",
+      "version": "2.0.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/comex/rust-shlex",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/shlex-2.0.1/LICENSE-APACHE",
+        "licenses/shlex-2.0.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "signature",
+      "version": "3.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "rand_core"
+      ],
+      "notices": [
+        "licenses/signature-3.0.0/LICENSE-APACHE",
+        "licenses/signature-3.0.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "simdutf8",
+      "version": "0.1.5",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rusticstuff/simdutf8",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "aarch64_neon",
+        "std"
+      ],
+      "notices": [
+        "licenses/simdutf8-0.1.5/LICENSE-Apache",
+        "licenses/simdutf8-0.1.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "simple-dns",
+      "version": "0.12.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/balliegojr/simple-dns",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/simple-dns-0.12.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/slab",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/slab-0.4.12/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-smallvec",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "const_generics",
+        "const_new"
+      ],
+      "notices": [
+        "licenses/smallvec-1.16.3/LICENSE-APACHE",
+        "licenses/smallvec-1.16.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "socket2",
+      "version": "0.6.5",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rust-lang/socket2",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "all"
+      ],
+      "notices": [
+        "licenses/socket2-0.6.5/LICENSE-APACHE",
+        "licenses/socket2-0.6.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sorted-index-buffer",
+      "version": "0.2.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/n0-computer/iroh",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/sorted-index-buffer-0.2.1/LICENSE-APACHE",
+        "licenses/sorted-index-buffer-0.2.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "spake2",
+      "version": "0.4.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/PAKEs/tree/master/spake2",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "getrandom"
+      ],
+      "notices": [
+        "licenses/spake2-0.4.0/LICENSE-APACHE",
+        "licenses/spake2-0.4.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "spez",
+      "version": "0.1.2",
+      "license": "BSD-2-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/m-ou-se/spez",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/spez-0.1.2/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "spin",
+      "version": "0.10.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/mvdnes/spin-rs.git",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "mutex",
+        "spin_mutex"
+      ],
+      "notices": [
+        "licenses/spin-0.10.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "spki",
+      "version": "0.8.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/formats",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "pem"
+      ],
+      "notices": [
+        "licenses/spki-0.8.1/LICENSE-APACHE",
+        "licenses/spki-0.8.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "stable_deref_trait",
+      "version": "1.2.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/storyyeller/stable_deref_trait",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/stable_deref_trait-1.2.1/LICENSE-APACHE",
+        "licenses/stable_deref_trait-1.2.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "strsim",
+      "version": "0.11.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rapidfuzz/strsim-rs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/strsim-0.11.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "strum_macros",
+      "version": "0.28.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Peternator7/strum",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/strum_macros-0.28.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "strum",
+      "version": "0.28.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Peternator7/strum",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "derive",
+        "std",
+        "strum_macros"
+      ],
+      "notices": [
+        "licenses/strum-0.28.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "subtle",
+      "version": "2.6.1",
+      "license": "BSD-3-Clause",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dalek-cryptography/subtle",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "const-generics"
+      ],
+      "notices": [
+        "licenses/subtle-2.6.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/syn",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "clone-impls",
+        "default",
+        "derive",
+        "extra-traits",
+        "full",
+        "parsing",
+        "printing",
+        "proc-macro",
+        "visit",
+        "visit-mut"
+      ],
+      "notices": [
+        "licenses/syn-2.0.119/LICENSE-APACHE",
+        "licenses/syn-2.0.119/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "syn",
+      "version": "3.0.9",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/syn",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "clone-impls",
+        "default",
+        "derive",
+        "extra-traits",
+        "fold",
+        "full",
+        "parsing",
+        "printing",
+        "proc-macro",
+        "visit"
+      ],
+      "notices": [
+        "licenses/syn-3.0.9/LICENSE-APACHE",
+        "licenses/syn-3.0.9/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "sync_wrapper",
+      "version": "1.0.2",
+      "license": "Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Actyx/sync_wrapper",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "futures",
+        "futures-core"
+      ],
+      "notices": [
+        "licenses/sync_wrapper-1.0.2/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "synstructure",
+      "version": "0.14.0",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/mystor/synstructure",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "proc-macro"
+      ],
+      "notices": [
+        "licenses/synstructure-0.14.0/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.21",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/thiserror-impl-2.0.21/LICENSE-APACHE",
+        "licenses/thiserror-impl-2.0.21/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/thiserror-2.0.21/LICENSE-APACHE",
+        "licenses/thiserror-2.0.21/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "time-core",
+      "version": "0.1.9",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/time-rs/time",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/time-core-0.1.9/LICENSE-Apache",
+        "licenses/time-core-0.1.9/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "time-macros",
+      "version": "0.2.32",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/time-rs/time",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "formatting",
+        "parsing"
+      ],
+      "notices": [
+        "licenses/time-macros-0.2.32/LICENSE-Apache",
+        "licenses/time-macros-0.2.32/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "time",
+      "version": "0.3.55",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/time-rs/time",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "formatting",
+        "parsing",
+        "std",
+        "wasm-bindgen"
+      ],
+      "notices": [
+        "licenses/time-0.3.55/LICENSE-Apache",
+        "licenses/time-0.3.55/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tinystr",
+      "version": "0.8.4",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "zerovec"
+      ],
+      "notices": [
+        "licenses/tinystr-0.8.4/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tinystr",
+      "version": "0.8.5",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "zerovec"
+      ],
+      "notices": [
+        "licenses/tinystr-0.8.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Lokathor/tinyvec",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default"
+      ],
+      "notices": [
+        "licenses/tinyvec-1.13.3/LICENSE-APACHE.md",
+        "licenses/tinyvec-1.13.3/LICENSE-MIT.md",
+        "licenses/tinyvec-1.13.3/LICENSE-ZLIB.md"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio-macros",
+      "version": "2.7.2",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tokio",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/tokio-macros-2.7.2/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio-rustls",
+      "version": "0.26.6",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustls/tokio-rustls",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "logging",
+        "ring",
+        "tls12"
+      ],
+      "notices": [
+        "licenses/tokio-rustls-0.26.6/LICENSE-APACHE",
+        "licenses/tokio-rustls-0.26.6/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio-stream",
+      "version": "0.1.19",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tokio",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "default",
+        "sync",
+        "time",
+        "tokio-util"
+      ],
+      "notices": [
+        "licenses/tokio-stream-0.1.19/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio-util",
+      "version": "0.7.20",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tokio",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "codec",
+        "default",
+        "futures-util",
+        "io",
+        "io-util",
+        "libc",
+        "rt"
+      ],
+      "notices": [
+        "licenses/tokio-util-0.7.20/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio-websockets",
+      "version": "0.13.3",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/Gelbpunkt/tokio-websockets/",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "client",
+        "getrandom",
+        "rand",
+        "ring",
+        "rustls-bring-your-own-connector",
+        "server",
+        "sha1_smol"
+      ],
+      "notices": [
+        "licenses/tokio-websockets-0.13.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tokio",
+      "version": "1.53.3",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tokio",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "bytes",
+        "default",
+        "fs",
+        "io-std",
+        "io-util",
+        "libc",
+        "macros",
+        "mio",
+        "net",
+        "process",
+        "rt",
+        "signal-hook-registry",
+        "socket2",
+        "sync",
+        "test-util",
+        "time",
+        "tokio-macros",
+        "windows-sys"
+      ],
+      "notices": [
+        "licenses/tokio-1.53.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "toml_datetime",
+      "version": "1.1.2+spec-1.1.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/toml-rs/toml",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/toml_datetime-1.1.2+spec-1.1.0/LICENSE-APACHE",
+        "licenses/toml_datetime-1.1.2+spec-1.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "toml_edit",
+      "version": "0.25.17+spec-1.1.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/toml-rs/toml",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "parse"
+      ],
+      "notices": [
+        "licenses/toml_edit-0.25.17+spec-1.1.0/LICENSE-APACHE",
+        "licenses/toml_edit-0.25.17+spec-1.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "toml_parser",
+      "version": "1.1.5+spec-1.1.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/toml-rs/toml",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/toml_parser-1.1.5+spec-1.1.0/LICENSE-APACHE",
+        "licenses/toml_parser-1.1.5+spec-1.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tower-service",
+      "version": "0.3.3",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tower-rs/tower",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/tower-service-0.3.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tracing-attributes",
+      "version": "0.1.31",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/tracing-attributes-0.1.31/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "once_cell",
+        "std"
+      ],
+      "notices": [
+        "licenses/tracing-core-0.1.36/LICENSE",
+        "licenses/tracing-core-0.1.36/src/spin/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "tracing",
+      "version": "0.1.44",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "attributes",
+        "default",
+        "log",
+        "std",
+        "tracing-attributes"
+      ],
+      "notices": [
+        "licenses/tracing-0.1.44/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "try-lock",
+      "version": "0.2.5",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/seanmonstar/try-lock",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/try-lock-0.2.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "typenum",
+      "version": "1.20.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/paholg/typenum",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "const-generics"
+      ],
+      "notices": [
+        "licenses/typenum-1.20.1/LICENSE",
+        "licenses/typenum-1.20.1/LICENSE-APACHE",
+        "licenses/typenum-1.20.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.27",
+      "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/unicode-ident",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/unicode-ident-1.0.27/LICENSE-APACHE",
+        "licenses/unicode-ident-1.0.27/LICENSE-MIT",
+        "licenses/unicode-ident-1.0.27/LICENSE-UNICODE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "unicode-segmentation",
+      "version": "1.13.3",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-rs/unicode-segmentation",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/unicode-segmentation-1.13.3/COPYRIGHT",
+        "licenses/unicode-segmentation-1.13.3/LICENSE-APACHE",
+        "licenses/unicode-segmentation-1.13.3/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "unicode-xid",
+      "version": "0.2.6",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-rs/unicode-xid",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default"
+      ],
+      "notices": [
+        "licenses/unicode-xid-0.2.6/COPYRIGHT",
+        "licenses/unicode-xid-0.2.6/LICENSE-APACHE",
+        "licenses/unicode-xid-0.2.6/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "universal-hash",
+      "version": "0.5.1",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/traits",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/universal-hash-0.5.1/LICENSE-APACHE",
+        "licenses/universal-hash-0.5.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "untrusted",
+      "version": "0.9.0",
+      "license": "ISC",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/briansmith/untrusted",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/untrusted-0.9.0/LICENSE.txt"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "url",
+      "version": "2.5.8",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/servo/rust-url",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "serde",
+        "std"
+      ],
+      "notices": [
+        "licenses/url-2.5.8/LICENSE-APACHE",
+        "licenses/url-2.5.8/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "utf8_iter",
+      "version": "1.0.4",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/hsivonen/utf8_iter",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/utf8_iter-1.0.4/COPYRIGHT",
+        "licenses/utf8_iter-1.0.4/LICENSE-APACHE",
+        "licenses/utf8_iter-1.0.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "license": "MIT/Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/SergioBenitez/version_check",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/version_check-0.9.5/LICENSE-APACHE",
+        "licenses/version_check-0.9.5/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "want",
+      "version": "0.3.2",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/seanmonstar/want",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/want-0.3.2/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-bindgen-futures",
+      "version": "0.4.72",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/futures",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/wasm-bindgen-futures-0.4.72/LICENSE-APACHE",
+        "licenses/wasm-bindgen-futures-0.4.72/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-bindgen-macro-support",
+      "version": "0.2.122",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro-support",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/wasm-bindgen-macro-support-0.2.122/LICENSE-APACHE",
+        "licenses/wasm-bindgen-macro-support-0.2.122/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-bindgen-macro",
+      "version": "0.2.122",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/wasm-bindgen-macro-0.2.122/LICENSE-APACHE",
+        "licenses/wasm-bindgen-macro-0.2.122/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-bindgen-shared",
+      "version": "0.2.122",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/wasm-bindgen-shared-0.2.122/LICENSE-APACHE",
+        "licenses/wasm-bindgen-shared-0.2.122/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-bindgen",
+      "version": "0.2.122",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/wasm-bindgen-0.2.122/LICENSE-APACHE",
+        "licenses/wasm-bindgen-0.2.122/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasm-streams",
+      "version": "0.5.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/MattiasBuelens/wasm-streams/",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/wasm-streams-0.5.0/LICENSE-APACHE",
+        "licenses/wasm-streams-0.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "wasmtimer",
+      "version": "0.4.3",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/whizsid/wasmtimer-rs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "futures",
+        "parking_lot",
+        "pin-utils",
+        "slab",
+        "tokio",
+        "tokio-util"
+      ],
+      "notices": [
+        "licenses/wasmtimer-0.4.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "web-sys",
+      "version": "0.3.99",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/web-sys",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "AbortController",
+        "AbortSignal",
+        "BinaryType",
+        "Blob",
+        "BlobPropertyBag",
+        "CloseEvent",
+        "DomException",
+        "Event",
+        "EventListener",
+        "EventTarget",
+        "File",
+        "FormData",
+        "Headers",
+        "MessageEvent",
+        "Performance",
+        "QueuingStrategy",
+        "ReadableByteStreamController",
+        "ReadableStream",
+        "ReadableStreamByobReader",
+        "ReadableStreamByobRequest",
+        "ReadableStreamDefaultController",
+        "ReadableStreamDefaultReader",
+        "ReadableStreamGetReaderOptions",
+        "ReadableStreamReadResult",
+        "ReadableStreamReaderMode",
+        "ReadableStreamType",
+        "ReadableWritablePair",
+        "ReferrerPolicy",
+        "Request",
+        "RequestCache",
+        "RequestCredentials",
+        "RequestInit",
+        "RequestMode",
+        "Response",
+        "ServiceWorkerGlobalScope",
+        "StreamPipeOptions",
+        "TransformStream",
+        "TransformStreamDefaultController",
+        "Transformer",
+        "UnderlyingSink",
+        "UnderlyingSource",
+        "WebSocket",
+        "Window",
+        "WorkerGlobalScope",
+        "WritableStream",
+        "WritableStreamDefaultController",
+        "WritableStreamDefaultWriter",
+        "console",
+        "default",
+        "std"
+      ],
+      "notices": [
+        "licenses/web-sys-0.3.99/LICENSE-APACHE",
+        "licenses/web-sys-0.3.99/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "web-time",
+      "version": "1.1.0",
+      "license": "MIT OR Apache-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/daxpedda/web-time",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/web-time-1.1.0/LICENSE-APACHE",
+        "licenses/web-time-1.1.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "webpki-roots",
+      "version": "1.0.10",
+      "license": "CDLA-Permissive-2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/rustls/webpki-roots",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/webpki-roots-1.0.10/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "winnow",
+      "version": "1.0.4",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/winnow-rs/winnow",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "alloc",
+        "ascii",
+        "binary",
+        "default",
+        "parser",
+        "std"
+      ],
+      "notices": [
+        "licenses/winnow-1.0.4/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "writeable",
+      "version": "0.6.4",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/writeable-0.6.4/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "ws_stream_wasm",
+      "version": "0.7.5",
+      "license": "Unlicense",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/najamelan/ws_stream_wasm",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "default",
+        "not_ci"
+      ],
+      "notices": [
+        "licenses/ws_stream_wasm-0.7.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "yoke-derive",
+      "version": "0.8.4",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/yoke-derive-0.8.4/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "yoke",
+      "version": "0.8.3",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "derive",
+        "zerofrom"
+      ],
+      "notices": [
+        "licenses/yoke-0.8.3/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "yoke",
+      "version": "0.8.4",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "derive",
+        "zerofrom"
+      ],
+      "notices": [
+        "licenses/yoke-0.8.4/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.63",
+      "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/google/zerocopy",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "simd"
+      ],
+      "notices": [
+        "licenses/zerocopy-0.8.63/LICENSE-APACHE",
+        "licenses/zerocopy-0.8.63/LICENSE-BSD",
+        "licenses/zerocopy-0.8.63/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerofrom-derive",
+      "version": "0.1.8",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/zerofrom-derive-0.1.8/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerofrom",
+      "version": "0.1.8",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "derive"
+      ],
+      "notices": [
+        "licenses/zerofrom-0.1.8/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zeroize_derive",
+      "version": "1.5.0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/zeroize_derive-1.5.0/LICENSE-APACHE",
+        "licenses/zeroize_derive-1.5.0/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zeroize",
+      "version": "1.9.1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/RustCrypto/utils",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "alloc",
+        "default",
+        "derive",
+        "zeroize_derive"
+      ],
+      "notices": [
+        "licenses/zeroize-1.9.1/LICENSE-APACHE",
+        "licenses/zeroize-1.9.1/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerotrie",
+      "version": "0.2.5",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [
+        "yoke",
+        "zerofrom"
+      ],
+      "notices": [
+        "licenses/zerotrie-0.2.5/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerovec-derive",
+      "version": "0.11.6",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/zerovec-derive-0.11.6/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerovec-derive",
+      "version": "0.11.7",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/zerovec-derive-0.11.7/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerovec",
+      "version": "0.11.8",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "iroh"
+      ],
+      "features": [
+        "derive",
+        "yoke"
+      ],
+      "notices": [
+        "licenses/zerovec-0.11.8/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zerovec",
+      "version": "0.11.9",
+      "license": "Unicode-3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "derive",
+        "yoke"
+      ],
+      "notices": [
+        "licenses/zerovec-0.11.9/LICENSE"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zmij",
+      "version": "1.0.23",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/dtolnay/zmij",
+      "components": [
+        "iroh",
+        "mailbox"
+      ],
+      "features": [],
+      "notices": [
+        "licenses/zmij-1.0.23/LICENSE-MIT"
+      ],
+      "supplementProvenance": []
+    },
+    {
+      "name": "zxcvbn",
+      "version": "3.1.1",
+      "license": "MIT",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "repository": "https://github.com/shssoichiro/zxcvbn-rs",
+      "components": [
+        "mailbox"
+      ],
+      "features": [
+        "builder",
+        "default",
+        "derive_builder"
+      ],
+      "notices": [
+        "licenses/zxcvbn-3.1.1/LICENSE"
+      ],
+      "supplementProvenance": []
+    }
+  ]
+}
