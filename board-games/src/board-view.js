@@ -39,6 +39,7 @@ export async function createBoardView(container, game, options = {}) {
   const templates = { blue: blue.scene, white: white.scene };
   let pieceStates = [];
   function setPieces(pieces) {
+    showCaptures();
     pieceStates = pieces;
     piecesGroup.clear();
     for (const piece of pieces) {
@@ -53,7 +54,6 @@ export async function createBoardView(container, game, options = {}) {
       }
     }
   }
-  setPieces(initialPieces(game));
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -89,12 +89,23 @@ export async function createBoardView(container, game, options = {}) {
   }
   // A soft halo in board space follows the piece's diameter and camera angle.
   const glowGeometry=new THREE.PlaneGeometry(config.pieces.diameter*layout.pieceScale*1.45,config.pieces.diameter*layout.pieceScale*1.45);
-  const glowMaterial=new THREE.ShaderMaterial({transparent:true,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending,
+  const glowMaterial=new THREE.ShaderMaterial({transparent:true,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending,uniforms:{glowColor:{value:new THREE.Color(1,0.82,0.3)}},
     vertexShader:'varying vec2 glowUv; void main(){glowUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-    fragmentShader:'varying vec2 glowUv; void main(){float r=length(glowUv-0.5)*2.0;float a=smoothstep(0.58,0.72,r)*(1.0-smoothstep(0.72,1.0,r));gl_FragColor=vec4(1.0,0.82,0.3,a*0.9);}'
+    fragmentShader:'varying vec2 glowUv; uniform vec3 glowColor; void main(){float r=length(glowUv-0.5)*2.0;float a=smoothstep(0.58,0.72,r)*(1.0-smoothstep(0.72,1.0,r));gl_FragColor=vec4(glowColor,a*0.9);}'
   });
   const pieceGlow=new THREE.Mesh(glowGeometry,glowMaterial);
   pieceGlow.rotation.x=-Math.PI/2;pieceGlow.visible=false;scene.add(pieceGlow);
+  const captureMaterial=glowMaterial.clone();captureMaterial.blending=THREE.NormalBlending;captureMaterial.uniforms.glowColor.value.setRGB(1,0.015,0.015);
+  const captureGlows=new THREE.Group();scene.add(captureGlows);
+  let captureIds=new Set();
+  function showCaptures(ids=[]) {
+    captureIds=new Set(ids);captureGlows.clear();
+    for(const piece of pieceStates.filter(piece=>captureIds.has(piece.id))) {
+      const glow=new THREE.Mesh(glowGeometry,captureMaterial),center=layout.center(piece.row,piece.column);
+      glow.rotation.x=-Math.PI/2;glow.position.set(center.x,center.y+0.0006,center.z);captureGlows.add(glow);
+    }
+  }
+  setPieces(initialPieces(game));
   let hovered = null, selectedId = null;
   const pointerMove = event => { hovered = hit(event).piece || null; renderer.domElement.style.cursor = hovered ? 'pointer' : locked ? 'default' : 'grab'; };
   const pointerLeave = () => { hovered = null; };
@@ -106,15 +117,24 @@ export async function createBoardView(container, game, options = {}) {
   const pointerUp = event => {
     const start = down;
     down = null;
-    if (!start || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 5) return;
+    if (!start || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 5) { lastTap=null; return; }
     const { square } = hit(event);
     if (square) options.onSquare?.(square);
+    if(event.pointerType==='touch'&&square) {
+      const now=performance.now(),previous=lastTap;lastTap={...square,time:now};
+      if(previous&&now-previous.time<350&&previous.row===square.row&&previous.column===square.column) {
+        lastTap=null;options.onSquareDoubleClick?.(square);
+      }
+    } else lastTap=null;
   };
+  let lastTap=null;
+  const doubleClick=event=>{if(event.button!==0)return;const {square}=hit(event);if(square){event.preventDefault();options.onSquareDoubleClick?.(square);}};
   renderer.domElement.addEventListener('pointerdown', pointerDown, true);
   renderer.domElement.addEventListener('pointerup', pointerUp);
   renderer.domElement.addEventListener('pointermove', pointerMove);
   renderer.domElement.addEventListener('pointerleave', pointerLeave);
-  const cancelPointer = () => { down = null; };
+  renderer.domElement.addEventListener('dblclick', doubleClick);
+  const cancelPointer = () => { down = null; lastTap=null; };
   renderer.domElement.addEventListener('pointercancel', cancelPointer);
   const markers = [];
   function showHints(squares = []) {
@@ -150,7 +170,7 @@ export async function createBoardView(container, game, options = {}) {
     mixer.update(Math.min((time - lastTime) / 1000, 0.1));
     lastTime = time;
     const highlighted = hovered || pieceStates.find(p => p.id === selectedId);
-    pieceGlow.visible=!!highlighted;
+    pieceGlow.visible=!!highlighted&&!captureIds.has(highlighted.id);
     if (highlighted) {
       const center=layout.center(highlighted.row,highlighted.column);
       pieceGlow.position.set(center.x,center.y+0.0005,center.z);
@@ -162,7 +182,7 @@ export async function createBoardView(container, game, options = {}) {
       marker.element.style.top = `${(1 - projected.y) / 2 * container.clientHeight}px`;
     }
   });
-  return { layout, setPieces, showHints, setLocked, isLocked: () => locked,
+  return { layout, setPieces, showHints, showCaptures, setLocked, isLocked: () => locked,
     setSelected(id) { selectedId = id; if (id) setLocked(true); },
     setSide(side) {
       camera.position.set(0, 0.63, side === bottomSide ? 0.44 : -0.44);
@@ -170,7 +190,8 @@ export async function createBoardView(container, game, options = {}) {
     },
     dispose() {
       renderer.setAnimationLoop(null); observer.disconnect(); controls.dispose(); mixer.stopAllAction();
-      showHints(); glowGeometry.dispose();glowMaterial.dispose();renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
+      showHints();showCaptures();glowGeometry.dispose();glowMaterial.dispose();captureMaterial.dispose();renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
+      renderer.domElement.removeEventListener('dblclick', doubleClick);
       renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerleave', pointerLeave); renderer.domElement.removeEventListener('pointercancel', cancelPointer);
       const geometries = new Set(), materials = new Set(), textures = new Set([ground]);
       for (const root of [board.scene, blue.scene, white.scene]) root.traverse(obj => {

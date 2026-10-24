@@ -112,6 +112,7 @@ export function setupRooms(artwork, getGame) {
     view?.setSelected(selected);
     const tray = document.querySelector('#move-routes'); tray.replaceChildren();
     const canMove = current?.phase === 'playing' && current.position.turn === current.you;
+    view?.showCaptures(canMove ? draft?.captures || [] : []);
     const picker = document.querySelector('#piece-picker');
     picker.replaceChildren(new Option('Choose a piece', ''));
     if (current) for (const piece of current.position.pieces.filter(p=>p.side===current.you)) picker.add(new Option(`Square ${number(piece, games.find(g=>g.id===current.gameId).boardSize)}${piece.king?' · King':''}`,piece.id));
@@ -130,23 +131,32 @@ export function setupRooms(artwork, getGame) {
     document.querySelector('#confirm-move').disabled = !canMove || !draft;
     document.querySelector('#clear-move').disabled = !selected;
     document.querySelector('#move-instruction').textContent = !canMove ? 'Waiting for your turn.' : draft
-      ? `Selected route: ${draft.route.map(s=>number(s,games.find(g=>g.id===current.gameId).boardSize)).join(' → ')}. Confirm to play.`
+      ? `Selected route: ${draft.route.map(s=>number(s,games.find(g=>g.id===current.gameId).boardSize)).join(' → ')}. Confirm or double-click the destination to play.${draft.captures.length ? ' Captured pieces glow red.' : ''}`
       : selected ? 'Choose a destination on the board, then select the complete route.' : 'Click a piece, then its destination.';
     updateActions();
   }
   async function squareClicked(square) {
     if (!current || current.phase !== 'playing' || current.position.turn !== current.you || busy) return;
     const piece = current.position.pieces.find(p => p.row === square.row && p.column === square.column && p.side === current.you);
+    if(selected && (!piece || piece.id===selected)) {
+      const candidates = moveChoices().filter(move => { const end=move.route.at(-1); return end.row===square.row && end.column===square.column; });
+      if (candidates.length) { draft = candidates.length === 1 ? candidates[0] : candidates.find(move=>JSON.stringify(move)===JSON.stringify(draft)) || null; renderChoices(candidates); return; }
+    }
     if (piece && legalMoves(current.position).some(move => move.pieceId === piece.id)) {
       if (current.rules.touchMove && current.selectedPiece && current.selectedPiece !== piece.id) return;
       await run(async () => {
         if (current.rules.touchMove) await connection.action({ type:'select', ply:current.position.ply, pieceId:piece.id });
         selected = piece.id; draft = null; renderChoices();
       });
-    } else if (selected) {
-      const candidates = moveChoices().filter(move => { const end=move.route.at(-1); return end.row===square.row && end.column===square.column; });
-      if (candidates.length) { draft = candidates.length === 1 ? candidates[0] : null; renderChoices(candidates); }
     }
+  }
+  function confirmDraft() {
+    if(!draft || !current || current.phase!=='playing' || current.position.turn!==current.you)return;
+    return run(()=>connection.action({type:'move',ply:current.position.ply,pieceId:draft.pieceId,route:draft.route,offerDraw:drawWithMove}));
+  }
+  function squareDoubleClicked(square) {
+    const end=draft?.route.at(-1);
+    if(end?.row===square.row && end.column===square.column)confirmDraft();
   }
   function receive(room) {
     if (current && !current.networkIssue && !room.networkIssue && (room.revision < current.revision || (room.revision === current.revision && room.serverTime < current.serverTime))) return;
@@ -174,7 +184,7 @@ export function setupRooms(artwork, getGame) {
       ...Object.entries(toggles).map(([key,label])=>`${label}: ${room.rules[key]?'on':'off'}`),
       room.rules.clock.enabled ? `${room.rules.clock.initialSeconds / 60} minutes + ${room.rules.clock.incrementSeconds} seconds per move` : 'Clock off',
       room.rules.disconnect.mode === 'reconnect' ? 'Reconnect: five minutes, clocks paused; connected player may add five minutes repeatedly' : 'Disconnection ends without result',
-      'Complete capture route and Confirm Move required'].join(' · ');
+      'Choose the complete route, then Confirm Move or double-click its destination'].join(' · ');
     document.querySelector('#seat-status').textContent = ['blue','white'].map(side => {
       const seat = room.players.find(p=>p.side===side);
       return `${side === 'blue' ? 'Blue' : 'White'}: ${!seat ? 'waiting for a player' : !seat.connected ? 'disconnected' : room.phase !== 'waiting' ? 'connected' : seat.ready ? 'ready' : 'not ready'}`;
@@ -215,7 +225,7 @@ export function setupRooms(artwork, getGame) {
     receive(first);
     connection=connectRoom(session,receive,e=> { connectionError = true; document.querySelector('#live-message').textContent=`Connection interrupted: ${e.message}. Retrying…`; },first);
     const { createBoardView }=await import('./board-view.js');
-    const loaded=await createBoardView(document.querySelector('#live-canvas'),games.find(g=>g.id===first.gameId),{side:first.you,onSquare:squareClicked,onLockChange:lockChanged,artwork});
+    const loaded=await createBoardView(document.querySelector('#live-canvas'),games.find(g=>g.id===first.gameId),{side:first.you,onSquare:squareClicked,onSquareDoubleClick:squareDoubleClicked,onLockChange:lockChanged,artwork});
     if (ownGeneration!==generation) { loaded.dispose(); return; }
     view=loaded; view.setPieces(current.position.pieces); view.setSide(current.you); renderChoices();
     document.querySelector('#live-message').textContent=developmentNote;
@@ -290,9 +300,7 @@ export function setupRooms(artwork, getGame) {
   }));
   document.querySelector('#extend-reconnect').addEventListener('click',()=>run(()=>connection.action({type:'extend'})));
   document.querySelector('#resign-match').addEventListener('click',()=>run(()=>connection.action({type:'resign'})));
-  document.querySelector('#confirm-move').addEventListener('click',()=>run(async()=>{
-    if(draft)await connection.action({type:'move',ply:current.position.ply,pieceId:draft.pieceId,route:draft.route,offerDraw:drawWithMove});
-  }));
+  document.querySelector('#confirm-move').addEventListener('click',confirmDraft);
   document.querySelector('#draw-with-move').addEventListener('click',()=>{drawWithMove=!drawWithMove;updateActions();});
   document.querySelector('#claim-draw').addEventListener('click',()=>run(()=>connection.action({type:'claim-draw',ply:current.position.ply,pieceId:draft?.pieceId,route:draft?.route})));
   for(const type of ['offer-draw','request-takeback','request-rematch']) document.querySelector(`#${type}`).addEventListener('click',()=>run(()=>connection.action({type,ply:current.position.ply})));
