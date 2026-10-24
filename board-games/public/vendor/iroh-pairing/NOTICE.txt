@@ -1,0 +1,23 @@
+Standalone Iroh/Wormhole pairing candidate
+
+This local candidate is experimental and has not been publicly deployed.
+Source: source.tar.gz (SHA-256 dbce859c06fe24a59aaf904e78d46e7a2520775f7c52120e3ee81a3df0e8b427).
+Runtime version: 168215132a335a2525532eea.
+
+Original first-party code is licensed under the Viral Public License (VPL).
+See LICENSE, LICENSING.md and licenses/VPL.provenance.json. The owner selected
+VPL on 2026-10-23; its text is unchanged and no exception or dual license was added.
+
+Third-party components retain their licenses, attribution and notices.
+See THIRD-PARTY.json and licenses/. The modified magic-wormhole library remains
+EUPL-1.2; its original license, upstream provenance, complete modified source
+and dated changes are included in source.tar.gz. This is not a VPL-only bundle.
+VPL/EUPL compatibility is unresolved. No clearance for combined distribution is
+claimed; resolve this before publication. No other project has been relicensed.
+
+Standard Apache-2.0 (enum-assoc) and Unlicense (pharos) supplements are explicitly
+identified in the inventory; they are not recovered upstream notice files.
+Rust notices are a conservative superset. The relay and mailbox operators can
+observe connection metadata. Peer-IP protection is not Tor-like anonymity.
+
+Privacy build: compiler paths remapped; original wire namespaces preserved.

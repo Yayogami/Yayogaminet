@@ -1,0 +1,14 @@
+Serve this directory over HTTPS, optionally below a subdirectory. Enable
+application/wasm and JavaScript MIME types; serve index.html for the directory.
+GitHub Pages does not consume _headers files. Meta CSP and a restricted mailbox
+bootstrap document enforce the tested headerless policies. Additional response
+headers should include Referrer-Policy: no-referrer, X-Content-Type-Options: nosniff,
+and frame-ancestors 'none' on index.html. Mailbox-frame.html must permit framing
+by 'self', not 'none'. Do not add CSP headers that block its blob worker.
+
+Keep index.html uncached/revalidated where supported. Files under runtime/168215132a335a2525532eea/
+are content-versioned; retain previous runtime directories while old pages may
+remain open. Content versioning prevents mixed artifact sets but cannot force a
+cache to deliver the latest entry page. Do not overwrite files within a version.
+No service worker, paid service, PHP or Cloudflare configuration is included.
+Source/license review and actual-host policy/MIME checks remain before publication.

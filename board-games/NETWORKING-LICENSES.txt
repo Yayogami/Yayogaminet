@@ -1,0 +1,6 @@
+Iroh integration playtest publication authorized by the owner on 2026-10-23.
+VPL-only remains selected; the VPL/EUPL compatibility review remains unresolved.
+This authorization supersedes historical publication-hold notes in the bundled source.
+The bundled standalone connection code uses VPL; the modified Wormhole library retains EUPL-1.2.
+See public/vendor/iroh-pairing/LICENSING.md, LICENSE, SOURCE.html and source.tar.gz.
+No license for the existing game is changed by this notice.

@@ -1,4 +1,4 @@
-import { createDirectPeer } from './direct-peer.js';
+import { createDirectPeer, normalizeInvitation } from './direct-peer.js';
 import { createPeerRPC } from './peer-rpc.js';
 import { createRoomService } from './room-engine.js';
 import { browserSecurity } from './room-security.js';
@@ -8,21 +8,9 @@ import { verifyPeerRoom } from './peer-verifier.js';
 const SESSION='meadow-p2p-session-v1';
 const recordKey=session=>`meadow-p2p-room-v1:${session.id}:${session.role}`;
 export async function parseInvitation(code) {
-  code=String(code).trim();
-  if (/^https?:\/\//i.test(code)) code=new URLSearchParams(new URL(code).hash.slice(1)).get('join') || '';
-  if (/^\d{10}$/.test(code)) {
-    const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(`meadow-invite-v2:${code}`));
-    const secret=Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
-    return {id:secret.slice(0,18),secret,inviteCode:code};
-  }
-  const match=String(code).trim().toLowerCase().match(/^([a-f0-9]{18})\.([a-f0-9]{64})$/);
-  if(!match)throw new Error('Enter the 10-digit invitation code or paste the invitation link.');
-  return {id:match[1],secret:match[2]};
-}
-export function newInvitationCode() {
-  let value;
-  do { value=BigInt(`0x${browserSecurity.randomHex(5)}`); } while(value>=1090000000000n);
-  return String(value%10000000000n).padStart(10,'0');
+  // The alias discovers a fresh, host-approved channel. Never derive a room
+  // credential or identity from this recyclable code.
+  return {inviteCode:normalizeInvitation(code)};
 }
 export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThis.localStorage, tabStorage=globalThis.sessionStorage, now=Date.now}={}) {
   let active=null;
@@ -34,18 +22,19 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
     try { storage.setItem(recordKey(a.session),JSON.stringify(value)); }
     catch {a.failure=new Error('Browser storage is unavailable. Play is stopped to protect the saved match.');a.peer?.close();throw a.failure;}
   }
-  function stop() { if(active){active.closed=true;clearInterval(active.timer);active.rpc?.close();active.peer?.close();active=null;} }
+  function stop() { if(active){active.closed=true;active.abort?.abort();clearInterval(active.timer);active.rpc?.close();active.peer?.close();active=null;} }
   function packet(a,room) {
     const saved=a.core.snapshot().rooms[0];
     const moves=saved.history.slice(1).map(entry=>entry.position.lastMove);
     if(saved.position.ply)moves.push(saved.position.lastMove);
     return {room,moves};
   }
-  function localRead(a) {const room=a.core.read(a.session.id,a.session.token);a.last=room;a.lastAt=now();persist(a);return room;}
+  function localRead(a) {a.peer.reconnectSignaling();const room=a.core.read(a.session.id,a.session.token);a.last=room;a.lastAt=now();persist(a);return room;}
   async function startHost(session, snapshot=null, guestKey=null) {
-    const a={session,core:createRoomService({savedState:snapshot,now,maxRooms:1}),guestKey,closed:false};
+    const a={session,core:createRoomService({savedState:snapshot,now,maxRooms:1}),guestKey,closed:false,abort:new AbortController()};
     active=a;
-    try { a.peer=await peerFactory({id:`meadow-${session.id}`,onConnection:channel=>{
+    try { a.peer=await peerFactory({id:`meadow-${session.id}`,invitation:{id:session.id,secret:session.secret},signal:a.abort.signal,
+      onInvitation:code=>{if(a.closed)return;session.inviteCode=code;if(a.last){persist(a);saveSession(session);}},onConnection:channel=>{
       let authenticated=false;
       const rpc=createPeerRPC(channel,async(method,value)=>{
         if(a.closed)throw new Error('Room is closed.');
@@ -91,10 +80,23 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
     if(a.rpc)return a.rpc;
     if(a.connecting)return a.connecting;
     a.connecting=(async()=>{
-      if(!a.peer)a.peer=await peerFactory({onConnection:channel=>channel.close()});
+      if(!a.peer)a.peer=await peerFactory({signal:a.abort.signal,onConnection:channel=>channel.close()});
+      if(a.closed){a.peer.close();throw new Error('Room was closed.');}
       a.peer.reconnectSignaling();
-      const channel=a.peer.connect(`meadow-${a.session.id}`);
+      const channel=a.peer.connect(a.session.inviteCode);
       await channel.ready;
+      const invitation=channel.invitation;
+      if(!invitation||!/^[a-f0-9]{18}$/.test(invitation.id)||!/^[a-f0-9]{64}$/.test(invitation.secret)){channel.close();throw new Error('Invalid approved room identity.');}
+      if(a.session.id&&(a.session.id!==invitation.id||a.session.secret!==invitation.secret)){channel.close();throw new Error('This invitation belongs to a different saved match.');}
+      if(!a.session.id){
+        const previous=a.resumeCandidate;
+        if(previous?.role==='guest'&&previous.id===invitation.id&&previous.secret!==invitation.secret){channel.close();throw new Error('The saved match identity did not match this host.');}
+        if(previous?.role==='guest'&&previous.id===invitation.id&&previous.secret===invitation.secret){
+          const code=a.session.inviteCode;Object.assign(a.session,previous,{inviteCode:code});
+          const record=JSON.parse(storage.getItem(recordKey(a.session))||'null');
+          a.last=record?.last;a.lastAt=record?.lastAt;a.outage=record?.outage;
+        }else Object.assign(a.session,invitation);
+      }
       const rpc=createPeerRPC(channel);
       channel.onClose(()=>{if(a.rpc===rpc)a.rpc=null;});
       try {
@@ -108,7 +110,7 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
     return a.connecting;
   }
   function offline(a) {
-    if(!a.last)throw new Error('Direct connection failed. Check the invitation and keep the creator’s tab open. Relay fallback is disabled.');
+    if(!a.last)throw new Error('Connection failed. Ask the creator for a fresh invitation and keep both tabs open.');
     if(!a.outage)a.outage={deadline:(a.lastAt||now())+15000+a.last.rules.disconnect.graceSeconds*1000,matchNumber:a.last.matchNumber,extensions:0};
     const room=structuredClone(a.last), time=now();
     room.serverTime=time;room.networkIssue=true;room.recovering=false;
@@ -139,7 +141,7 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
       if(!record?.snapshot)throw new Error('This browser no longer has the creator’s saved room.');
       return startHost(session,record.snapshot,record.guestKey);
     }
-    active={session,last:record?.last,lastAt:record?.lastAt,outage:record?.outage,closed:false};
+    active={session,last:record?.last,lastAt:record?.lastAt,outage:record?.outage,closed:false,abort:new AbortController()};
     return active;
   }
   return {
@@ -148,7 +150,7 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
       stop();
       if(data.rules.visibility!=='private')throw new Error('This P2P release supports invitation-only rooms.');
       for(let attempt=0;attempt<3;attempt++) {
-        const invitation=await parseInvitation(newInvitationCode());
+        const invitation={id:browserSecurity.randomHex(9),secret:browserSecurity.randomHex(32)};
         const security={...browserSecurity,randomHex:bytes=>bytes===9?invitation.id:browserSecurity.randomHex(bytes)};
         const core=createRoomService({now,maxRooms:1,security});const result=core.create(data);
         const session={...invitation,token:result.token,role:'host'};
@@ -159,12 +161,13 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
       }
     },
     async join(code) {
-      stop();const invitation=await parseInvitation(code);
+      const resumeCandidate=savedSession();stop();const invitation=await parseInvitation(code);
       const session={...invitation,role:'guest',guestKey:browserSecurity.randomHex(32)};
-      const a=active={session,closed:false};
-      persist(a);saveSession(session);
+      const a=active={session,resumeCandidate,closed:false,abort:new AbortController()};
       try {
-        const rpc=await ensureGuest(a);const result=await rpc.request('join',{guestKey:session.guestKey});
+        const rpc=await ensureGuest(a);
+        if(session.token){const room=await guestRead(a);saveSession(session);return {room,session,token:session.token};}
+        const result=await rpc.request('join',{guestKey:session.guestKey});
         const room=verifyPeerRoom(result,session.id);session.token=result.token;
         a.last=room;a.lastAt=now();persist(a);saveSession(session);
         return {room,session,token:session.token};
@@ -186,6 +189,6 @@ export function createPeerRooms({peerFactory=createDirectPeer, storage=globalThi
       const rpc=await ensureGuest(a);const response=await rpc.request('action',{token:session.token,action});
       const room=verifyPeerRoom(response,session.id);a.last=room;a.lastAt=now();persist(a);return room;
     },
-    invitation:session=>session.inviteCode || `${session.id}.${session.secret}`,
+    invitation:session=>session?.role==='host'?(active?.session.id===session.id?active.peer?.invitationCode||'':session.inviteCode||''):'',
   };
 }

@@ -1,4 +1,4 @@
-// Bounded, ordered framing over a reliable WebRTC data channel.
+// Bounded, ordered game RPC over an approved reliable transport channel.
 export function createPeerRPC(channel, handle = async () => { throw new Error('Unknown request.'); }, timeoutMs = 12000) {
   const pending = new Map(), parts = new Map();
   let sequence=0, closed=false;
@@ -40,7 +40,7 @@ export function createPeerRPC(channel, handle = async () => { throw new Error('U
       if(pending.size>=16)return Promise.reject(new Error('Too many pending peer requests.'));
       return new Promise((resolve,reject)=>{
         const id=`request-${prefix}:${++sequence}`;
-        const timer=setTimeout(()=>{pending.delete(id);reject(new Error('Peer did not respond.'));},timeoutMs);
+        const timer=setTimeout(()=>{pending.delete(id);reject(new Error('Delivery unknown: the peer did not acknowledge the request. It was not resent.'));channel.close();},timeoutMs);
         pending.set(id,{resolve,reject,timer});
         try{send({kind:'request',id,method,value});}catch(error){clearTimeout(timer);pending.delete(id);reject(error);}
       });

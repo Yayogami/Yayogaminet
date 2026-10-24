@@ -1,0 +1,11 @@
+{
+  "name": "Viral Public License",
+  "shortName": "VPL",
+  "licenseFile": "LICENSE",
+  "source": "https://viralpubliclicense.org/VPL.txt",
+  "verifiedOn": "2026-10-23",
+  "comparison": "Official plaintext; line-ending and final-whitespace normalization only",
+  "sha256": "9099ee7518047bd5a308b24b6be2727611965adbe823d1f22c3ff99d19b881a2",
+  "scopeFile": "LICENSING.md",
+  "distributionStatus": "unresolved VPL/EUPL compatibility; local review only"
+}
