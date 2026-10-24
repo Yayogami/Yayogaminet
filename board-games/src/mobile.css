@@ -1,0 +1,98 @@
+/* Every rule is opt-in: desktop styling and DOM remain unchanged. */
+.mobile-ui { -webkit-text-size-adjust: 100%; }
+.mobile-ui body { min-width: 0; background-attachment: scroll; }
+.mobile-ui button, .mobile-ui input, .mobile-ui select, .mobile-ui summary { touch-action: manipulation; }
+.mobile-ui .art-button { min-height: 44px; border-width: 8px; border-image-width: 8px !important; padding: 6px 10px; font-size: 16px; white-space: normal; line-height: 1.2; }
+.mobile-ui .art-button:hover:enabled, .mobile-ui .game-card:hover { transform: none; }
+.mobile-ui button:focus-visible, .mobile-ui summary:focus-visible, .mobile-ui select:focus-visible { outline: 3px solid #ffe391; outline-offset: 2px; }
+.mobile-ui .mobile-button { min-height: 44px; padding: 8px 12px; border: 1px solid #c6a469; border-radius: 8px; background: #153b2b; color: #fff0ce; font: 600 15px/1.3 system-ui,sans-serif; }
+.mobile-ui .menu { width: min(560px,100%); height: auto; min-height: 100dvh; padding: 16px 12px; gap: 12px; justify-content: flex-start; }
+.mobile-ui .title-sign { min-width: 0; width: 100%; padding: 8px; border-width: 12px; border-image-width: 12px !important; }
+.mobile-ui .title-sign h1 { font-size: 28px; }
+.mobile-ui .eyebrow { font-size: 10px; }
+.mobile-ui .game-list { width: 100%; margin: 0; gap: 10px; }
+.mobile-ui .game-card { border-width: 10px; border-image-width: 10px !important; padding: 8px 2px 18px; }
+.mobile-ui .game-card h2 { font-size: clamp(19px,5vw,25px); }
+.mobile-ui .game-illustration { height: clamp(90px,18dvh,150px); margin: 4px auto; }
+.mobile-ui .variant { font-size: 12px; }
+.mobile-ui .game-detail { display: none; }
+.mobile-ui .selected-label { font-size: 10px; bottom: -8px; }
+.mobile-ui .selection { margin: 2px 0; font-size: 14px; }
+.mobile-ui .board-preview-button { margin: 0; min-height: 44px; }
+.mobile-ui .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mobile-ui .actions .art-button { width: 100%; min-height: 52px; font-size: 17px; }
+.mobile-ui #room-session-status:empty { display: none; }
+.mobile-ui .menu footer { gap: 12px; flex-wrap: wrap; justify-content: center; margin: auto 0 0; padding-top: 6px; font-size: 11px; }
+.mobile-ui #live-room, .mobile-ui #board-screen { display: flex; flex-direction: column; height: auto; min-height: 100dvh; padding: 6px max(6px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left)); gap: 6px; position: relative; }
+.mobile-ui .board-toolbar, .mobile-ui #live-room .board-toolbar { flex-direction: row; text-align: left; width: 100%; max-width: none; margin: 0; padding: 8px; gap: 8px; border-width: 0; border-image: none !important; border-radius: 10px; background: #102d24f2; }
+.mobile-ui .board-toolbar > div { flex: 1; min-width: 0; }
+.mobile-ui .board-toolbar h1, .mobile-ui #live-room .board-toolbar h1 { font-size: 18px; line-height: 1.25; letter-spacing: 0; text-shadow: none; }
+.mobile-ui .board-toolbar p, .mobile-ui #live-room .board-toolbar p { display: block; margin: 3px 0 0; font: 12px/1.3 system-ui,sans-serif; }
+.mobile-ui #seat-status { color: #d8cfb7; }
+.mobile-ui #live-state { font-weight: 650; }
+.mobile-ui .match-clock { width: 100%; min-width: 0; margin: 0; padding: 2px 8px; border: 0; border-image: none !important; background: transparent; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mobile-ui .match-clock p { font-size: 14px; margin: 0; }
+.mobile-ui .mobile-invitation { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 8px; padding: 4px 8px; border-radius: 8px; background: #102d24e8; }
+.mobile-ui .mobile-invitation label { display: grid; gap: 2px; font: 12px/1.2 system-ui,sans-serif; }
+.mobile-ui .mobile-invitation input { min-width: 0; min-height: 44px; padding: 6px; font: 600 18px/1.2 ui-monospace,monospace; letter-spacing: .1em; }
+.mobile-ui #live-canvas { width: 100%; height: min(calc(100vw - 12px),calc(100dvh - 290px)); min-height: 240px; flex: none; }
+.mobile-ui #live-canvas, .mobile-ui #board-canvas { display: grid; place-items: center; }
+.mobile-ui #live-room[data-mobile-waiting='true'] #live-canvas { height: min(calc(100vw - 12px),calc(100dvh - 280px)); }
+.mobile-ui .mobile-play-panel { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mobile-ui .mobile-play-actions { display: flex; gap: 6px; align-items: stretch; flex-wrap: wrap; }
+.mobile-ui .mobile-play-actions > * { flex: 1; min-width: 0; }
+.mobile-ui .mobile-play-actions .art-button { width: 100%; min-height: 44px; padding: 8px 6px; font: 600 14px/1.2 system-ui,sans-serif; border: 1px solid #c6a469; border-image: none !important; border-radius: 8px; }
+.mobile-ui #extend-reconnect { flex-basis: 100%; }
+.mobile-ui .move-controls { width: 100%; padding: 8px; margin: 0; border: 0; border-image: none !important; border-radius: 10px; background: #102d24f2; text-align: left; }
+.mobile-ui #live-room[data-mobile-waiting='true'] .move-controls { display: none; }
+.mobile-ui #move-instruction { font: 13px/1.4 system-ui,sans-serif; margin: 0 0 6px; }
+.mobile-ui #move-routes { justify-content: flex-start; gap: 6px; margin: 4px 0 8px; max-height: 110px; overflow: auto; }
+.mobile-ui #move-routes:empty { display: none; }
+.mobile-ui #move-routes .art-button { min-height: 44px; font-size: 14px; }
+.mobile-ui .mobile-move-buttons { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; }
+.mobile-ui #confirm-move { width: 100%; min-height: 48px; font-size: 18px; }
+.mobile-ui .mobile-piece-picker { margin-top: 6px; font: 14px/1.4 system-ui,sans-serif; }
+.mobile-ui summary { cursor: pointer; min-height: 44px; padding: 12px 4px; }
+.mobile-ui .mobile-piece-picker label { display: grid; gap: 4px; }
+.mobile-ui input, .mobile-ui select { min-height: 44px; font-size: 16px; max-width: 100%; }
+.mobile-ui #draw-with-move { width: 100%; margin-bottom: 6px; }
+.mobile-ui #live-message { font: 11px/1.4 system-ui,sans-serif; margin: 0; padding: 2px 8px; overflow-wrap: anywhere; }
+.mobile-ui #join-feedback, .mobile-ui #start-countdown { position: absolute; z-index: 6; top: 140px; left: 50%; transform: translateX(-50%); pointer-events: none; width: max-content; max-width: calc(100% - 24px); margin: 0; padding: 10px 14px; border: 1px solid #c6a469; border-image: none !important; border-radius: 10px; font-size: 18px; animation: none; }
+.mobile-ui #start-countdown { top: 195px; font-size: 24px; }
+.mobile-ui .square-hint.art-surface { width: 24px; height: 24px; border-width: 4px; border-image-width: 4px !important; font-size: 12px; }
+.mobile-ui #reaction-stage { top: 15%; right: 10px; gap: 6px; }
+.mobile-ui .posted-reaction { width: 80px; height: 90px; }
+.mobile-ui .reaction-picker { border-width: 10px; border-image-width: 10px !important; padding: 6px; gap: 6px; }
+.mobile-ui .reaction-picker .art-button { min-height: 90px; border-width: 6px; border-image-width: 6px !important; font-size: 14px; }
+.mobile-ui .reaction-picker img { height: 65px; }
+.mobile-ui .room-dialog, .mobile-ui .room-dialog.peer-approval-dialog { width: min(520px,calc(100vw - 16px)); max-width: calc(100vw - 16px); max-height: calc(100dvh - 24px); padding: 12px; border-width: 10px; border-image-width: 10px !important; overflow: auto; }
+.mobile-ui .room-dialog h2 { font-size: 22px; margin: 4px 0 8px; }
+.mobile-ui .room-dialog p { font: 14px/1.45 system-ui,sans-serif; }
+.mobile-ui .room-form { grid-template-columns: 1fr; gap: 10px; margin: 12px 0; }
+.mobile-ui .rule-toggles { grid-template-columns: 1fr 1fr; gap: 6px; }
+.mobile-ui .room-form .art-button { min-height: 48px; font-size: 14px; }
+.mobile-ui .approval-actions { gap: 8px; margin-top: 12px; }
+.mobile-ui .approval-actions > * { flex: 1; }
+.mobile-ui .mobile-options { color: #fff0ce; width: min(520px,calc(100vw - 16px)); max-width: calc(100vw - 16px); max-height: calc(100dvh - 24px); padding: 12px; border: 1px solid #c6a469; border-radius: 12px; background: #102d24; overflow: auto; }
+.mobile-ui .mobile-options::backdrop { background: #06180dcc; }
+.mobile-ui .mobile-options-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mobile-ui .mobile-options-heading h2 { font-size: 21px; margin: 0; }
+.mobile-ui .mobile-options .match-actions, .mobile-ui .mobile-options .room-rules-summary { width: 100%; margin: 12px 0; padding: 8px 0; border: 0; border-image: none !important; background: transparent; }
+.mobile-ui .mobile-options .match-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mobile-ui #draw-eligibility { grid-column: 1 / -1; margin: 0; font: 14px/1.4 system-ui,sans-serif; }
+.mobile-ui #draw-eligibility:empty { display: none; }
+.mobile-ui .mobile-options .reaction-actions { justify-content: stretch; margin: 12px 0; }
+.mobile-ui #resign-match, .mobile-ui #leave-room { width: 100%; }
+.mobile-ui #pending-request { background: #173d2d; border: 1px solid #c6a469; border-radius: 8px; padding: 10px; font: 14px/1.4 system-ui,sans-serif; }
+.mobile-ui #board-canvas { width: 100%; height: min(calc(100vw - 12px),calc(100dvh - 170px)); min-height: 240px; }
+.mobile-ui .board-help { margin: 0; }
+@media (orientation: landscape) and (min-width: 560px) {
+  .mobile-ui #live-room { display: grid; grid-template-columns: minmax(260px,1fr) minmax(250px,.85fr); grid-template-rows: auto auto auto 1fr; align-content: start; align-items: start; }
+  .mobile-ui #live-room .board-toolbar { grid-column: 1 / -1; }
+  .mobile-ui .match-clock { grid-column: 2; grid-row: 2; }
+  .mobile-ui #live-canvas, .mobile-ui #live-room[data-mobile-waiting='true'] #live-canvas { grid-column: 1; grid-row: 2 / 6; height: max(240px,calc(100dvh - 90px)); }
+  .mobile-ui .mobile-invitation { grid-column: 2; grid-row: 3; }
+  .mobile-ui .mobile-play-panel { grid-column: 2; grid-row: 4; }
+  .mobile-ui #live-message { grid-column: 2; grid-row: 5; }
+  .mobile-ui #board-canvas { height: calc(100dvh - 140px); }
+}

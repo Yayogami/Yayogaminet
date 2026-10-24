@@ -5,6 +5,7 @@ import { createBoardLayout, initialPieces } from './board-layout.js';
 
 /** Presentation only: future rules supply piece states; models never decide legal moves. */
 export async function createBoardView(container, game, options = {}) {
+  const mobile = document.documentElement.classList.contains('mobile-ui');
   const manifestUrl = new URL('../public/models.json', import.meta.url);
   const response = await fetch(manifestUrl, { cache: 'no-store' });
   if (!response.ok) throw new Error('Cannot load model manifest.');
@@ -64,6 +65,7 @@ export async function createBoardView(container, game, options = {}) {
   renderer.domElement.setAttribute('role', 'img');
   const camera = new THREE.PerspectiveCamera(38, 1, 0.005, 10);
   camera.position.set(0, 0.63, 0.44);
+  if (mobile) camera.position.set(0, 0.72, 0.1);
   const bottomSide = game.id === 'american-checkers' ? 'blue' : 'white';
   if (options.side && options.side !== bottomSide) camera.position.z *= -1;
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -73,8 +75,18 @@ export async function createBoardView(container, game, options = {}) {
   controls.maxDistance = 2;
   controls.maxPolarAngle = Math.PI * 0.46;
   controls.update();
-  let locked = !!options.onSquare;
-  function setLocked(value) { locked = value; controls.enabled = !value; options.onLockChange?.(value); }
+  let locked = mobile || !!options.onSquare;
+  let previewLock;
+  if (mobile && !options.onSquare) {
+    previewLock = document.createElement('button');previewLock.type='button';previewLock.className='mobile-button';previewLock.id='mobile-preview-lock';
+    container.parentElement.querySelector('.board-toolbar').append(previewLock);
+    previewLock.addEventListener('click',()=>setLocked(!locked));
+  }
+  function setLocked(value) {
+    locked = value; controls.enabled = !value; options.onLockChange?.(value);
+    if (mobile) { renderer.domElement.dataset.cameraLocked=String(value);renderer.domElement.style.touchAction=value?'pan-y pinch-zoom':'none'; }
+    if (previewLock) { previewLock.textContent=value?'Unlock Board':'Lock Board';previewLock.setAttribute('aria-pressed',String(value)); }
+  }
   setLocked(locked);
   const raycaster = new THREE.Raycaster();
   const boardPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -config.surface.height);
@@ -154,11 +166,18 @@ export async function createBoardView(container, game, options = {}) {
   }
   const mixer = new THREE.AnimationMixer(board.scene);
   if (asset.vegetation) for (const clip of board.animations) mixer.clipAction(clip).play();
+  let mobileBufferReady = false;
   function resize() {
     const width = Math.max(container.clientWidth, 1), height = Math.max(container.clientHeight, 1);
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.position.sub(controls.target).setLength(0.82 / Math.min(1, camera.aspect)).add(controls.target);
+    if (mobile) {
+      // Keep a bounded square drawing buffer; resizing WebKit's backing surface
+      // can leave it invisible after a phone layout/viewport change.
+      if (!mobileBufferReady) { renderer.setSize(512, 512, false); mobileBufferReady = true; }
+      const side = Math.min(width, height);
+      renderer.domElement.style.width = `${side}px`;renderer.domElement.style.height = `${side}px`;
+      camera.aspect = 1;
+    } else { renderer.setSize(width, height, false); camera.aspect = width / height; }
+    camera.position.sub(controls.target).setLength((mobile ? 0.71 : 0.82) / Math.min(1, camera.aspect)).add(controls.target);
     camera.updateProjectionMatrix();
     controls.update();
   }
@@ -178,18 +197,21 @@ export async function createBoardView(container, game, options = {}) {
     renderer.render(scene, camera);
     for (const marker of markers) {
       const projected = marker.point.clone().project(camera);
-      marker.element.style.left = `${(projected.x + 1) / 2 * container.clientWidth}px`;
-      marker.element.style.top = `${(1 - projected.y) / 2 * container.clientHeight}px`;
+      const width = mobile ? renderer.domElement.clientWidth : container.clientWidth, height = mobile ? renderer.domElement.clientHeight : container.clientHeight;
+      marker.element.style.left = `${(container.clientWidth-width)/2+(projected.x + 1) / 2 * width}px`;
+      marker.element.style.top = `${(container.clientHeight-height)/2+(1 - projected.y) / 2 * height}px`;
     }
   });
   return { layout, setPieces, showHints, showCaptures, setLocked, isLocked: () => locked,
     setSelected(id) { selectedId = id; if (id) setLocked(true); },
     setSide(side) {
       camera.position.set(0, 0.63, side === bottomSide ? 0.44 : -0.44);
+      if (mobile) camera.position.set(0, 0.72, side === bottomSide ? 0.1 : -0.1);
       controls.target.set(0, 0.01, 0); resize();
     },
     dispose() {
       renderer.setAnimationLoop(null); observer.disconnect(); controls.dispose(); mixer.stopAllAction();
+      previewLock?.remove();
       showHints();showCaptures();glowGeometry.dispose();glowMaterial.dispose();captureMaterial.dispose();renderer.domElement.removeEventListener('pointerdown', pointerDown, true); renderer.domElement.removeEventListener('pointerup', pointerUp);
       renderer.domElement.removeEventListener('dblclick', doubleClick);
       renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerleave', pointerLeave); renderer.domElement.removeEventListener('pointercancel', cancelPointer);
