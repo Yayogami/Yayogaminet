@@ -1,6 +1,7 @@
 // Compatibility boundary for the existing room/RPC engine. No PeerJS or WebRTC.
 import {createIrohChannel} from './iroh-channel.js';
 import {createIrohFrame} from './iroh-frame-client.js';
+import {requestPeerApproval} from './connection-ui.js';
 import {normalizeCompactCode} from '../public/vendor/iroh-pairing/runtime/168215132a335a2525532eea/prototype/compact-code.mjs';
 export function normalizeInvitation(input){
  let value=String(input).trim();
@@ -9,17 +10,17 @@ export function normalizeInvitation(input){
 }
 const validWelcome=value=>value&&Object.keys(value).sort().join(',')==='id,secret,type'&&value.type==='meadow-welcome-v1'&&/^[a-f0-9]{18}$/.test(value.id)&&/^[a-f0-9]{64}$/.test(value.secret);
 const notify=message=>{for(const id of ['room-progress','live-message']){const element=globalThis.document?.getElementById(id);if(element)element.textContent=message;}};
-const consent=()=>globalThis.confirm('Connect through the Iroh relay and Wormhole pairing service? Messages are encrypted. These services can see your IP address; the other player connects through the relay.');
-const approve=()=>globalThis.confirm('A player with your invitation is waiting. Accept this player into your room?');
-export async function createDirectPeer({id,invitation,onConnection=()=>{},onInvitation=()=>{},onError=()=>{},frameFactory=createIrohFrame,requestConsent=consent,approvePeer=approve,status=notify,signal}={}){
+// Creating/joining a room authorizes the connection; no additional consent popup.
+export async function createDirectPeer({id,invitation,onConnection=()=>{},onInvitation=()=>{},onError=()=>{},frameFactory=createIrohFrame,requestConsent=()=>true,approvePeer=requestPeerApproval,status=notify,signal}={}){
  if(signal?.aborted)throw Error('Connection cancelled.');
  if(!await requestConsent())throw Error('Connection cancelled.');
- let bridge,channel,destroyed=false,creating=false,renew=false,spent=false,code='',attempt=0;
+ let bridge,channel,approval,destroyed=false,creating=false,renew=false,spent=false,code='',attempt=0;
  let readyResolve,readyReject,readyTimer;
  const host=!!id;
  function clearReady(){clearTimeout(readyTimer);readyResolve=readyReject=undefined;}
  function failure(error){if(!destroyed){onError(error);status(error.message);}}
  function ended(){
+  approval?.abort();
   const error=Error('Connection ended. Ask the host for a fresh invitation to resume.');
   readyReject?.(error);clearReady();channel?.close(error);channel=undefined;
   if(host&&!destroyed){renew=true;code='';onInvitation('');status('Connection ended. A fresh invitation will appear for reconnecting.');}
@@ -42,8 +43,9 @@ export async function createDirectPeer({id,invitation,onConnection=()=>{},onInvi
   if(detail.type==='error')failure(Error(detail.value));
   if(detail.type!=='state')return;
   if(detail.value==='pending'&&host){
-   try{const accept=await approvePeer();if(destroyed||current!==attempt)return;await bridge.call('decide',!!accept);if(accept)await approvedHost(current);}
-   catch(error){failure(error);bridge?.close();}return;
+   if(approval)return;const decision=approval=new AbortController();
+   try{const accept=await approvePeer({signal:decision.signal});if(destroyed||current!==attempt||decision.signal.aborted)return;await bridge.call('decide',!!accept);if(accept)await approvedHost(current);}
+   catch(error){failure(error);bridge?.close();}finally{if(approval===decision)approval=undefined;}return;
   }
   if(detail.value==='awaiting-approval')status('Waiting for the host to accept your connection…');
   if(detail.value==='approved'&&!host){
@@ -64,7 +66,7 @@ export async function createDirectPeer({id,invitation,onConnection=()=>{},onInvi
    if(host){const created=await bridge.call('create');if(destroyed||current!==attempt){await bridge.close();throw Error('Connection cancelled.');}code=normalizeInvitation(created);onInvitation(code);status('Share this invitation privately. You will approve the joining player.');}
   }finally{creating=false;}
  }
- function close(){if(destroyed)return;destroyed=true;renew=false;readyReject?.(Error('Connection cancelled.'));clearReady();channel?.close();channel=undefined;signal?.removeEventListener('abort',close);return bridge?.close();}
+ function close(){if(destroyed)return;destroyed=true;renew=false;approval?.abort();readyReject?.(Error('Connection cancelled.'));clearReady();channel?.close();channel=undefined;signal?.removeEventListener('abort',close);return bridge?.close();}
  signal?.addEventListener('abort',close,{once:true});
  try{await start();}catch(error){close();throw error;}
  return {id,get invitationCode(){return code;},

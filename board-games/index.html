@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Meadow · Board games</title>
-  <link rel="stylesheet" href="./src/styles.css">
-  <script type="importmap">{"imports":{"three":"./public/vendor/three/build/three.module.js","three/addons/":"./public/vendor/three/examples/jsm/"}}</script>
+  <link rel="stylesheet" href="./src/styles.css?v=20261024-ui1">
+  <script type="importmap">{"imports":{"three":"./public/vendor/three/build/three.module.js","three/addons/":"./public/vendor/three/examples/jsm/","./src/room-ui.js":"./src/room-ui.js?v=20261024-ui1","./src/direct-peer.js":"./src/direct-peer.js?v=20261024-ui1","./src/board-view.js":"./src/board-view.js?v=20261024-ui1","./src/connection-ui.js":"./src/connection-ui.js?v=20261024-ui1"}}</script>
 </head>
 <body>
   <main class="menu" aria-labelledby="menu-title">
@@ -34,7 +34,7 @@
   </section>
   <section id="live-room" class="board-screen" hidden aria-labelledby="live-title">
     <header class="board-toolbar art-surface" data-art="heading">
-      <div><h1 id="live-title">Room</h1><p id="seat-status"></p></div>
+      <div><h1 id="live-title">Room</h1><p id="seat-status"></p><p id="live-state" role="status"></p></div>
       <button class="art-button" data-art="button" id="leave-room">Disconnect to menu</button>
     </header>
     <div id="join-feedback" class="join-feedback art-surface" data-art="heading" role="status" hidden>Both players joined</div>
@@ -42,7 +42,6 @@
     <div class="match-clock art-surface" data-art="panel"><span>Match clock</span><p id="live-clocks"></p></div>
     <div id="live-canvas"><div id="reaction-stage" aria-live="polite"></div></div>
     <aside class="room-side-panel" aria-label="Game controls">
-    <div class="turn-alert art-surface" data-art="heading"><p id="live-state" role="status"></p></div>
     <div class="room-controls">
       <label>Invitation code<input id="invitation-code" readonly aria-label="Invitation code"></label>
       <button class="art-button" data-art="button" id="copy-invitation">Copy Invite Link</button>
@@ -50,7 +49,7 @@
       <button class="art-button" data-art="button" id="board-lock" aria-pressed="true">Unlock Board</button>
       <div class="reaction-control">
         <button class="art-button" data-art="button" id="reactions-toggle" aria-expanded="false" aria-controls="reaction-picker">Reactions</button>
-        <div id="reaction-picker" class="reaction-picker art-surface" data-art="panel" hidden aria-label="Choose a reaction"></div>
+        <dialog id="reaction-picker" class="reaction-picker art-surface" data-art="panel" aria-label="Choose a reaction"></dialog>
       </div>
       <button class="art-button" data-art="button" id="extend-reconnect" hidden>Extend by 5 minutes</button>
     </div>
@@ -87,6 +86,14 @@
     <p id="room-progress" role="status"></p>
     <p id="room-error" role="alert" hidden></p>
     <button class="art-button" data-art="button" id="close-dialog">Back to games</button>
+  </dialog>
+  <dialog id="peer-approval-dialog" class="room-dialog peer-approval-dialog art-surface" data-art="panel" aria-labelledby="peer-approval-title" aria-describedby="peer-approval-copy">
+    <h2 id="peer-approval-title">A player wants to join</h2>
+    <p id="peer-approval-copy">Someone with your invitation is waiting. Let them into your room?</p>
+    <form method="dialog" class="approval-actions">
+      <button class="art-button" data-art="button" value="reject" autofocus>Decline</button>
+      <button class="art-button" data-art="button" value="accept">Accept player</button>
+    </form>
   </dialog>
   <div id="error" role="alert" hidden></div>
   <script type="module" src="./src/main.js"></script>
