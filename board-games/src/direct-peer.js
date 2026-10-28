@@ -2,7 +2,7 @@
 import {createIrohChannel} from './iroh-channel.js';
 import {createIrohFrame} from './iroh-frame-client.js';
 import {requestPeerApproval} from './connection-ui.js';
-import {normalizeCompactCode} from '../public/vendor/iroh-pairing/runtime/168215132a335a2525532eea/prototype/compact-code.mjs';
+import {normalizeCompactCode} from '../public/vendor/iroh-pairing/runtime/9335247ccc0c2f5535fdbe69/prototype/compact-code.mjs';
 export function normalizeInvitation(input){
  let value=String(input).trim();
  if(/^https?:\/\//i.test(value))value=new URLSearchParams(new URL(value).hash.slice(1)).get('join')||'';

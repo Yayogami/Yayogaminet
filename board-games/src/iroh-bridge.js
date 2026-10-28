@@ -1,5 +1,5 @@
-// Isolated policy document. Audited transport files remain byte-for-byte intact.
-import {PairingSession} from '../public/vendor/iroh-pairing/runtime/168215132a335a2525532eea/prototype/ui/pairing-session.mjs';
+// Isolated policy document. Transport is pinned to the reviewed compatible privacy build.
+import {PairingSession} from '../public/vendor/iroh-pairing/runtime/9335247ccc0c2f5535fdbe69/prototype/ui/pairing-session.mjs';
 let port,session,heartbeat,busy=false;
 addEventListener('message',event=>{
  if(port||event.source!==parent||event.origin!==location.origin||event.data?.type!=='meadow-iroh-port'||event.ports.length!==1)return;

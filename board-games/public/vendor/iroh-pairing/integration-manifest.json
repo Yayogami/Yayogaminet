@@ -1,6 +1,6 @@
 {
   "source": "corresponding source archive; compatible privacy build",
-  "version": "168215132a335a2525532eea",
+  "version": "9335247ccc0c2f5535fdbe69",
   "publication": "owner-authorized game playtest; retained license compatibility review unresolved",
   "files": [
     {
@@ -31,7 +31,7 @@
     {
       "path": "NOTICE.txt",
       "bytes": 1358,
-      "sha256": "d4f65f1bba1f9174909b3e5d56a4c04819b813311607cbe835f5ac23c21fc3e1"
+      "sha256": "86eb6873498cdddd204a4026c7a97cf228d499761f6c6b66af1d8849b9c08e3c"
     },
     {
       "path": "SOURCE.html",
@@ -51,7 +51,7 @@
     {
       "path": "index.html",
       "bytes": 3500,
-      "sha256": "9b2a5f8b62d6a3700bc58c290373b7f576bca5bcea813c011a980b291eb2053a"
+      "sha256": "bca84eed6b9136cc9f42b501039507ea960fa28cfd831d83b9b48a59e1e5c842"
     },
     {
       "path": "licenses/RELEASE-PROVENANCE.json",
@@ -2809,119 +2809,119 @@
       "sha256": "1bc9688d785fa50345f803824ddde000bdabedda9d1803dc41a1fedd81f784fc"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/compact-code.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/compact-code.mjs",
       "bytes": 699,
       "sha256": "72bfe43fc590e6c78761b4da3c4c37f5bdf53de725deebc78d6d10f787f5070d"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/directory-proof.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/directory-proof.mjs",
       "bytes": 1616,
       "sha256": "e44dbcbea20f53cf68eb942539a67d26a3af4370d4a7988efc822ea8beb43e4b"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/mailbox-cleanup.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/mailbox-cleanup.mjs",
       "bytes": 3653,
       "sha256": "50b03f9985a6dac66a0ef28838914d4ed0274e2baa9f219de6f14faa8dba9e57"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/mailbox-handoff.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/mailbox-handoff.mjs",
       "bytes": 2706,
       "sha256": "ac515443d3fb573dd50f9be5ec77d28f6153a75cae9740a04682175a2e2d3e53"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/mailbox-wasm/wormhole_feasibility.js",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/mailbox-wasm/wormhole_feasibility.js",
       "bytes": 29193,
       "sha256": "4075650bbd91abcd7a9e0b531d4b532c85163ee9aa6cd673a46ce0c0de41aec1"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/mailbox-wasm/wormhole_feasibility_bg.wasm",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/mailbox-wasm/wormhole_feasibility_bg.wasm",
       "bytes": 2728264,
       "sha256": "c575bd5dfc6f4c4e93596dacb774663e7ad328ea01191da601a516668e0c358b"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/room-credentials.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/room-credentials.mjs",
       "bytes": 1355,
       "sha256": "860931d8c15e2fd943f11f7fd2c5f352e43f1b3bbd6061b2015f415d89e18bf4"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/mailbox-client.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/mailbox-client.mjs",
       "bytes": 3632,
       "sha256": "82d3472f39e1b947aab48c3670c16b1a0a621f4ba26671438225cbc2f98787f7"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/mailbox-frame.html",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/mailbox-frame.html",
       "bytes": 449,
       "sha256": "88085ba53758fd246e2da69c4be409dad77ba053ec3437a302170d5cb41a4bc2"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/mailbox-frame.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/mailbox-frame.mjs",
       "bytes": 1230,
       "sha256": "6c700aae1e5b7a53ffe9882bc5ac6cdec5f531b2eda5e97fd77f5441daa07394"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/mailbox-worker-host.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/mailbox-worker-host.mjs",
       "bytes": 2026,
       "sha256": "aaa3a6ae3f657779d530f830248371fb5ff0645c12d3bbd3ab898b6451a060b1"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/mailbox-worker.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/mailbox-worker.mjs",
       "bytes": 4713,
       "sha256": "83536c9edb881afbf84c041dfaf0f492158ae73968109d9d956ac7de15ff181c"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/manual-client.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/manual-client.mjs",
       "bytes": 9388,
       "sha256": "8837796700c628ef87b135532713d39ce9ed3d40bc6a3bca37fd38eb8d7e1d2e"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/manual-worker.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/manual-worker.mjs",
       "bytes": 1407,
       "sha256": "d9061b0c0d9fddbd276ae76e1737ae03cbde665be6ed98dbfb02b1c3d4981d1e"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/pairing-app.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/pairing-app.mjs",
       "bytes": 4154,
       "sha256": "55867976ff55c956f46825aa46414b5c0833c8dc12529bd3df841d3104d34abd"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/pairing-session.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/pairing-session.mjs",
       "bytes": 7534,
       "sha256": "f68e66a55e2cdc32db0aa89e8f972c7eae29f3da6326a81f8ae842c2994c3e42"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/ui/room-protocol.mjs",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/ui/room-protocol.mjs",
       "bytes": 711,
       "sha256": "92798fc13d93da055885263323ed24f4be13540ac4338b7026c27d2653e44ec4"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/wasm/iroh_browser_proof.js",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/wasm/iroh_browser_proof.js",
       "bytes": 48855,
       "sha256": "4d6a807ce6f8a6bf797c72452b65b304c974608fc8fa185fbe5f78042c1fbb68"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/prototype/wasm/iroh_browser_proof_bg.wasm",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/prototype/wasm/iroh_browser_proof_bg.wasm",
       "bytes": 3256962,
       "sha256": "79b064631b703a122cee2e52328f7e6a6559ea78730b6a7ab116b51ee46a09cc"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/public/relay-policy.js",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/public/relay-policy.js",
       "bytes": 2850,
       "sha256": "0399943755b11d695e5ebe7753afe13cafc1c8257b9b2580dce43681ede9c19b"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/public/style.css",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/public/style.css",
       "bytes": 2168,
       "sha256": "645118cba359c7b4ed1b1657c375ec52c793a4ba3fa36b9c88038c1c0d71efcf"
     },
     {
-      "path": "runtime/168215132a335a2525532eea/public/transport.js",
+      "path": "runtime/9335247ccc0c2f5535fdbe69/public/transport.js",
       "bytes": 5393,
       "sha256": "c78a2c416df1967c3fd3fff1603d3daa6564fe1e0dfa95831cd83342e6d353f9"
     },
     {
       "path": "source.tar.gz",
-      "bytes": 250233,
-      "sha256": "dbce859c06fe24a59aaf904e78d46e7a2520775f7c52120e3ee81a3df0e8b427"
+      "bytes": 250225,
+      "sha256": "f240fa5c0df66a1a890d16932929717a120ff5ab3065f8f68e584b356b56d2d7"
     }
   ]
 }

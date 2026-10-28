@@ -2,7 +2,7 @@
 export async function createIrohFrame({onEvent=()=>{},signal}={}){
  if(signal?.aborted)throw Error('Connection cancelled.');
  const frame=document.createElement('iframe');frame.hidden=true;frame.title='Private connection';frame.referrerPolicy='no-referrer';
- frame.src=new URL('./iroh-bridge.html',import.meta.url).href;
+ frame.src=new URL('./iroh-bridge.html?v=20261027-privacy1',import.meta.url).href;
  const {port1:port,port2}=new MessageChannel(),calls=new Map();let serial=0,closed=false,closing,lastBeat=Date.now(),watchdog,readyResolve,readyReject;
  const ready=new Promise((resolve,reject)=>{readyResolve=resolve;readyReject=reject;});
  const readyTimer=setTimeout(()=>dispose(Error('Connection worker could not start.')),15000);

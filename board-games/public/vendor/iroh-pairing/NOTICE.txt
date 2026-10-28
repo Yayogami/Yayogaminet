@@ -1,8 +1,8 @@
 Standalone Iroh/Wormhole pairing candidate
 
 This local candidate is experimental and has not been publicly deployed.
-Source: source.tar.gz (SHA-256 dbce859c06fe24a59aaf904e78d46e7a2520775f7c52120e3ee81a3df0e8b427).
-Runtime version: 168215132a335a2525532eea.
+Source: source.tar.gz (SHA-256 f240fa5c0df66a1a890d16932929717a120ff5ab3065f8f68e584b356b56d2d7).
+Runtime version: 9335247ccc0c2f5535fdbe69.
 
 Original first-party code is licensed under the Viral Public License (VPL).
 See LICENSE, LICENSING.md and licenses/VPL.provenance.json. The owner selected
