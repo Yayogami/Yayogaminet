@@ -11,7 +11,8 @@ self.onmessage = async ({ data: { id, op, args = [] } }) => {
     let result;
     if (op === 'start') {
       if (node) throw new Error('Session already started');
-      initialized ??= init();
+      // Revalidate the fixed allowlisted asset so a cached old build is replaced.
+      initialized ??= init({ module_or_path: fetch(new URL('./wasm/iroh_browser_proof_bg.wasm', import.meta.url), { cache: 'no-cache' }) });
       await initialized;
       node = await PrivacyNode.start(args[0], args[1], value => postMessage({ event: JSON.parse(value) }));
       result = node.endpoint_id();

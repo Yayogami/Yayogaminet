@@ -36,7 +36,7 @@ export class PrivacyClient extends EventTarget {
     try {
     // A blob entry inherits the document CSP, including on headerless hosts.
     // Import a fixed same-origin module; invitation data never enters this code.
-    const entry = `import ${JSON.stringify(new URL('./worker.js', import.meta.url).href)};`;
+    const entry = `import ${JSON.stringify(new URL('./worker.js?v=20261027-privacy2', import.meta.url).href)};`;
     this.#workerUrl = URL.createObjectURL(new Blob([entry], { type: 'text/javascript' }));
     this.#worker = new Worker(this.#workerUrl, { type: 'module' });
     this.#worker.onmessage = ({ data }) => {

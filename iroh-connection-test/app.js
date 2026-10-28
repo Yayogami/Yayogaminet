@@ -1,4 +1,4 @@
-import { PrivacyClient } from './transport.js';
+import { PrivacyClient } from './transport.js?v=20261027-privacy2';
 const $ = id => document.getElementById(id);
 let client;
 let sendingSession;
